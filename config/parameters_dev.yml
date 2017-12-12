@@ -3,11 +3,11 @@ parameters:
     # Doctrine Configuration
     database_host: 127.0.0.1
     database_port: null
-    database_name: symfony
-    database_user: root
-    database_password: null
+    database_name: service_db
+    database_user: service_user
+    database_password: 123456
     # Swiftmailer Configuration
     mailer_transport: smtp
     mailer_host: 127.0.0.1
-    mailer_user: null
-    mailer_password: null
+    mailer_user: ramisfari22@gmail.com
+    mailer_password: ramisfari123

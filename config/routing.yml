@@ -1,3 +1,9 @@
-app:
-    resource: '@AppBundle/Controller/'
+# Add your route here
+# import ServiceBundle routing
+service:
+    resource: '@ServiceBundle/Controller/'
     type: annotation
+    prefix:   /
+# import FOSUserBundle routing
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

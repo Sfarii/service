@@ -8,7 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
- 
+
 return [
   // all environment
   Doctrine\Bundle\DoctrineBundle\DoctrineBundle::class => ['all' => true],
@@ -18,7 +18,8 @@ return [
   Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle::class => ['all' => true],
   Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
   Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle::class => ['all' => true],
-  AppBundle\AppBundle::class => ['all' => true],
+  FOS\UserBundle\FOSUserBundle::class => ['all' => true],
+  ServiceBundle\ServiceBundle::class => ['all' => true],
   // dev environment
   Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle::class => ['dev' => true],
   Symfony\Bundle\WebServerBundle\WebServerBundle::class => ['dev' => true],

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Remove Tap Highlight on Windows Phone IE -->
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <meta name="description" content="">
+    <meta name="keywords" content="cv, Create cv , material design, Service">
+    <meta name="author" content="Rami Sfari">
+    <title>{% block title %}change me{% endblock %}</title>
+    <!--  favicon -->
+    <link rel="shortcut icon" href="{{ asset('favicon.ico')}}">
+    <!--  apple-touch-icon -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('icon_144')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('icon_114')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('icon_72')}}">
+    <link rel="apple-touch-icon-precomposed" href="{{ asset('icon_57')}}">
+
+    {% block stylesheets %}
+      <!-- google web fonts -->
+      <link href="{{ asset('google_fonts.roboto')}}" rel="stylesheet">
+      <!-- uikit -->
+      <link rel="stylesheet" href="{{ asset('uikit.almost.flat.min.css') }}" media="all">
+      <!-- login page -->
+      <link rel="stylesheet" href="{{ asset('login_page.min.css') }}" />
+
+      <!-- matchMedia polyfill for testing media queries in JS -->
+      <!--[if lte IE 9]>
+          <script type="text/javascript" src="bower_components/matchMedia/matchMedia.js"></script>
+          <script type="text/javascript" src="bower_components/matchMedia/matchMedia.addListener.js"></script>
+          <link rel="stylesheet" href="{{ asset('ie.css') }}" media="all">
+      <![endif]-->
+    {% endblock %}
+  </head>
+  <body class="login_page">
+    <!-- main page content -->
+    {% block fos_user_content %}
+    {% endblock fos_user_content %}
+    <!-- main page content end -->
+
+    <!-- main javascripts -->
+    {% block javascripts %}
+      <!-- common functions -->
+      <script src="{{ asset('common.min.js')}}"></script>
+      <!-- uikit functions -->
+      <script src="{{ asset('uikit_custom.min.js')}}"></script>
+      <!-- altair common functions/helpers -->
+      <script src="{{ asset('altair_admin_common.min.js')}}"></script>
+
+      <script>
+          $(function() {
+              if(isHighDensity()) {
+                  $.getScript('{{ absolute_url(asset("dense.min.js")) }}', function(data) {
+                      // enable hires images
+                      altair_helpers.retina_images();
+                  });
+              }
+              if(Modernizr.touch) {
+                  // fastClick (touch devices)
+                  FastClick.attach(document.body);
+              }
+          });
+          $window.load(function() {
+              // ie fixes
+              altair_helpers.ie_fix();
+          });
+      </script>
+    {% endblock %}
+    <!-- main javascripts end -->
+    
+    {% block fos_message %}{% endblock %}
+    <!-- main flash message -->
+    {% if app.request.hasPreviousSession %}
+        {% for type, messages in app.session.flashBag.all %}
+            {% for message in messages %}
+                <script type="text/javascript">
+                  UIkit.notify({message: "<a href='#' class='notify-action'><span class='uk-icon-times'></span></a>{{ message|trans({}, 'FOSUserBundle') }}", status: "{{ type }}", timeout: 100, group: null, pos: 'top-right'});
+                </script>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+    <!-- main flash message end -->
+  </body>
+</html>
