@@ -1,5 +1,5 @@
 {
-    "name": "App",
+    "name": "Service",
     "type": "project",
     "license": "proprietary",
     "authors": [{
@@ -12,7 +12,7 @@
         "psr-4": {
             "AppBundle\\": "src/AppBundle"
         },
-        "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
+        "classmap": [ "core/AppKernel.php", "core/AppCache.php" ]
     },
     "autoload-dev": {
         "psr-4": { "Tests\\": "tests/" },
