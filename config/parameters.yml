@@ -1,0 +1,5 @@
+# this file contain shared parameters between each deployment target
+#   of the app, e.g. development, staging, production.
+parameters:
+    # Framework configuration
+    secret: 3f4dcca7bb58a1944eba60f7f88fa11a1f2ef67f

@@ -1,0 +1,103 @@
+imports:
+    - { resource: security.yml }
+    - { resource: services.yml }
+    - { resource: parameters.yml }
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: en
+# Framework configuration
+framework:
+    secret: '%secret%'
+    http_method_override: true
+    default_locale: '%locale%'
+    trusted_hosts: ~
+    # fragments configuration
+    fragments:
+        enabled: false
+    # esi configuration
+    esi:
+        enabled: false
+    # csrf protection configuration
+    csrf_protection:
+        enabled: true
+    # assets configuration
+    assets:
+        version:            'v1'
+        version_format:     '%%s?%%s'
+    # translator configuration
+    translator:
+        enabled: true
+        fallbacks: ['%locale%']
+        logging: "%kernel.debug%"
+        paths: ["%kernel.project_dir%/translations"]
+    # router configuration
+    router:
+        resource: '%kernel.project_dir%/config/routing.yml'
+        # 'true' is the preferred configuration in development mode, while
+        # 'false' or 'null' might be preferred in production
+        strict_requirements:  true
+    # form configuration
+    form:
+        enabled: true
+        csrf_protection:
+            enabled: true
+    # session configuration
+    session:
+        # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id: session.handler.native_file
+        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+    # templating configuration
+    templating:
+        form:
+            resources:
+                - FrameworkBundle:Form
+        engines:
+            - twig
+    # validation configuration
+    validation:
+        enabled: true
+        enable_annotations: true
+    # serializer configuration
+    serializer:
+       enabled: true
+       enable_annotations: true
+    # php errors configuration
+    php_errors:
+        log: true
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver: pdo_mysql
+        host: '%database_host%'
+        port: '%database_port%'
+        dbname: '%database_name%'
+        user: '%database_user%'
+        password: '%database_password%'
+        charset: UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: '%kernel.project_dir%/var/data/data.sqlite'
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #path: '%database_path%'
+
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+
+# Twig Configuration
+twig:
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    paths: ["%kernel.project_dir%/templates"]
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: '%mailer_transport%'
+    host: '%mailer_host%'
+    username: '%mailer_user%'
+    password: '%mailer_password%'
+    spool: { type: memory }
