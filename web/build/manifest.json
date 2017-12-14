@@ -7,6 +7,11 @@
   "main.fix.min.css": "/build/css/main.fix.min.css",
   "themes_combined.min.css": "/build/css/themes/themes_combined.min.css",
   "login_page.min.css" : "/build/css/login_page.min.css",
+  "cv_content.css" : "/build/css/cv_content.min.css",
+
+  "logo.png": "/build/img/logo.png",
+  "user.png": "/build/img/avatars/user.png",
+  "user@2x.png": "/build/img/avatars/user@2x.png",
 
   "icon_57": "/build/img/ico/apple-touch-icon-57-precomposed.png",
   "icon_72": "/build/img/ico/apple-touch-icon-72-precomposed.png",
@@ -16,6 +21,7 @@
 
   "google_fonts.roboto": "https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,400italic:latin",
   "google_fonts.source_code_pro": "https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700:latin",
+  "google_fonts.comfortaa": "https://fonts.googleapis.com/css?family=Comfortaa:400,300,500,700,400italic:latin",
 
   "common.min.js": "/build/js/common.min.js",
   "uikit_custom.min.js": "/build/js/uikit_custom.min.js",

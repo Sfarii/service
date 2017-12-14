@@ -1,0 +1,24 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <!-- google web fonts -->
+  <link href="{{ asset('google_fonts.comfortaa')}}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+  <div class="uk-width-medium-1-2 uk-container-center" id="page_content_inner">
+    <div class=" uk-margin-large-top uk-margin-bottom uk-container-center">
+      <img src="{{ asset('logo.png') }}" alt="logo">
+    </div>
+    {{ form_start(form, { 'action': path('search_result')}) }}
+    <div class="search-form uk-margin-large-top">
+      {{ form_widget(form.search , {'attr' : {'class' : 'search-box'}}) }}
+      <button type="submit" class="search-button">
+        <i class="material-icons search-icon">&#xE8B6;</i>
+      </button>
+    </div>
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+  </div>
+{% endblock %}

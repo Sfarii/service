@@ -19,6 +19,8 @@ return [
   Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
   Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle::class => ['all' => true],
   FOS\UserBundle\FOSUserBundle::class => ['all' => true],
+  Sg\DatatablesBundle\SgDatatablesBundle::class => ['all' => true],
+  Knp\Bundle\PaginatorBundle\KnpPaginatorBundle::class => ['all' => true],
   ServiceBundle\ServiceBundle::class => ['all' => true],
   // dev environment
   Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle::class => ['dev' => true],

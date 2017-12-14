@@ -1,7 +1,8 @@
 {% extends "@FOSUser/layout.html.twig" %}
 
+{% trans_default_domain 'FOSUserBundle' %}
+
 {% block fos_user_content %}
-  {% trans_default_domain 'FOSUserBundle' %}
   <div class="login_page_wrapper">
     <div class="md-card">
       <div class="md-card-content large-padding">
@@ -38,7 +39,7 @@
             </div>
           </div>
           <div class="uk-margin-top">
-            <a href="#" id="login_help_show" class="uk-float-right">Need help?</a>
+            <a href="#" id="login_help_show" class="uk-float-right">{{ 'login.help'|trans }}</a>
             <span class="icheck-inline">
               <input type="checkbox" id="remember_me" name="_remember_me" value="on" data-md-icheck="data-md-icheck"/>
               <label for="login_page_stay_signed" class="inline-label">{{ 'security.login.remember_me'|trans }}</label>
@@ -51,7 +52,7 @@
       </div>
     </div>
     <div class="uk-margin-top uk-text-center">
-      <a href="{{ url('fos_user_registration_register') }}">Create an account</a>
+      <a href="{{ url('fos_user_registration_register') }}">{{ 'login.new_account'|trans }}</a>
     </div>
   </div>
 

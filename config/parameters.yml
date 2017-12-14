@@ -3,3 +3,5 @@
 parameters:
     # Framework configuration
     secret: 3f4dcca7bb58a1944eba60f7f88fa11a1f2ef67f
+    # translator configuration
+    default_locale: en

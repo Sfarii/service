@@ -1,0 +1,101 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <!-- google web fonts -->
+  <link href="{{ asset('google_fonts.comfortaa')}}" rel="stylesheet">
+{% endblock %}
+
+{% block body_class %}header_double_height main_search_persistent main_search_active{% endblock %}
+
+{% block body %}
+  <ul class="uk-tab uk-tab-double-header uk-margin-bottom" data-uk-tab="{connect:'#tabs_search_content', animation:'slide-left'}" id="tabs_search">
+    <li class="uk-active">
+      <a href="#">Profiles</a>
+    </li>
+    <li class="tab_maps">
+      <a href="#">Maps</a>
+    </li>
+  </ul>
+  <ul id="tabs_search_content" class="uk-switcher">
+    <li>
+      <div class="uk-grid uk-grid-medium uk-grid-width-small-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-4 uk-grid-width-xlarge-1-5" data-uk-grid-margin="data-uk-grid-margin" data-uk-grid-match="{target:'.md-card'}">
+        <div data-uk-filter="schamberger plc ,antonietta witting,hkeeling@hotmail.com">
+          <div class="md-card md-card-hover">
+            <div class="md-card-head">
+              <div class="md-card-head-menu" data-uk-dropdown="{pos:'bottom-right'}">
+                <i class="md-icon material-icons">&#xE5D4;</i>
+                <div class="uk-dropdown uk-dropdown-small">
+                  <ul class="uk-nav">
+                    <li>
+                      <a href="#">Edit</a>
+                    </li>
+                    <li>
+                      <a href="#">Remove</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="uk-text-center">
+                <img class="md-card-head-avatar" src="assets/img/avatars/avatar_02.png" alt=""/>
+              </div>
+              <h3 class="md-card-head-text uk-text-center">
+                Antonietta Witting
+                <span class="uk-text-truncate">Schamberger PLC
+                </span>
+              </h3>
+            </div>
+            <div class="md-card-content">
+              <ul class="md-list">
+                <li>
+                  <div class="md-list-content">
+                    <span class="md-list-heading">Info</span>
+                    <span class="uk-text-small uk-text-muted">Id eum culpa sunt aspernatur dolor ducimus quisquam tenetur earum recusandae ut.</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="md-list-content">
+                    <span class="md-list-heading">Email</span>
+                    <span class="uk-text-small uk-text-muted uk-text-truncate">hkeeling@hotmail.com</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="md-list-content">
+                    <span class="md-list-heading">Phone</span>
+                    <span class="uk-text-small uk-text-muted">(308)456-6832</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </li>
+  <li class="full_height">
+    <div class="map_search_wrapper" data-uk-check-display="data-uk-check-display">
+      <span id="map_search_list_toggle"><img src="assets/img/md-images/ic_place_black.png" alt=""></span>
+      <div id="map_search" class="gmap"></div>
+      <div class="map_search_list_wrapper">
+        <p class="uk-text-small uk-text-muted uk-margin-left uk-margin-right">About 62 results (1.19 seconds)</p>
+        <ul class="md-list gmap_list" id="map_search_list">
+          <li data-gmap-lat="38.35894188" data-gmap-lon="-92.8538577" data-gmap-company="Kuhic Ltd" data-gmap-company-address="679 Mckayla Plaza Apt. 852 South Ilenemouth, MN 27824">
+            <div class="md-list-content">
+              <span class="md-list-heading">Kuhic Ltd</span>
+              <spa class="uk-text-small uk-text-muted">>679 Mckayla Plaza Apt. 852 South Ilenemouth, MN 27824</span>
+              <span class="uk-text-small uk-text-muted uk-margin-small-top">Opening hours: 8.00-20.00</span>
+            </div>
+          </li>
+          <li data-gmap-lat="41.05874774" data-gmap-lon="-92.26713263" data-gmap-company="Hoppe, Paucek and Schmidt" data-gmap-company-address="60847 Schmeler Squares North Breana, ND 29775">
+            <div class="md-list-content">
+              <span class="md-list-heading">Hoppe, Paucek and Schmidt</span>
+              <span class="uk-text-small uk-text-muted">60847 Schmeler Squares North Breana, ND 29775</span>
+              <span class="uk-text-small uk-text-muted uk-margin-small-top">Opening hours: 8.00-20.00</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </li>
+</ul>
+{% endblock %}

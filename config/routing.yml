@@ -7,3 +7,8 @@ service:
 # import FOSUserBundle routing
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+# import SgDatatablesBundle routing
+sg_datatables_bundle:
+    resource: "@SgDatatablesBundle/Controller/"
+    type:     annotation
+    prefix:   /sg

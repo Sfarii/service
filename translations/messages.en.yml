@@ -1,0 +1,24 @@
+# translation for menu
+menu:
+  profile: Profile
+  logout: Logout
+  settings: Settings
+# translation for login page /templates/FOSUserBundle/Security/login.html.twig
+login:
+  help: Need help?
+  new_account: Create an account
+# translation for user account
+user:
+  show:
+    change_password: Change your Service Account password.
+# translation for cv
+cv:
+  title: curriculum vitae
+  about_me: About me ?
+  employment: Employment
+  skills: Skills
+  languages: Languages
+  softwares: Softwares
+  education: Education
+  portfolio: Portfolio
+  hobbies: Hobbies & interests

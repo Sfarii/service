@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Businessdirectories list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Companyname</th>
+                <th>Companyaddress</th>
+                <th>Longitude</th>
+                <th>Latitude</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for businessDirectory in businessDirectories %}
+            <tr>
+                <td><a href="{{ path('businessdirectory_show', { 'id': businessDirectory.id }) }}">{{ businessDirectory.id }}</a></td>
+                <td>{{ businessDirectory.companyName }}</td>
+                <td>{{ businessDirectory.companyAddress }}</td>
+                <td>{{ businessDirectory.longitude }}</td>
+                <td>{{ businessDirectory.latitude }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('businessdirectory_show', { 'id': businessDirectory.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('businessdirectory_edit', { 'id': businessDirectory.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('businessdirectory_new') }}">Create a new businessDirectory</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,590 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block sticky_button %}
+  <a class="md-fab md-fab-accent md-fab-wave waves-effect waves-button" href="#">
+    <i class="material-icons">&#xE8AD;</i>
+  </a>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <!-- google web fonts -->
+  <link href="{{ asset('google_fonts.comfortaa')}}" rel="stylesheet">
+  <!-- uikit -->
+  <link rel="stylesheet" href="{{ asset('cv_content.css') }}" media="all">
+{% endblock %}
+
+{% block title_page %}
+  {{ 'user.show.title'|trans }}
+{% endblock %}
+
+{% block body %}
+  <!-- cv content -->
+  <div class="cv-content-box">
+    <div id="cv-content">
+      <!-- cv Menu -->
+      <div class="cv-menu">
+        <div class="cv-menu-user-img">
+          <img class="cv-img" src="{{ asset('user@2x.png') }}" alt="{{ app.user.username}}"/>
+        </div>
+        <!-- Username & fonction -->
+        <div class="cv-menu-username">
+          <h2 class="font-nova menu-username">{{ user.username }}</h2>
+          <h4 class="font-nova menu-userfonction">fonction</h4>
+        </div>
+
+        <!-- Contacts -->
+        <div class="cv-contact-bloc">
+          <div class="cv-contact">
+            <div class="uk-icon-button uk-margin-small-right">
+              <i class="uk-icon-phone cv-contact-icon "></i>
+            </div>
+            <p class="cv-contact-txt">phone number</p>
+          </div>
+          <div class="cv-contact">
+            <div class="uk-icon-button uk-margin-small-right">
+              <i class="uk-icon-envelope cv-contact-icon "></i>
+            </div>
+            <p class="cv-contact-txt">e-mail</p>
+          </div>
+          <div class="cv-contact">
+            <div class="uk-icon-button uk-margin-small-right">
+              <i class="uk-icon-home cv-contact-icon "></i>
+            </div>
+            <p class="cv-contact-txt">address</p>
+          </div>
+          <div class="cv-contact">
+            <div class="uk-icon-button uk-margin-small-right">
+              <i class="uk-icon-globe cv-contact-icon "></i>
+            </div>
+            <p class="cv-contact-txt">website</p>
+          </div>
+          <div class="cv-contact">
+            <div class="uk-margin-small-right">
+              <i class="uk-icon-linkedin uk-icon-button cv-contact-icon "></i>
+            </div>
+            <p class="cv-contact-txt">linken in</p>
+          </div>
+          <div class="cv-contact">
+            <div class="uk-icon-button uk-margin-small-right">
+              <i class="uk-icon-facebook-official cv-contact-icon "></i>
+            </div>
+            <p class="cv-contact-txt">
+              facebook</p>
+          </div>
+
+          <div class="cv-contact">
+            <div class="uk-icon-button uk-margin-small-right">
+              <i class="uk-icon-google-plus cv-contact-icon "></i>
+            </div>
+            <p class="cv-contact-txt">google plus</p>
+          </div>
+          <div class="cv-contact">
+            <div class="uk-icon-button uk-margin-small-right">
+              <i class="uk-icon-instagram cv-contact-icon "></i>
+            </div>
+            <p class="cv-contact-txt">
+              instagram</p>
+          </div>
+          <div class="cv-contact">
+            <div class="uk-icon-button uk-margin-small-right">
+              <i class="uk-icon-youtube cv-contact-icon "></i>
+            </div>
+            <p class="cv-contact-txt">youtube</p>
+          </div>
+          <div class="cv-contact">
+            <div class="uk-icon-button uk-margin-small-right">
+              <i class="uk-icon-twitter cv-contact-icon "></i>
+            </div>
+            <p class="cv-contact-txt">
+              twitter</p>
+          </div>
+          <div class="cv-contact">
+            <div class="uk-icon-button uk-margin-small-right">
+              <i class="uk-icon-soundcloud cv-contact-icon "></i>
+            </div>
+            <p class="cv-contact-txt">soundcloud</p>
+          </div>
+          <div class="cv-contact">
+            <div class="uk-icon-button uk-margin-small-right">
+              <i class="uk-icon-pinterest cv-contact-icon "></i>
+            </div>
+            <p class="cv-contact-txt">pinterest</p>
+          </div>
+
+        </div>
+        <!-- Hobbies & interests -->
+        <div class="cv-hobbies-bloc">
+          <p>{{ 'cv.hobbies'|trans }}
+          </p>
+          <div class="cv-hobbies">
+            <img class="hobby-cv-image" src="assets/img/hobby/021-ship.svg">
+            <img class="hobby-cv-image" src="assets/img/hobby/009-television.svg">
+            <img class="hobby-cv-image" src="assets/img/hobby/017-shop.svg">
+          </div>
+          <div class="cv-hobbies">
+            <img class="hobby-cv-image" src="assets/img/hobby/053-gamepad.svg">
+            <img class="hobby-cv-image" src="assets/img/hobby/098-bicycle.svg">
+            <img class="hobby-cv-image" src="assets/img/hobby/092-chat.svg">
+          </div>
+          <div class="cv-hobbies">
+            <img class="hobby-cv-image" src="assets/img/hobby/071-turntable.svg">
+            <img class="hobby-cv-image" src="assets/img/hobby/033-soup.svg">
+            <img class="hobby-cv-image" src="assets/img/hobby/018-speaker.svg">
+          </div>
+        </div>
+      </div>
+
+      <!-- cv content box -->
+      <div class="cv-box">
+        <!-- cv head -->
+        <div class="cv-bloc-head">
+          <h3 class="cv-bloc-head-text font-nova">{{ 'cv.title'|trans }}</h3>
+        </div>
+
+        <!-- cv box about me -->
+        <div class="cv-bloc-aboutme">
+          <h2 class="cv-bloc-aboutme-title font-nova">{{ 'cv.about_me'|trans }}</h2>
+          <p class="cv-bloc-aboutme-text">
+            Tempore hendrerit vitae suscipit vel eaque nibh feugiat ea do nostrud adipisicing animi, sodales fames cubilia, facilis adipisicing. Ullam aut architecto pharetra dictum turpis, elit anim faucibus molestiae laboris quis iste rerum morbi, hymenaeos.
+            Hendrerit. Excepteur! Repudiandae platea luctus bibendum hac maecenas, vivamus urna cupidatat ipsam risus maecenas dui placeat, sem eros porttitor beatae cupiditate porta? Dis, nobis aliquet varius! Adipisci diam dignissimos primis, egestas sed
+            egestas dis dicta. Elementum tempus lacus! Laudantium vestibulum at veniam etiam! Quas curae phasellus molestie sint, platea eaque! Facilisis sapiente commodo minim dis eiusmod, diamlorem blandit posuere, error diam, vulputate. Veniam ornare
+            excepteur, labore.
+          </p>
+        </div>
+
+        <!-- cv bloc employment -->
+        <div id="bloc_employement" class="cv-sections">
+          <header class="cv-section-header">
+            <h1 class="cv-section-title">{{ 'cv.employment'|trans }}</h1>
+          </header>
+          <div class="uk-grid cv-bloc-section">
+            <!-- cv bloc employment col -->
+            <div class="uk-width-1-2 section-col">
+              <div class="cv-section-box">
+                <!-- cv bloc employment name -->
+                <div class="cv-bloc-name">
+                  <h3 class="font-nova no-margin bloc-name">company name</h3>
+                </div>
+                <!-- cv bloc employment title & description -->
+                <div class="cv-bloc-description">
+                  <h4 class="font-nova bloc-title">job title</h4>
+                  <div class="description-bloc">
+                    <p class="no-margin">Beatae dignissimos doloribus facilisi! Nostrud sit sapiente adipiscing debitis felis. Natoque modi, posuere numquam luctus. Auctor vitae cupidatat inceptos felis.</p>
+                    <p class="no-margin">Beatae dignissimos doloribus facilisi! Nostrud sit sapiente adipiscing debitis felis. Natoque modi, posuere numquam luctus. Auctor vitae cupidatat inceptos felis.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- cv bloc employment col -->
+            <div class="uk-width-1-2 section-col">
+              <div class="cv-section-box">
+                <!-- cv bloc employment name -->
+                <div class="cv-bloc-name">
+                  <h3 class="font-nova no-margin bloc-name">company name</h3>
+                </div>
+                <!-- cv bloc employment title & description -->
+                <div class="cv-bloc-description">
+                  <h4 class="font-nova bloc-title">job title</h4>
+                  <div class="description-bloc">
+                    <p class="no-margin">Beatae dignissimos doloribus facilisi! Nostrud sit sapiente adipiscing debitis felis. Natoque modi, posuere numquam luctus. Auctor vitae cupidatat inceptos felis.</p>
+                    <p class="no-margin">Beatae dignissimos doloribus facilisi! Nostrud sit sapiente adipiscing debitis felis. Natoque modi, posuere numquam luctus. Auctor vitae cupidatat inceptos felis.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECOND BLOC -->
+          <div class="uk-grid cv-bloc-section">
+            <!-- cv bloc employment col -->
+            <div class="uk-width-1-2 section-col">
+              <div class="cv-section-box">
+                <!-- cv bloc employment name -->
+                <div class="cv-bloc-name">
+                  <h3 class="font-nova no-margin bloc-name">company name</h3>
+                </div>
+                <!-- cv bloc employment title & description -->
+                <div class="cv-bloc-description">
+                  <h4 class="font-nova bloc-title">job title</h4>
+                  <div class="description-bloc">
+                    <p class="no-margin">Beatae dignissimos doloribus facilisi! Nostrud sit sapiente adipiscing debitis felis. Natoque modi, posuere numquam luctus. Auctor vitae cupidatat inceptos felis.</p>
+                    <p class="no-margin">Beatae dignissimos doloribus facilisi! Nostrud sit sapiente adipiscing debitis felis. Natoque modi, posuere numquam luctus. Auctor vitae cupidatat inceptos felis.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- cv bloc employment col -->
+            <div class="uk-width-1-2 section-col">
+              <div class="cv-section-box">
+                <!-- cv bloc employment name -->
+                <div class="cv-bloc-name">
+                  <h3 class="font-nova no-margin bloc-name">company name</h3>
+                </div>
+                <!-- cv bloc employment title & description -->
+                <div class="cv-bloc-description">
+                  <h4 class="font-nova bloc-title">job title</h4>
+                  <div class="description-bloc">
+                    <p class="no-margin">Beatae dignissimos doloribus facilisi! Nostrud sit sapiente adipiscing debitis felis. Natoque modi, posuere numquam luctus. Auctor vitae cupidatat inceptos felis.</p>
+                    <p class="no-margin">Beatae dignissimos doloribus facilisi! Nostrud sit sapiente adipiscing debitis felis. Natoque modi, posuere numquam luctus. Auctor vitae cupidatat inceptos felis.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- THIRD BLOC -->
+          <div class="uk-grid cv-bloc-section">
+            <!-- cv bloc employment col -->
+            <div class="uk-width-1-2 section-col">
+              <div class="cv-section-box">
+                <!-- cv bloc employment name -->
+                <div class="cv-bloc-name">
+                  <h3 class="font-nova no-margin bloc-name">company name</h3>
+                </div>
+                <!-- cv bloc employment title & description -->
+                <div class="cv-bloc-description">
+                  <h4 class="font-nova bloc-title">job title</h4>
+                  <div class="description-bloc">
+                    <p class="no-margin">Beatae dignissimos doloribus facilisi! Nostrud sit sapiente adipiscing debitis felis. Natoque modi, posuere numquam luctus. Auctor vitae cupidatat inceptos felis.</p>
+                    <p class="no-margin">Beatae dignissimos doloribus facilisi! Nostrud sit sapiente adipiscing debitis felis. Natoque modi, posuere numquam luctus. Auctor vitae cupidatat inceptos felis.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- cv bloc employment col -->
+            <div class="uk-width-1-2 section-col">
+              <div class="cv-section-box">
+                <!-- cv bloc employment name -->
+                <div class="cv-bloc-name">
+                  <h3 class="font-nova no-margin bloc-name">company name</h3>
+                </div>
+                <!-- cv bloc employment title & description -->
+                <div class="cv-bloc-description">
+                  <h4 class="font-nova bloc-title">job title</h4>
+                  <div class="description-bloc">
+                    <p class="no-margin">Beatae dignissimos doloribus facilisi! Nostrud sit sapiente adipiscing debitis felis. Natoque modi, posuere numquam luctus. Auctor vitae cupidatat inceptos felis.</p>
+                    <p class="no-margin">Beatae dignissimos doloribus facilisi! Nostrud sit sapiente adipiscing debitis felis. Natoque modi, posuere numquam luctus. Auctor vitae cupidatat inceptos felis.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- cv bloc skill -->
+        <div id="bloc_skill">
+          <header class="cv-section-header">
+            <h1 class="cv-section-title">Skills</h1>
+          </header>
+          <div class="uk-grid cv-bloc-section">
+            <!-- cv bloc skill col -->
+            <div class="uk-width-1-3 section-col skill-col">
+              <div class="cv-section-box">
+                <!-- cv bloc skills -->
+                <div class="cv-bloc-name">
+                  <h3 class="font-nova no-margin bloc-name">{{ 'cv.skills'|trans }}</h3>
+                </div>
+                <!-- cv bloc skills progress -->
+                <div class="cv-bloc-progress">
+                  <!-- skill 1 -->
+                  <div class="bloc-progress">
+                    <p class="no-margin skill-name">skill 1</p>
+                    <div class="progress no-margin">
+                      <div class="uk-progress uk-progress-success">
+                        <div class="uk-progress-bar" style="width: 40%;"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- skill 2 -->
+                  <div class="bloc-progress">
+                    <p class="no-margin skill-name">skill 2</p>
+                    <div class="progress no-margin">
+                      <div class="uk-progress uk-progress-success">
+                        <div class="uk-progress-bar" style="width: 20%;"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- skill 3 -->
+                  <div class="bloc-progress">
+                    <p class="no-margin skill-name">skill 3</p>
+                    <div class="progress no-margin">
+                      <div class="uk-progress uk-progress-success">
+                        <div class="uk-progress-bar" style="width: 80%;"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- skill 4 -->
+                  <div class="bloc-progress">
+                    <p class="no-margin skill-name">skill 4</p>
+                    <div class="progress no-margin">
+                      <div class="uk-progress uk-progress-success">
+                        <div class="uk-progress-bar" style="width: 60%;"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- skill 5 -->
+                  <div class="bloc-progress">
+                    <p class="no-margin skill-name">skill 5</p>
+                    <div class="progress no-margin">
+                      <div class="uk-progress uk-progress-success">
+                        <div class="uk-progress-bar" style="width: 30%;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="uk-width-1-3 section-col skill-col">
+              <div class="cv-section-box">
+                <!-- cv bloc employment languages -->
+                <div class="cv-bloc-name">
+                  <h3 class="font-nova no-margin bloc-name">{{ 'cv.languages'|trans }}</h3>
+                </div>
+                <!-- cv bloc languages progress -->
+                <div class="cv-bloc-progress">
+                  <!-- language 1 -->
+                  <div class="bloc-progress">
+                    <p class="no-margin skill-name">eng</p>
+                    <div class="progress no-margin">
+                      <div class="uk-progress uk-progress-success">
+                        <div class="uk-progress-bar" style="width: 70%;"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- language 2 -->
+                  <div class="bloc-progress">
+                    <p class="no-margin skill-name">spa
+                    </p>
+                    <div class="progress no-margin">
+                      <div class="uk-progress uk-progress-success">
+                        <div class="uk-progress-bar" style="width: 40%;"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- language 3 -->
+                  <div class="bloc-progress">
+                    <p class="no-margin skill-name">ara</p>
+                    <div class="progress no-margin">
+                      <div class="uk-progress uk-progress-success">
+                        <div class="uk-progress-bar" style="width: 80%;"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- language 4 -->
+                  <div class="bloc-progress">
+                    <p class="no-margin skill-name">fre</p>
+                    <div class="progress no-margin">
+                      <div class="uk-progress uk-progress-success">
+                        <div class="uk-progress-bar" style="width: 60%;"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- language 5 -->
+                  <div class="bloc-progress">
+                    <p class="no-margin skill-name">jpn</p>
+                    <div class="progress no-margin">
+                      <div class="uk-progress uk-progress-success">
+                        <div class="uk-progress-bar" style="width: 30%;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- cv bloc softwares -->
+            <div class="uk-width-1-3 section-col skill-col">
+              <div class="cv-section-box">
+                <!-- cv bloc softwares -->
+                <div class="cv-bloc-name">
+                  <h3 class="font-nova no-margin bloc-name">{{ 'cv.softwares'|trans }}</h3>
+                </div>
+                <!-- cv bloc softwares progress -->
+                <div class="cv-bloc-progress">
+                  <!-- soft 1 -->
+                  <div class="bloc-progress">
+                    <p class="no-margin skill-name">soft 1</p>
+                    <div class="progress no-margin">
+                      <div class="uk-progress uk-progress-success">
+                        <div class="uk-progress-bar" style="width: 40%;"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- soft 2 -->
+                  <div class="bloc-progress">
+                    <p class="no-margin skill-name">soft 2</p>
+                    <div class="progress no-margin">
+                      <div class="uk-progress uk-progress-success">
+                        <div class="uk-progress-bar" style="width: 20%;"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- soft 3 -->
+                  <div class="bloc-progress">
+                    <p class="no-margin skill-name">soft 3</p>
+                    <div class="progress no-margin">
+                      <div class="uk-progress uk-progress-success">
+                        <div class="uk-progress-bar" style="width: 80%;"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- soft 4 -->
+                  <div class="bloc-progress">
+                    <p class="no-margin skill-name">soft 4</p>
+                    <div class="progress no-margin">
+                      <div class="uk-progress uk-progress-success">
+                        <div class="uk-progress-bar" style="width: 60%;"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- soft 5 -->
+                  <div class="bloc-progress">
+                    <p class="no-margin skill-name">soft 5</p>
+                    <div class="progress no-margin">
+                      <div class="uk-progress uk-progress-success">
+                        <div class="uk-progress-bar" style="width: 30%;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- cv bloc education -->
+        <div id="bloc_education">
+          <header class="cv-section-header">
+            <h1 class="cv-section-title">{{ 'cv.education'|trans }}</h1>
+          </header>
+          <div class="uk-grid cv-bloc-section">
+            <!-- cv bloc education col -->
+            <div class="uk-width-1-2 section-col">
+              <div class="cv-section-box">
+                <!-- cv bloc education name -->
+                <div class="cv-bloc-name">
+                  <h3 class="font-nova no-margin bloc-name">school name</h3>
+                </div>
+                <!-- cv bloc education title & description -->
+                <div class="cv-bloc-description">
+                  <div class="description-bloc">
+                    <p class="no-margin">certification title</p>
+                    <p class="no-margin">year</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- cv bloc education col -->
+            <div class="uk-width-1-2 section-col">
+              <div class="cv-section-box">
+                <!-- cv bloc education name -->
+                <div class="cv-bloc-name">
+                  <h3 class="font-nova no-margin bloc-name">school name</h3>
+                </div>
+                <!-- cv bloc education title & description -->
+                <div class="cv-bloc-description">
+                  <div class="description-bloc">
+                    <p class="no-margin">certification title</p>
+                    <p class="no-margin">year</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECOND BLOC -->
+          <div class="uk-grid cv-bloc-section">
+            <!-- cv bloc eduction col -->
+            <div class="uk-width-1-2 section-col">
+              <div class="cv-section-box">
+                <!-- cv bloc education name -->
+                <div class="cv-bloc-name">
+                  <h3 class="font-nova no-margin bloc-name">school name</h3>
+                </div>
+                <!-- cv bloc education title & description -->
+                <div class="cv-bloc-description">
+                  <div class="description-bloc">
+                    <p class="no-margin">certification title</p>
+                    <p class="no-margin">year</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- cv bloc education col -->
+            <div class="uk-width-1-2 section-col">
+              <div class="cv-section-box">
+                <!-- cv bloc education name -->
+                <div class="cv-bloc-name">
+                  <h3 class="font-nova no-margin bloc-name">school name</h3>
+                </div>
+                <!-- cv bloc education title & description -->
+                <div class="cv-bloc-description">
+                  <div class="description-bloc">
+                    <p class="no-margin">certification title</p>
+                    <p class="no-margin">year</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- cv bloc paddig for portfolio last div-->
+        <div id="bloc_portfolio">
+          <header class="cv-section-header">
+            <h1 class="cv-section-title">{{ 'cv.portfolio'|trans }}</h1>
+          </header>
+          <!-- cv bloc portfolio -->
+          <div class="md-card bloc-portfolio">
+            <div class="md-card-content">
+              <div class="uk-slidenav-position" data-uk-slider="{autoplay: true,autoplayInterval: '5000'}">
+
+                <div class="uk-slider-container">
+                  <ul class="uk-slider uk-grid uk-grid-small uk-grid-width-medium-1-4 uk-grid-width-small-1-2">
+                    <li style="max-height: 200px"><img src="assets/img/gallery/Image01.jpg" alt=""></li>
+                    <li style="max-height: 200px"><img src="assets/img/gallery/Image02.jpg" alt=""></li>
+                    <li style="max-height: 200px"><img src="assets/img/gallery/Image03.jpg" alt=""></li>
+                    <li style="max-height: 200px"><img src="assets/img/gallery/Image04.jpg" alt=""></li>
+                    <li style="max-height: 200px"><img src="assets/img/gallery/Image05.jpg" alt=""></li>
+                    <li style="max-height: 200px"><img src="assets/img/gallery/Image06.jpg" alt=""></li>
+                    <li style="max-height: 200px"><img src="assets/img/gallery/Image07.jpg" alt=""></li>
+                    <li style="max-height: 200px"><img src="assets/img/gallery/Image08.jpg" alt=""></li>
+                    <li style="max-height: 200px"><img src="assets/img/gallery/Image09.jpg" alt=""></li>
+                    <li style="max-height: 200px"><img src="assets/img/gallery/Image10.jpg" alt=""></li>
+                    <li style="max-height: 200px"><img src="assets/img/gallery/Image11.jpg" alt=""></li>
+                    <li style="max-height: 200px"><img src="assets/img/gallery/Image12.jpg" alt=""></li>
+                  </ul>
+                </div>
+
+                <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slider-item="previous"></a>
+                <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slider-item="next"></a>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- End cv content -->
+{% endblock %}

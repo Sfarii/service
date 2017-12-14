@@ -1,0 +1,236 @@
+{% block form_row %}
+  {% spaceless %}
+    <div class="uk-form-row input-field">
+      {{ form_label(form) }}
+      {{ form_widget(form) }}
+      <div class="parsley-errors-list filled uk-text-danger text-danger">
+        {{ form_errors(form) }}
+      </div>
+    </div>
+  {% endspaceless %}
+{% endblock form_row %}
+{%- block choice_widget -%}
+  {% if expanded %}
+    {{- block('choice_widget_expanded') -}}
+  {% else %}
+    {{- block('choice_widget_collapsed') -}}
+  {% endif %}
+{%- endblock choice_widget -%}
+
+{% block button_row -%}
+  {{- form_widget(form) -}}
+{%- endblock button_row %}
+
+{%- block button_widget -%}
+  {% if attr.button_type is not defined %}
+    <div class="uk-form-row">
+      <div class="md-fab-wrapper {{ label|default('md-fab-in-card') }}">
+        <button type="{{ type|default('button') }}" title="{{'action.save'|trans}}" class="md-fab md-fab-accent md-fab-wave waves-effect waves-button" data-uk-tooltip="{pos:'top'}" {{ block('button_attributes') }}>
+          <i class="material-icons">&#xE161;</i>
+        </button>
+      </div>
+    </div>
+  {% else %}
+    <button type="{{ type|default('button') }}" class="md-btn save md-btn-primary md-btn-wave-light md-btn-icon" {{ block('button_attributes') }}>
+      <i class="uk-icon-{{attr.icon}} no_margin"></i>
+    </button>
+  {% endif %}
+{%- endblock button_widget -%}
+
+{%- block choice_widget_collapsed -%}
+  {%- if required and placeholder is none and not placeholder_in_choices and not multiple and (attr.size is not defined or attr.size <= 1) -%}
+    {% set required = false %}
+  {%- endif -%}
+  <select {% if attr.selectize is not defined %} data-md-selectize {% endif %} data-md-selectize-bottom {{ block('widget_attributes') }} {% if multiple %} multiple="multiple" {% endif %}>
+    {%- if placeholder is not none -%}
+      <option value="" {% if required and value is empty %} selected="selected" {% endif %}>{{ placeholder != '' ? (translation_domain is same as(false) ? placeholder : placeholder|trans({}, translation_domain)) }}</option>
+    {%- endif -%}
+    {%- if preferred_choices|length > 0 -%}
+      {% set options = preferred_choices %}
+      {{- block('choice_widget_options') -}}
+      {%- if choices|length > 0 and separator is not none -%}
+        <option disabled="disabled">{{ separator }}</option>
+      {%- endif -%}
+    {%- endif -%}
+    {%- set options = choices -%}
+    {{- block('choice_widget_options') -}}
+  </select>
+{%- endblock choice_widget_collapsed -%}
+
+{%- block form_widget -%}
+  {% if compound %}
+    {{- block('form_widget_compound') -}}
+  {% else %}
+    {{- block('form_widget_simple') -}}
+  {% endif %}
+{%- endblock form_widget -%}
+
+{%- block form_widget_simple -%}
+  {%- set type = type|default('text') -%}
+  {% if type == "file" %}
+    {% if download_uri is defined and download_uri %}
+      {% set value = download_uri %}
+    {% endif %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %} {% endif %}/>
+  {% else %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %} value="{{ value }}" {% endif %}/>
+  {% endif %}
+{%- endblock form_widget_simple -%}
+
+{%- block form_widget_compound -%}
+  {%- if form.parent is empty -%}
+    {{ form_errors(form) }}
+  {%- endif -%}
+  {{- block('form_rows') -}}
+  {{- form_rest(form) -}}
+{%- endblock form_widget_compound -%}
+
+{%- block textarea_widget -%}
+  <textarea class="md-input materialize-textarea" {{ block('widget_attributes') }}>{{ value }}</textarea>
+{%- endblock textarea_widget -%}
+
+{% block form_errors %}
+  {% spaceless %}
+    {% if errors | length > 0 %}
+      {% if compound %}
+        <div class="uk-alert uk-alert-danger" data-uk-alert="">
+          <a href="#" class="uk-alert-close uk-close"></a>
+          {% for error in errors %}
+            <p>{{ error.message }}</p>
+          {% endfor %}
+        </div>
+      {% else %}
+        {% for error in errors %}
+          <span class="parsley-required">
+            {{ error.message }}</span>
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+  {% endspaceless %}
+{% endblock form_errors %}
+
+{%- block checkbox_widget -%}
+  <input type="checkbox" {{ block('widget_attributes') }} {% if value is defined %} value="{{ value }}" {% endif %} {% if checked %} checked="checked" {% endif %}/>
+{%- endblock checkbox_widget -%}
+
+{%- block form -%}
+  {{ form_start(form) }}
+  {{- form_widget(form) -}}
+  {{ form_end(form) }}
+{%- endblock form -%}
+
+{%- block form_start -%}
+  {% set method = method | upper %}
+  {%- if method in ["GET", "POST"] -%}
+    {% set form_method = method %}
+  {%- else -%}
+    {% set form_method = "POST" %}
+  {%- endif -%}
+  <form
+    novalidate="novalidate"
+    class="uk-form-stacked"
+    name="{{ name }}"
+    method="{{ form_method|lower }}"
+    {% if action != '' %}
+    action="{{ action }}"
+    {% endif %}
+    {% for attrname, attrvalue in attr %}
+    {{ attrname }}="{{ attrvalue }}"
+    {% endfor %}
+    {% if multipart %}
+    enctype="multipart/form-data"
+    {% endif %}>
+    {%- if form_method != method -%}
+      <input type="hidden" name="_method" value="{{ method }}"/>
+    {%- endif -%}
+  {%- endblock form_start -%}
+
+  {%- block form_label -%}
+    {% if label is not same as(false) -%}
+      {% if not compound -%}
+        {% set label_attr = label_attr | merge({'for': id}) %}
+      {%- endif -%}
+      {% if required -%}
+        {% set label_attr = label_attr | merge({
+          'class': (label_attr.class | default('') ~ ' required') | trim
+        }) %}
+      {%- endif -%}
+      {% if label is empty -%}
+        {%- if label_format is not empty -%}
+          {% set label = label_format | replace({'%name%': name, '%id%': id}) %}
+        {%- else -%}
+          {% set label = name | humanize %}
+        {%- endif -%}
+      {%- endif -%}
+      <label {% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}" {% endfor %}>
+        {{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}</label>
+    {%- endif -%}
+  {%- endblock form_label -%}
+
+  {% block vich_file_row -%}
+    {% set force_error = true %}
+    {{- block('form_row') }}
+  {%- endblock %}
+
+  {% block vich_file_widget %}
+    {% spaceless %}
+      <div class="vich-file">
+        {{ form_widget(form.file) }}
+        {% if form.delete is defined %}
+          {{ form_row(form.delete) }}
+        {% endif %}
+
+        {% if download_uri is defined and download_uri %}
+          <a href="{{ download_uri }}">{{ 'download'|trans({}, 'VichUploaderBundle') }}</a>
+        {% endif %}
+      </div>
+    {% endspaceless %}
+  {% endblock %}
+
+  {% block vich_image_row -%}
+    {% set force_error = true %}
+    {{- block('form_row') }}
+  {%- endblock %}
+
+  {% block vich_image_widget %}
+    {% spaceless %}
+      {{ form_widget(form.file , {"attr" :  {'class' : "dropify" }}) }}
+      {% if form.delete is defined %}
+        {{ form_row(form.delete) }}
+      {% endif %}
+
+      {% if show_download_link and download_uri is defined and download_uri %}
+        <a href="{{ download_uri }}">{{ 'download'|trans({}, 'VichUploaderBundle') }}</a>
+      {% endif %}
+
+    {% endspaceless %}
+  {% endblock %}
+  {% block sms_translatable_field_widget %}
+    {{ form_errors(form) }}
+    <div class="sms_translations tabbable">
+      <ul class="uk-tab" data-uk-tab="{connect:'#{{ form.vars.field }}'}">
+        {% for translationsFields in form.vars.locales %}
+          {% set locale = translationsFields %}
+
+          <li class="{% if app.request.locale == locale %}uk-active{% endif %}">
+            <a href="#" data-toggle="tab">
+              {{ locale|capitalize }}
+              {% if locale == form.vars.default_locale %}[*]{% endif %}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <ul id="{{ form.vars.field }}" class="uk-switcher uk-margin">
+        {% for translationsFields in form %}
+          {% set locale = translationsFields.vars.name %}
+
+          <li class="uk-margin-small-top {% if app.request.locale == locale %}uk-active{% endif %}">
+            {{ form_label(form) }}
+            {{ form_widget(translationsFields) }}
+            {{ form_errors(translationsFields) }}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endblock %}

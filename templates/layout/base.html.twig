@@ -42,10 +42,10 @@
       <![endif]-->
     {% endblock %}
   </head>
-  <body class="sidebar_main_open sidebar_main_swipe">
+  <body class="{% block body_class %}{% endblock %}">
 
     <!-- main header -->
-    {# include 'layout/header.html.twig' #}
+    {% include 'layout/header.html.twig' %}
     <!-- main header end -->
 
     <!-- main sidebar -->
