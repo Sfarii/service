@@ -13,7 +13,7 @@
     </div>
     {{ form_start(form, { 'action': path('search_result')}) }}
     <div class="search-form uk-margin-large-top">
-      {{ form_widget(form.search , {'attr' : {'class' : 'search-box'}}) }}
+      {{ form_widget(form.search , {'attr' : {'class' : 'search-box' , 'data-uk-autocomplete': ''}}) }}
       <button type="submit" class="search-button">
         <i class="material-icons search-icon">&#xE8B6;</i>
       </button>

@@ -162,28 +162,4 @@ class BusinessDirectory
     {
         return $this->latitude;
     }
-
-    /**
-     * Set sector
-     *
-     * @param \ServiceBundle\Entity\Sector $sector
-     *
-     * @return BusinessDirectory
-     */
-    public function setSector(\ServiceBundle\Entity\Sector $sector = null)
-    {
-        $this->sector = $sector;
-
-        return $this;
-    }
-
-    /**
-     * Get sector
-     *
-     * @return \ServiceBundle\Entity\Sector
-     */
-    public function getSector()
-    {
-        return $this->sector;
-    }
 }

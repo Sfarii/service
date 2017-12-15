@@ -23,21 +23,11 @@
         <div data-uk-filter="schamberger plc ,antonietta witting,hkeeling@hotmail.com">
           <div class="md-card md-card-hover">
             <div class="md-card-head">
-              <div class="md-card-head-menu" data-uk-dropdown="{pos:'bottom-right'}">
-                <i class="md-icon material-icons">&#xE5D4;</i>
-                <div class="uk-dropdown uk-dropdown-small">
-                  <ul class="uk-nav">
-                    <li>
-                      <a href="#">Edit</a>
-                    </li>
-                    <li>
-                      <a href="#">Remove</a>
-                    </li>
-                  </ul>
-                </div>
+              <div class="md-card-head-menu">
+                <i class="md-icon material-icons">&#xE417;</i>
               </div>
               <div class="uk-text-center">
-                <img class="md-card-head-avatar" src="assets/img/avatars/avatar_02.png" alt=""/>
+                <img class="md-card-head-avatar" src="{{ asset('user.png') }}" alt=""/>
               </div>
               <h3 class="md-card-head-text uk-text-center">
                 Antonietta Witting
@@ -74,7 +64,7 @@
   </li>
   <li class="full_height">
     <div class="map_search_wrapper" data-uk-check-display="data-uk-check-display">
-      <span id="map_search_list_toggle"><img src="assets/img/md-images/ic_place_black.png" alt=""></span>
+      <span id="map_search_list_toggle"><img src="{{ asset('ic_place_black.png') }}" alt="ic place black"></span>
       <div id="map_search" class="gmap"></div>
       <div class="map_search_list_wrapper">
         <p class="uk-text-small uk-text-muted uk-margin-left uk-margin-right">About 62 results (1.19 seconds)</p>
@@ -98,4 +88,15 @@
     </div>
   </li>
 </ul>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <!-- page specific plugins -->
+    <!-- maplace (google maps) -->
+    <script src="http://maps.google.com/maps/api/js"></script>
+    <script src="{{ asset('maplace.min.js') }}"></script>
+
+    <!--  search results functions -->
+    <script src="{{ asset('page_search.min.js') }}"></script>
 {% endblock %}

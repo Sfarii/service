@@ -22,3 +22,12 @@ cv:
   education: Education
   portfolio: Portfolio
   hobbies: Hobbies & interests
+business_directory:
+  new:
+    title: Company Information
+  field:
+    company_name: Company Name
+    company_address: Company Address
+    longitude: Longitude
+    latitude: Latitude
+    sector: Choose the company Sector

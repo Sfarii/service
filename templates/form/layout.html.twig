@@ -73,6 +73,7 @@
     {% endif %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %} {% endif %}/>
   {% else %}
+    {% set attr = attr|merge({'class': (attr.class|default(' md-input'))|trim }) %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %} value="{{ value }}" {% endif %}/>
   {% endif %}
 {%- endblock form_widget_simple -%}
@@ -148,18 +149,18 @@
   {%- block form_label -%}
     {% if label is not same as(false) -%}
       {% if not compound -%}
-        {% set label_attr = label_attr | merge({'for': id}) %}
+        {% set label_attr = label_attr|merge({'for': id}) %}
       {%- endif -%}
       {% if required -%}
-        {% set label_attr = label_attr | merge({
-          'class': (label_attr.class | default('') ~ ' required') | trim
+        {% set label_attr = label_attr|merge({
+          'class': (label_attr.class|default('') ~ ' required') | trim
         }) %}
       {%- endif -%}
       {% if label is empty -%}
         {%- if label_format is not empty -%}
-          {% set label = label_format | replace({'%name%': name, '%id%': id}) %}
+          {% set label = label_format|replace({'%name%': name, '%id%': id}) %}
         {%- else -%}
-          {% set label = name | humanize %}
+          {% set label = name|humanize %}
         {%- endif -%}
       {%- endif -%}
       <label {% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}" {% endfor %}>

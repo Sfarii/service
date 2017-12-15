@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use ServiceBundle\Form\BusinessDirectoryType;
 
 /**
  * Businessdirectory controller.
@@ -41,7 +42,7 @@ class BusinessDirectoryController extends Controller
     public function newAction(Request $request)
     {
         $businessDirectory = new Businessdirectory();
-        $form = $this->createForm('ServiceBundle\Form\BusinessDirectoryType', $businessDirectory);
+        $form = $this->createForm(BusinessDirectoryType::class, $businessDirectory);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -83,7 +84,7 @@ class BusinessDirectoryController extends Controller
     public function editAction(Request $request, BusinessDirectory $businessDirectory)
     {
         $deleteForm = $this->createDeleteForm($businessDirectory);
-        $editForm = $this->createForm('ServiceBundle\Form\BusinessDirectoryType', $businessDirectory);
+        $editForm = $this->createForm( BusinessDirectoryType::class, $businessDirectory);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
