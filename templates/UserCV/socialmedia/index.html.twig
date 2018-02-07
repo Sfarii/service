@@ -1,0 +1,27 @@
+<ul class="md-list md-list-addon">
+  {% for socialMedia in socialMedias %}
+    <li>
+      <div class="md-list-addon-element">
+        <i class="md-list-addon-icon uk-icon-{{ socialMedia.type }}"></i>
+      </div>
+      <div class="md-list-content">
+        <span class="md-list-heading">{{ socialMedia.account|humanize }}</span>
+        <div class="uk-margin-small-top">
+          <span class="uk-margin-right">
+            <a class="delete-modal" data-msg="{{ 'cv.socialmedia.delete'|trans }}" data-method="DELETE" data-url="{{ url('socialmedia_delete',{'id': socialMedia.id }) }}">
+              <i class="material-icons uk-text-danger">&#xE872;</i>
+              <span class="uk-text-muted uk-text-small">{{ 'action.delete'|trans }}</span>
+            </a>
+          </span>
+          <span class="uk-margin-right">
+            <a class="modal" data-method="GET" data-url="{{ url('socialmedia_edit', {'id': socialMedia.id }) }}">
+              <i class="material-icons md-color-blue-grey-500">&#xE923;</i>
+              <span class="uk-text-muted uk-text-small">{{ 'action.update'|trans }}</span>
+            </a>
+          </span>
+        </div>
+      </div>
+
+    </li>
+  {% endfor %}
+</ul>

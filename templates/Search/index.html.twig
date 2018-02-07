@@ -1,0 +1,38 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <!-- google web fonts -->
+  <link href="{{ asset('google_fonts.comfortaa')}}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+  <div class="uk-width-medium-1-2 uk-container-center" id="page_content_inner">
+    <div class=" uk-margin-large-top uk-margin-bottom uk-container-center">
+      <img src="{{ asset('logo.png') }}" alt="logo">
+    </div>
+    <form class="uk-autocomplete" action="{{ path('search_result') }}" data-uk-autocomplete="">
+      <div class="search-form uk-margin-large-top">
+        <input type="text" name="search" class="search-box"/>
+        <input type="hidden" name="token" value="{{ csrf_token('search') }}"/>
+        <button type="submit" class="search-button">
+          <i class="material-icons search-icon">&#xE8B6;</i>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="md-fab-wrapper md-fab-speed-dial-horizontal">
+    <a class="md-fab md-fab-primary" href="javascript:void(0)">
+      <i class="material-icons">&#xE8F2;</i>
+    </a>
+    <div class="md-fab-wrapper-small">
+      <a class="md-fab md-fab-small md-fab-warning" data-uk-tooltip="{pos:'bottom'}" title="{{'contactus.new.tooltip'|trans}}" href="{{ path('contactus_new')}}">
+        <i class="material-icons">&#xE0D0;</i>
+      </a>
+      <a class="md-fab md-fab-small md-fab-success" data-uk-tooltip="{pos:'bottom'}" title="{{'business_directory.new.tooltip'|trans}}" href="{{ path('businessdirectory_new')}}">
+        <i class="material-icons">&#xE567;</i>
+      </a>
+    </div>
+  </div>
+{% endblock %}

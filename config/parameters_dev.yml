@@ -8,6 +8,6 @@ parameters:
     database_password: 123456
     # Swiftmailer Configuration
     mailer_transport: smtp
-    mailer_host: 127.0.0.1
+    mailer_host: smtp.gmail.com
     mailer_user: ramisfari22@gmail.com
     mailer_password: ramisfari123

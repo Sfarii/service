@@ -1,0 +1,40 @@
+<div class="blog_list uk-grid-width-medium-1-1 uk-grid-width-large-1-3" data-uk-grid="{gutter: 24}">
+  {% for portfolio in portfolios %}
+    <div>
+      <div class="md-card">
+        <div class="md-card-content small-padding">
+          <div class="uk-grid" data-uk-grid-margin="">
+            <div class="uk-width-1-1">
+              <img src="{{ vich_uploader_asset(portfolio, 'imageFile') | imagine_filter('thumbnail_250_x_250') }}" alt="{{ portfolio.imageName }}" class="blog_list_teaser_image">
+            </div>
+            <div class="uk-width-1-1">
+              <div class="blog_list_teaser">
+                <h2 class="blog_list_teaser_title uk-text-truncate">{{ portfolio.projectName|humanize }}</h2>
+                <p>{{ portfolio.description }}</p>
+                <span class="uk-text-muted uk-text-small">
+                  {{ portfolio.fromMonth|humanize }}/{{ portfolio.fromYear|humanize }}
+                  -
+                  {% if portfolio.projectOnGoing %}
+                    {{ 'portfolio.field.projectOnGoing'|trans }}
+                  {% else %}
+                    {{ portfolio.toMonth|humanize }}/{{ portfolio.toYear|humanize }}
+                  {% endif %}
+                </span>
+              </div>
+              <div class="blog_list_footer">
+                <div class="blog_list_footer_info">
+                  <a class="modal" data-method="GET" data-url="{{ url('portfolio_edit',{'id': portfolio.id }) }}">
+                    <i class="material-icons md-color-blue-grey-500">&#xE923;</i>
+                  </a>
+                  <a class="delete-modal" data-msg="{{ 'cv.portfolio.delete'|trans }}" data-method="DELETE" data-url="{{ url('portfolio_delete',{'id': portfolio.id }) }}">
+                    <i class="material-icons md-color-red-500">&#xE872;</i>
+                  </a>
+                </div>
+                <a href="{{ portfolio.projectURL }}" class="md-btn md-btn-small md-btn-flat md-btn-flat-primary uk-float-right">{{ 'portfolio.field.projectURL'|trans }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}

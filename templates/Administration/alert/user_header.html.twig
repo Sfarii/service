@@ -1,0 +1,24 @@
+{% if alerts is empty %}
+  <li>
+    <div class="md-list-addon-element">
+      <i class="md-list-addon-icon material-icons uk-text-primary">&#xE616;</i>
+    </div>
+    <div class="md-list-content">
+      <span class="md-list-heading">{{ date('now')|date('d M Y') }}</span>
+      <span class="uk-text-small uk-text-muted uk-text-truncate">{{ 'alert.empty.title' }}.</span>
+    </div>
+  </li>
+  <li class="no-height-list"></li>
+{% else %}
+  {% for alert in alerts %}
+    <li>
+      <div class="md-list-addon-element">
+        <i class="md-list-addon-icon material-icons uk-text-{{ alert.type|lower }}">&#xE616;</i>
+      </div>
+      <div class="md-list-content">
+        <span class="md-list-heading">{{ alert.title[:20] }}</span>
+        <span class="uk-text-small uk-text-muted uk-text-truncate">{{ alert.description[:20] }}.</span>
+      </div>
+    </li>
+  {% endfor %}
+{% endif %}

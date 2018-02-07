@@ -1,0 +1,28 @@
+{% for language in languages %}
+<div class="uk-grid uk-grid-collapse" data-uk-grid-margin="data-uk-grid-margin">
+  <div class="uk-width-4-10 uk-container-center">
+    <p class="no-margin skill-name">{{ language.language|humanize }}</p>
+  </div>
+  <div class="uk-width-6-10 uk-container-center">
+    <div class="progress no-margin">
+      <div class="uk-progress uk-progress-success">
+        <div class="uk-progress-bar md-bg-red-700" style="background-color: {{ language.user.leftColor }} !important;width: {{ language.proficiency }}%;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="uk-margin-small-top">
+    <span class="uk-margin-right">
+      <a class="delete-modal" data-msg="{{ 'cv.language.delete'|trans }}" data-method="DELETE" data-url="{{ url('language_delete',{'id': language.id }) }}">
+        <i class="material-icons uk-text-danger">&#xE872;</i>
+        <span class="uk-text-muted uk-text-small">{{ 'action.delete'|trans }}</span>
+      </a>
+    </span>
+    <span class="uk-margin-right">
+      <a class="modal" data-method="GET" data-url="{{ url('language_edit', {'id': language.id }) }}">
+        <i class="material-icons md-color-blue-grey-500">&#xE923;</i>
+        <span class="uk-text-muted uk-text-small">{{ 'action.update'|trans }}</span>
+      </a>
+    </span>
+  </div>
+</div>
+{% endfor %}

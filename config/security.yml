@@ -18,10 +18,22 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
-                
+            logout_on_user_change: true
             logout: true
             anonymous: true
-
+        # secured_area:
+        #     anonymous: true
+        #     oauth:
+        #         resource_owners:
+        #             facebook:           "/login/check-facebook"
+        #             google:             "/login/check-google"
+        #             linkedin:          "/login/check-linkedin"
+        #         login_path:        /login
+        #         use_forward:       false
+        #         failure_path:      /login
+        #
+        #         oauth_user_provider:
+        #             service: hwi_oauth.user.provider.entity.secured_area
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -85,12 +85,15 @@ doctrine:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        dql:
+            string_functions:
+                DATE_FORMAT: ServiceBundle\DoctrineExtensions\DateFormat
 
 # Twig Configuration
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
-    paths: ["%kernel.project_dir%/templates"]
+    default_path: '%kernel.project_dir%/templates'
     form_themes:
         - "form/layout.html.twig"
 # Swiftmailer Configuration
@@ -103,13 +106,24 @@ swiftmailer:
 
 # FOSUserBundle Configuration
 fos_user:
+    service:
+        mailer: fos_user.mailer.twig_swift
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
-    user_class: ServiceBundle\Entity\User
+    user_class: ServiceBundle\Entity\UserManagment\User
     from_email:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
-
+    resetting:
+        email:
+            template:   emails/password_resetting.email.twig
+    profile:
+        form:
+            type: ServiceBundle\Form\User\ProfileFormType
+    registration:
+        confirmation:
+            enabled:    true # change to true for required email confirmation
+            template:   emails/registration_mail.email.twig
 # KnpPaginator Configuration
 knp_paginator:
     page_range: 5                       # number of links showed in the pagination menu (e.g: you have 10 pages, a page_range of 3, on the 5th page you'll see links to page 4, 5, 6)
@@ -121,6 +135,95 @@ knp_paginator:
         filter_field_name: filterField  # filter field query parameter name
         filter_value_name: filterValue  # filter value query paameter name
     template:
-        pagination: '@KnpPaginator/Pagination/sliding.html.twig'     # sliding pagination controls template
+        pagination: 'KnpPaginator/Pagination/sliding.html.twig'     # sliding pagination controls template
         sortable: '@KnpPaginator/Pagination/sortable_link.html.twig' # sort link template
         filtration: '@KnpPaginator/Pagination/filtration.html.twig'  # filters template
+
+# VichUploaderBundle Configuration
+vich_uploader:
+    db_driver: orm
+    mappings:
+        user_image:
+            uri_prefix:         /images/user
+            upload_destination: '%kernel.root_dir%/web/images/user'
+            namer: vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+        portfolio_image:
+            uri_prefix:         /images/portfolio
+            upload_destination: '%kernel.root_dir%/web/images/portfolio'
+            namer: vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+        intrest_image:
+            uri_prefix:         /images/intrest
+            upload_destination: '%kernel.root_dir%/web/images/intrest'
+            namer: vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+
+# liip imagine Configuration
+liip_imagine:
+    resolvers:
+        default:
+            web_path:
+                web_root: %kernel.root_dir%/web
+                cache_prefix: media/cache
+
+    loaders:
+        default:
+            filesystem:
+                data_root: %kernel.root_dir%/web/
+    filter_sets:
+        # name our filter set "my_thumb_filter"
+        thumbnail_50_x_50:
+            filters:
+                # use and setup the "relative_resize" filter
+                relative_resize:
+
+                    # given 50x40px, output 75x60px using "heighten" option
+                    heighten: 50
+        # name our filter set "my_thumb_filter"
+        thumbnail_250_x_250:
+            filters:
+                # use and setup the "thumbnail" filter
+                thumbnail:
+                    # set the thumbnail size to "32x32" pixels
+                    size: [250, 250]
+                    # crop the input image, if required
+                    mode: outbound
+        thumbnail_150_x_150:
+            filters:
+                # use and setup the "thumbnail" filter
+                thumbnail:
+                    # set the thumbnail size to "32x32" pixels
+                    size: [150, 150]
+                    # crop the input image, if required
+                    mode: outbound
+
+# KnpSnappyBundle Configuration
+knp_snappy:
+    temporary_folder: "%kernel.cache_dir%/snappy"
+    pdf:
+        enabled:    true
+        binary:     %kernel.project_dir%/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64 #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" for Windows users
+        options:    []
+    image:
+        enabled:    true
+        binary:     %kernel.project_dir%/vendor/h4cc/wkhtmltoimage-amd64/bin/wkhtmltoimage-amd64 #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\"" for Windows users
+        options:    []
+
+# HWIOAuthBundle Configuration
+# hwi_oauth:
+#     # list of names of the firewalls in which this bundle is active, this setting MUST be set
+#     firewall_names: [secured_area]
+#     resource_owners:
+#         any_name:
+#             type:                facebook
+#             client_id:           <client_id>
+#             client_secret:       <client_secret>
+#             options:
+#                 csrf: true

@@ -1,0 +1,21 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<div class="login_page_wrapper">
+  <div class="md-card">
+    <div class="md-card-content large-padding" id="login_password_reset">
+      <a href="{{ path('fos_user_security_login')}}" role="button" class="uk-position-top-right uk-close uk-margin-right uk-margin-top back_to_login"></a>
+      <h2 class="heading_a uk-text-success uk-margin-large-bottom">{% trans from "FOSUserBundle" %}resetting.email.subject{% endtrans %}</h2>
+      <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+        <div class="uk-form-row">
+          <label for="login_email_reset">{% trans from "FOSUserBundle" %}resetting.request.username{% endtrans %}</label>
+          <input class="md-input" type="text" id="login_email_reset" name="username"/>
+        </div>
+        <div class="uk-margin-medium-top">
+          <button type="submit" class="md-btn md-btn-primary md-btn-block">{% trans from "FOSUserBundle" %}resetting.request.submit{% endtrans %}</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="uk-margin-top uk-text-center">
+    <a href="{{ url('fos_user_registration_register') }}">{% trans from "FOSUserBundle" %}registration.back{% endtrans %}</a>
+  </div>
+</div>

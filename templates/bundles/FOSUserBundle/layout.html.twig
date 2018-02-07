@@ -40,6 +40,25 @@
     {% endblock fos_user_content %}
     <!-- main page content end -->
 
+    <!-- md-fab-wrapper main -->
+    <div class="md-fab-wrapper md-fab-speed-dial-horizontal">
+      <a class="md-fab md-fab-primary" href="javascript:void(0)">
+        <i class="material-icons">&#xE8F2;</i>
+      </a>
+      <div class="md-fab-wrapper-small">
+        <a class="md-fab md-fab-small md-fab-warning" data-uk-tooltip="{pos:'bottom'}" title="{{'contactus.new.tooltip'|trans}}" href="{{ path('contactus_new')}}">
+          <i class="material-icons">&#xE0D0;</i>
+        </a>
+        <a class="md-fab md-fab-small md-fab-primary" data-uk-tooltip="{pos:'bottom'}" title="{{'home_page.link.tooltip'|trans}}" href="{{ path('homepage')}}">
+          <i class="material-icons">&#xE88A;</i>
+        </a>
+        <a class="md-fab md-fab-small md-fab-success" data-uk-tooltip="{pos:'bottom'}" title="{{'business_directory.new.tooltip'|trans}}" href="{{ path('businessdirectory_new')}}">
+          <i class="material-icons">&#xE567;</i>
+        </a>
+      </div>
+    </div>
+    <!-- md-fab-wrapper end -->
+
     <!-- main javascripts -->
     {% block javascripts %}
       <!-- common functions -->
@@ -69,14 +88,14 @@
       </script>
     {% endblock %}
     <!-- main javascripts end -->
-    
+
     {% block fos_message %}{% endblock %}
     <!-- main flash message -->
     {% if app.request.hasPreviousSession %}
         {% for type, messages in app.session.flashBag.all %}
             {% for message in messages %}
                 <script type="text/javascript">
-                  UIkit.notify({message: "<a href='#' class='notify-action'><span class='uk-icon-times'></span></a>{{ message|trans({}, 'FOSUserBundle') }}", status: "{{ type }}", timeout: 100, group: null, pos: 'top-right'});
+                  UIkit.notify({message: "<a href='#' class='notify-action'><span class='uk-icon-times'></span></a>{{ message|trans({}, 'FOSUserBundle') }}", status: "{{ type }}", timeout: 10000, group: null, pos: 'top-right'});
                 </script>
             {% endfor %}
         {% endfor %}

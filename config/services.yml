@@ -1,8 +1,14 @@
+parameters:
+    lang_supported: ['en', 'fr', 'ar', 'es']
 # Learn more about services, parameters and containers at
 # https://symfony.com/doc/current/service_container.html
 services:
     # default configuration for services in *this* file
     _defaults:
+        bind:
+            # pass this value to any $roleHierarchy argument for any service
+            # that's defined in this file (including controller arguments)
+            $roleHierarchy: '%security.role_hierarchy.roles%'
         # automatically injects dependencies in your services
         autowire: true
         # automatically registers your services as commands, event subscribers, etc.
@@ -25,8 +31,3 @@ services:
         resource: '../src/ServiceBundle/Controller'
         public: true
         tags: ['controller.service_arguments']
-
-    # add more services, or override services that need manual wiring
-    # AppBundle\Service\ExampleService:
-    #     arguments:
-    #         $someArgument: 'some_value'

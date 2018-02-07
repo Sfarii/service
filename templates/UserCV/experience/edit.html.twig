@@ -1,0 +1,84 @@
+<button type="button" class="uk-modal-close uk-close"></button>
+<div class="uk-modal-header">
+  <h3 class="uk-modal-title">{{ 'user_cv.experience.edit'|trans }}</h3>
+</div>
+<div class="uk-animation-fade">
+  {{ form_start(form ,{ 'action': path('experience_edit', {'id': experience.id }) }) }}
+  <div class="uk-grid uk-margin-medium-bottom" data-uk-grid-margin="data-uk-grid-margin">
+    <div class="uk-width-large-1-2">
+      <div class="uk-form-row">
+        <label class="uk-form-label">{{ form_label(form.title) }}</label>
+        {{ form_widget(form.title)}}
+        <div class="parsley-errors-list filled uk-text-danger">
+          {{ form_errors(form.title) }}
+        </div>
+      </div>
+
+      <div class="uk-form-row">
+        <label class="uk-form-label">{{ form_label(form.company) }}</label>
+        {{ form_widget(form.company)}}
+        <div class="parsley-errors-list filled uk-text-danger">
+          {{ form_errors(form.company) }}
+        </div>
+      </div>
+    </div>
+    <div class="uk-width-large-1-2">
+      <div class="uk-form-row">
+        <label class="uk-form-label">{{ form_label(form.location) }}</label>
+        {{ form_widget(form.location)}}
+        <div class="parsley-errors-list filled uk-text-danger">
+          {{ form_errors(form.location) }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="uk-form-row">
+    <label class="uk-form-label">{{ form_label(form.description) }}</label>
+    {{ form_widget(form.description)}}
+    <div class="parsley-errors-list filled uk-text-danger">
+      {{ form_errors(form.description) }}
+    </div>
+  </div>
+  <h3 class="heading_a  uk-margin-medium-top">{{ 'experience.field.period'|trans }}</h3>
+  <div class="uk-grid uk-margin-medium-bottom" data-uk-grid-margin="data-uk-grid-margin">
+    <div class="uk-width-large-1-2">
+      <div class="uk-form-row">
+        {{ form_widget(form.fromYear)}}
+        <div class="parsley-errors-list filled uk-text-danger">
+          {{ form_errors(form.fromYear) }}
+        </div>
+      </div>
+
+      <div class="uk-form-row">
+        {{ form_widget(form.fromMonth)}}
+        <div class="parsley-errors-list filled uk-text-danger">
+          {{ form_errors(form.fromMonth) }}
+        </div>
+      </div>
+    </div>
+    <div id="end_period" {% if experience.currentlyWorkHere %}style="display: none;"{% endif %} class="uk-width-large-1-2">
+      <div class="uk-form-row">
+        {{ form_widget(form.toYear)}}
+        <div class="parsley-errors-list filled uk-text-danger">
+          {{ form_errors(form.toYear) }}
+        </div>
+      </div>
+      <div class="uk-form-row">
+        {{ form_widget(form.toMonth)}}
+        <div class="parsley-errors-list filled uk-text-danger">
+          {{ form_errors(form.toMonth) }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="uk-form-row">
+    {{ form_widget(form.currentlyWorkHere, { 'attr': {'data-switchery-color': '#1976d2' , "data-switchery-size" : "medium" ,  "data-switchery" : ""} }) }}
+    <label for="enabled" class="inline-label">{{ form_label(form.currentlyWorkHere) }}</label>
+  </div>
+  <div class="uk-modal-footer uk-text-right">
+    <button type="button" class="md-btn md-btn-flat uk-modal-close">Close</button>
+    {{ form_widget(form.submit) }}
+  </div>
+  {{ form_widget(form) }}
+  {{ form_end(form) }}
+</div>

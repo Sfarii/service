@@ -1,0 +1,41 @@
+<button type="button" class="uk-modal-close uk-close"></button>
+<div class="uk-modal-header">
+  <h3 class="uk-modal-title">{{ 'user_cv.hobbies.new'|trans }}</h3>
+</div>
+<form action="{{ url('hobbie_bulk_new') }}" method="post">
+  <div class="uk-animation-fade">
+    <table class="uk-table uk-table-hover uk-table-nowrap table_check">
+      <thead>
+        <tr>
+          <th class="uk-width-1-10 uk-text-center small_col"><input type="checkbox" data-md-icheck="data-md-icheck" class="check_all"></th>
+          <th class="uk-width-1-10 uk-text-center uk-text-upper">{{ 'hobbie.field.image'|trans }}</th>
+          <th class="uk-width-1-10 uk-text-center uk-text-upper">{{ 'hobbie.field.title'|trans }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for hobbie in hobbies %}
+          <tr>
+            <td class="uk-text-center uk-table-middle small_col">
+              <input value="{{ hobbie.id }}" name="data[]" type="checkbox" data-md-icheck="data-md-icheck" class="check_row">
+            </td>
+            <td class="uk-text-center uk-table-middle">
+              <img class="md-user-image-large" src="{{ vich_uploader_asset(hobbie, 'imageFile') | imagine_filter('thumbnail_50_x_50') }}" alt=""/>
+            </td>
+            <td class="uk-text-center uk-table-middle">
+              {{ hobbie.title }}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {{ knp_pagination_render(hobbies) }}
+  </div>
+  <div class="uk-modal-footer uk-text-right">
+    <button type="button" class="md-btn md-btn-flat uk-modal-close">Close</button>
+    <button type="submit" class="md-btn save md-btn-primary md-btn-wave-light md-btn-icon">
+      {{ 'hobbies.field.submit'|trans }}
+    </button>
+  </div>
+  <input type="hidden" value="{{ csrf_token('multiselect') }}" name="token">
+</form>
+</div>

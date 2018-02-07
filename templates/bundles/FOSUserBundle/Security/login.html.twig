@@ -1,7 +1,5 @@
 {% extends "@FOSUser/layout.html.twig" %}
 
-{% trans_default_domain 'FOSUserBundle' %}
-
 {% block fos_user_content %}
   <div class="login_page_wrapper">
     <div class="md-card">
@@ -11,15 +9,15 @@
         </div>
         <form action="{{ path('fos_user_security_check') }}" method="post">
           <div class="uk-form-row">
-            <label for="username">{{ 'security.login.username'|trans }}</label>
+            <label for="username">{% trans from "FOSUserBundle" %}security.login.username{% endtrans %}</label>
             <input class="md-input" type="text" id="username" name="_username" value="{{ last_username }}"/>
           </div>
           <div class="uk-form-row">
-            <label for="password">{{ 'security.login.password'|trans }}</label>
+            <label for="password">{% trans from "FOSUserBundle" %}security.login.password{% endtrans %}</label>
             <input class="md-input" type="password" id="password" name="_password"/>
           </div>
           <div class="uk-margin-medium-top">
-            <button type="submit" id="_submit" name="_submit" class="md-btn md-btn-primary md-btn-block md-btn-large">{{ 'security.login.submit'|trans }}</button>
+            <button type="submit" id="_submit" name="_submit" class="md-btn md-btn-primary md-btn-block md-btn-large">{% trans from "FOSUserBundle" %}security.login.submit{% endtrans %}</button>
           </div>
           <div class="uk-grid uk-grid-width-1-3 uk-grid-small uk-margin-top">
             <div>
@@ -39,10 +37,10 @@
             </div>
           </div>
           <div class="uk-margin-top">
-            <a href="#" id="login_help_show" class="uk-float-right">{{ 'login.help'|trans }}</a>
+            <a href="{{ path('fos_user_resetting_request') }}" id="login_help_show" class="uk-float-right">{{ 'login.help'|trans }}</a>
             <span class="icheck-inline">
               <input type="checkbox" id="remember_me" name="_remember_me" value="on" data-md-icheck="data-md-icheck"/>
-              <label for="login_page_stay_signed" class="inline-label">{{ 'security.login.remember_me'|trans }}</label>
+              <label for="login_page_stay_signed" class="inline-label">{% trans from "FOSUserBundle" %}security.login.remember_me{% endtrans %}</label>
             </span>
           </div>
           {% if csrf_token %}
@@ -52,7 +50,7 @@
       </div>
     </div>
     <div class="uk-margin-top uk-text-center">
-      <a href="{{ url('fos_user_registration_register') }}">{{ 'login.new_account'|trans }}</a>
+      <a href="{{ url('fos_user_registration_register') }}">{{ 'signup.title'|trans }}</a>
     </div>
   </div>
 

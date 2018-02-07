@@ -9,10 +9,12 @@
     <meta name="description" content="">
     <meta name="keywords" content="cv, Create cv , material design, Service">
     <meta name="author" content="Rami Sfari">
-    <title>{% block title %}change me{% endblock %}</title>
-    <!--  favicon -->
+    <title>
+      {% block title %}change me{% endblock %}
+    </title>
+    <!-- favicon -->
     <link rel="shortcut icon" href="{{ asset('favicon.ico')}}">
-    <!--  apple-touch-icon -->
+    <!-- apple-touch-icon -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('icon_144')}}">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('icon_114')}}">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('icon_72')}}">
@@ -35,25 +37,31 @@
       <link rel="stylesheet" href="{{ asset('themes_combined.min.css') }}" media="all">
 
       <!-- matchMedia polyfill for testing media queries in JS -->
-      <!--[if lte IE 9]>
-          <script type="text/javascript" src="bower_components/matchMedia/matchMedia.js"></script>
-          <script type="text/javascript" src="bower_components/matchMedia/matchMedia.addListener.js"></script>
-          <link rel="stylesheet" href="{{ asset('ie.css') }}" media="all">
-      <![endif]-->
+      <!--[if lte IE 9]> <script type="text/javascript" src="bower_components/matchMedia/matchMedia.js"></script> <script type="text/javascript" src="bower_components/matchMedia/matchMedia.addListener.js"></script> <link rel="stylesheet" href="{{
+      asset('ie.css') }}" media="all"> <![endif]-->
     {% endblock %}
+    <!-- main javascripts -->
+    {% block head_javascripts %}
+      <!-- common functions -->
+      <script src="{{ asset('common.min.js')}}"></script>
+    {% endblock %}
+    <!-- main javascripts end -->
   </head>
-  <body class="{% block body_class %}{% endblock %}">
+  <body class="{% if is_granted('ROLE_ADMIN') %}sidebar_main_open sidebar_main_swipe {% endif %}{% block body_class %}{% endblock %}">
 
     <!-- main header -->
     {% include 'layout/header.html.twig' %}
     <!-- main header end -->
 
     <!-- main sidebar -->
-    {# include 'layout/sidebar_main.html.twig' #}
+    {% if is_granted('ROLE_ADMIN') %}
+      {% include 'layout/sidebar_main.html.twig' %}
+    {% endif %}
     <!-- main sidebar end -->
 
     <!-- main page content -->
-    <div id="page_content" >
+    <div id="page_content">
+      {% block title_page %}{% endblock %}
       <div id="page_content_inner">
         {% block body %}{% endblock %}
       </div>
@@ -62,37 +70,49 @@
 
     <!-- main sticky button -->
     <div class="md-fab-wrapper">
-      {% block sticky_button %}
-      {% endblock %}
+      {% block sticky_button %}{% endblock %}
     </div>
     <!-- main sticky button end -->
 
     <!-- main javascripts -->
     {% block javascripts %}
-      <!-- common functions -->
-      <script src="{{ asset('common.min.js')}}"></script>
       <!-- uikit functions -->
       <script src="{{ asset('uikit_custom.min.js')}}"></script>
       <!-- altair common functions/helpers -->
       <script src="{{ asset('altair_admin_common.min.js')}}"></script>
 
       <script>
-          $(function() {
-              if(isHighDensity()) {
-                  $.getScript('{{ absolute_url(asset("dense.min.js")) }}', function(data) {
-                      // enable hires images
-                      altair_helpers.retina_images();
-                  });
+        $(function() {
+          if (Modernizr.touch) {
+            // fastClick (touch devices)
+            FastClick.attach(document.body);
+          }
+          {% if is_granted('ROLE_USER') %}
+            $.ajax({
+              url: "{{ url('alert_user_header_show') }}",
+              type: 'GET',
+              cache: false,
+              timeout: 3000,
+              success: function(data) {
+                // Replace current modal ... ... with the returned one from the AJAX response.
+                $('#alert_content').empty().append(data);
+              },
+              error: function(XMLHttpRequest, textStatus, errorThrown) {
+                new UIkit.notify({
+                  message: "<a href='#' class='notify-action'><span class='uk-icon-times'></span></a>" + textStatus,
+                  status: "error",
+                  timeout: 5000,
+                  group: null,
+                  pos: 'top-right'
+                });
               }
-              if(Modernizr.touch) {
-                  // fastClick (touch devices)
-                  FastClick.attach(document.body);
-              }
-          });
-          $window.load(function() {
-              // ie fixes
-              altair_helpers.ie_fix();
-          });
+            });
+          {% endif %}
+        });
+        $window.load(function() {
+          // ie fixes
+          altair_helpers.ie_fix();
+        });
       </script>
     {% endblock %}
     <!-- main javascripts end -->
@@ -100,7 +120,7 @@
     <!-- main flash success message -->
     {% for flash_message in app.session.flashbag.get('msg_success') %}
       <script type="text/javascript">
-        UIkit.notify({message: "<a href='#' class='notify-action'><span class='uk-icon-times'></span></a>{{ flash_message }}", status: "success", timeout: 100, group: null, pos: 'top-right'});
+        UIkit.notify({message: "<a href='#' class='notify-action'><span class='uk-icon-times'></span></a>{{ flash_message }}", status: "success", timeout: 10000, group: null, pos: 'top-right'});
       </script>
     {% endfor %}
     <!-- main flash success message end -->
@@ -108,7 +128,7 @@
     <!-- main flash success message -->
     {% for flash_message in app.session.flashbag.get('msg_danger') %}
       <script type="text/javascript">
-        UIkit.notify({message: "<a href='#' class='notify-action'><span class='uk-icon-times'></span></a>{{ flash_message }}", status: "error", timeout: 100, group: null, pos: 'top-right'});
+        UIkit.notify({message: "<a href='#' class='notify-action'><span class='uk-icon-times'></span></a>{{ flash_message }}", status: "error", timeout: 10000, group: null, pos: 'top-right'});
       </script>
     {% endfor %}
     <!-- main flash success message end -->

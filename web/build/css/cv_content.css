@@ -6,236 +6,214 @@
   margin: 0 !important;
 }
 
+.cv-section-icon {
+  display: inline;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent;
+  box-sizing: border-box;
+  height: auto;
+  z-index: auto;
+  cursor: pointer;
+  border: none;
+  border-radius: 2px;
+  padding-top: 15px;
+  padding-right: 10px;
+}
+
+.cv-bloc-icon {
+  display: inline;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent;
+  box-sizing: border-box;
+  height: auto;
+  z-index: auto;
+  cursor: pointer;
+  border: none;
+  border-radius: 2px;
+  padding-top: 18px;
+  padding-right: 8px;
+}
+
 #page_content_inner {
   position: relative !important;
   font-family: 'Comfortaa', cursive !important;
 }
 
-#cv-content {
-  display: flex;
-  font-family: 'Comfortaa', cursive !important;
+.cv-color-picker {
+  position: absolute;
+  top: 20px;
+  left: 16px;
 }
 
-#cv-content .cv-menu {
-  width: 250px;
-  color: #fafafa;
-  background: #1976d2;
-  box-shadow: 4px 1px 6px rgba(0, 0, 0, .16), 3px 1px 6px rgba(0, 0, 0, .23);
-}
-
-#cv-content .cv-menu .cv-contact-bloc {
-  margin: 35px;
-}
-
-#cv-content .cv-menu .cv-contact, #cv-content .cv-menu .cv-hobbies {
+.cv-contact, .cv-hobbies {
   display: flex;
   margin-bottom: 3px;
 }
 
-#cv-content .cv-menu .cv-hobbies-bloc {
-  margin: 30px;
-}
-
-#cv-content .cv-menu .cv-hobbies-bloc p {
-  padding: 10px;
-  text-align: center;
-}
-
-#cv-content .cv-menu .cv-hobbies {
-  margin: 10px;
-}
-
-#cv-content .cv-menu .cv-contact-bloc .cv-contact-txt {
-  margin: 9px;
-}
-
-#cv-content .cv-menu .cv-contact-bloc .cv-contact-icon {
+.cv-contact-bloc .cv-contact-icon {
   color: #4885ed;
 }
 
-#cv-content .cv-menu .cv-menu-user-img {
+.cv-menu-user-img {
   padding: 53px;
   text-align: center;
 }
 
-#cv-content .cv-img {
+.cv-img {
   padding: 35px;
   box-shadow: -1px 1px 10px -1px rgba(0, 0, 0, 0.3) inset;
   border-radius: 68px;
   background-color: white;
 }
 
-#cv-content .cv-menu-username {
+.cv-menu-username {
   text-align: center;
   border-bottom: 6px solid #7cb342;
   margin: 0px 36px;
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
 }
 
-#cv-content .cv-menu-username .menu-username {
+.cv-menu-username .menu-username {
   color: white;
   font-size: 28px;
   text-align: left;
 }
 
-#cv-content .cv-menu-username .menu-userfonction {
+.cv-menu-username .menu-userfonction {
   text-align: right;
   color: white;
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
 }
 
-#cv-content .cv-box {
-  width: calc(100% - 250px);
-}
-
-#cv-content .cv-box .cv-bloc-head {
-  text-align: center;
-  background-color: #db3236;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23);
-}
-
-#cv-content .cv-box .cv-bloc-head .cv-bloc-head-text {
+.cv-box .title-shadow {
   font-size: 4vw;
   padding: 25px;
   color: white;
   text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.37);
 }
 
-#cv-content .cv-box .cv-bloc-aboutme {
+.cv-box .cv-bloc-aboutme {
   padding: 20px;
 }
 
-#cv-content .hobby-cv-image {
-    width: 50px;
-    border-radius: 50%;
-    height: 50px;
-    margin-right: 10px;
+.hobby-cv-image {
+  width: 50px;
+  border-radius: 50%;
+  height: 50px;
+  margin-right: 10px;
 }
 
-#cv-content .cv-box .cv-bloc-aboutme-title, #cv-content .cv-box .cv-bloc-aboutme-text {
+.cv-box .cv-bloc-aboutme-title, .cv-box .cv-bloc-aboutme-text {
   font-weight: 600;
 }
 
-#cv-content .cv-bloc-section {
+.cv-bloc-section {
   margin: 0;
 }
 
-#cv-content .cv-bloc-section .section-col {
+.cv-bloc-section .section-col {
   padding: 0px 0px 15px 15px;
 }
 
-#cv-content .cv-section-header {
+.cv-section-header {
   margin: 0px 0px 15px 15px;
   background: #fff;
   position: relative;
-  box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
   border: none;
-  padding: 5px;
+  padding: 5px 60px 1px 5px;
 }
 
-#cv-content .cv-section-title {
+.cv-section-title {
   padding: 5px;
+  word-break: break-word;
   font-family: 'Comfortaa' !important;
   box-shadow: -1px 1px 10px -1px rgba(0, 0, 0, 0.3) inset;
 }
 
-#cv-content .cv-section-box {
+.cv-section-box {
   padding: 0;
   background: #fff;
   position: relative;
-  box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
   border: none;
 }
 
-#cv-content .cv-section-box:hover {
-  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+.cv-section-box:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23);
 }
 
-#cv-content .cv-bloc-name {
+.cv-bloc-large-name {
+  padding: 10px 80px 10px 10px;
+}
+
+.cv-bloc-medium-name {
   padding: 10px 40px 10px 10px;
 }
 
-#cv-content .cv-bloc-name .bloc-name {
+.cv-bloc-small-name {
+  padding: 10px;
+}
+
+.cv-bloc-small-name .bloc-name, .cv-bloc-large-name .bloc-name, .cv-bloc-medium-name .bloc-name {
   padding: 7px;
+  word-break: break-word;
   box-shadow: -1px 1px 10px -1px rgba(0, 0, 0, 0.3) inset;
 }
 
-#cv-content .cv-bloc-description {
+.cv-bloc-description {
   padding: 15px;
 }
 
-#cv-content .bloc-title {
+.bloc-title {
   font-weight: bold;
   font-size: 18px;
+  word-break: break-word;
 }
 
-#cv-content .bloc-progress {
+.cv-bloc-progress {
+  padding: 5px 10px 10px 0px;
+}
+
+.cv-bloc-progress .bloc-progress {
   display: flex;
   padding: 3px 10px;
 }
 
-.cv-bloc-progress{
-  padding: 5px 10px 10px 0px;
-}
-
-#cv-content .bloc-progress .progress {
+.bloc-progress .progress {
   width: 70%;
   height: 15px;
   margin-left: 8px;
 }
 
-#cv-content .bloc-progress .skill-name {
+.bloc-progress .skill-name {
   width: 30%;
 }
 
-#cv-content .bloc-progress .progress .progress-bar {
+.bloc-progress .progress .progress-bar {
   height: 15px;
 }
 
-#cv-content .bloc-portfolio {
+.bloc-portfolio {
   margin: 0px 0px 15px 15px;
 }
 
-
-/****** media query *******/
-
-@media only screen and (max-width: 802px) {
-  .skill-col {
-    width: 100% !important;
+@media only screen and (max-width:425px){
+  .cv-section-header{
+    margin: 0px 0px 15px 0px;
   }
-}
-
-@media only screen and (max-width: 586px) {
-  .section-col {
-    width: 100% !important;
+  .cv-bloc-section .section-col{
+    padding: 0px 0px 15px 0px;
   }
-}
-
-@media only screen and (max-width: 699px) {
-  .cv-menu {
-    width: 95px !important;
-  }
-  #cv-content .cv-box {
-    width: calc(100% - 95px) !important;
-  }
-  #cv-content .cv-menu-username {
-    margin: 15px 0;
-  }
-  #cv-content .cv-menu-username .menu-username {
-    font-size: 16px;
-  }
-  #cv-content .cv-menu-username .menu-userfonction {
-    margin: 0 0 0 2px;
-    font-size: 14px;
-  }
-  #cv-content .cv-menu .cv-contact-bloc {
-    margin-left: 32%;
-  }
-  .cv-menu-user-img, .cv-contact-txt {
-    display: none;
-  }
-  .cv-hobbies {
-    display: block !important;
-  }
-  .cv-hobbies a {
-    margin-bottom: 9px;
+  .cv-box .title-shadow{
+    font-size: 25px;
   }
 }

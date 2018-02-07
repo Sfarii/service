@@ -1,0 +1,180 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block body_class %}header_double_height{% endblock %}
+
+{% block body %}
+
+  {{ form_start(form) }}
+  <div class="uk-width-medium-8-10 uk-container-center">
+    <div class="md-card md-card-single">
+      <div class="md-card-toolbar">
+        <a href="{{ path('homepage')}}">
+          <span class="md-icon md-card-fullscreen-deactivate material-icons uk-float-left">&#xE1B7;</span>
+        </a>
+        <h3 class="md-card-toolbar-heading-text large uk-margin-small-left">
+          {{ 'business_directory.new.title'|trans }}
+        </h3>
+
+        <div class="md-card-toolbar-actions">
+          {{ form_widget(form.save , { 'attr' : { 'class' : 'md-btn md-btn-small md-btn-flat md-btn-flat-primary'}}) }}
+        </div>
+      </div>
+      <div class="md-card-content">
+        <div class="uk-margin-large-bottom">
+          <div class="uk-grid uk-margin-medium-bottom" data-uk-grid-margin="data-uk-grid-margin">
+            <div class="uk-width-1-2">
+
+              <div class="uk-form-row uk-input-group ">
+                <span class="uk-input-group-addon">
+                  <i class="md-list-addon-icon material-icons md-24">&#xE54B;</i>
+                </span>
+                <label class="uk-form-label">{{ form_label(form.companyName) }}</label>
+                {{ form_widget(form.companyName)}}
+                <div class="parsley-errors-list filled uk-text-danger">
+                  {{ form_errors(form.companyName) }}
+                </div>
+              </div>
+
+            </div>
+            <div class="uk-width-1-2">
+              <div class="uk-form-row uk-input-group ">
+                <span class="uk-input-group-addon">
+                  <i class="md-list-addon-icon material-icons md-24">&#xE52E;</i>
+                </span>
+                {{ form_widget(form.sector)}}
+                <div class="parsley-errors-list filled uk-text-danger">
+                  {{ form_errors(form.sector) }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uk-form-row uk-input-group">
+            <span class="uk-input-group-addon">
+              <i class="md-list-addon-icon material-icons md-24">&#xE55C;</i>
+            </span>
+            <label class="uk-form-label">{{ form_label(form.companyAddress) }}</label>
+            {{ form_widget(form.companyAddress )}}
+            <div class="parsley-errors-list filled uk-text-danger">
+              {{ form_errors(form.companyAddress) }}
+            </div>
+          </div>
+          <div class="uk-grid uk-margin-medium-top" data-uk-grid-margin="data-uk-grid-margin">
+            <div class="uk-width-1-2">
+              <div class="uk-form-row uk-input-group ">
+                <span class="uk-input-group-addon">
+                  <i class="md-list-addon-icon material-icons md-24">&#xE0C8;</i>
+                </span>
+                <label class="uk-form-label">{{ form_label(form.longitude) }}</label>
+                {{ form_widget(form.longitude)}}
+                <div class="parsley-errors-list filled uk-text-danger">
+                  {{ form_errors(form.longitude) }}
+                </div>
+              </div>
+
+            </div>
+            <div class="uk-width-1-2">
+              <div class="uk-form-row uk-input-group ">
+                <span class="uk-input-group-addon">
+                  <i class="md-list-addon-icon material-icons md-24">&#xE0C8;</i>
+                </span>
+                <label class="uk-form-label">{{ form_label(form.latitude) }}</label>
+                {{ form_widget(form.latitude)}}
+                <div class="parsley-errors-list filled uk-text-danger">
+                  {{ form_errors(form.latitude) }}
+                </div>
+              </div>
+            </div>
+          </div>
+          {{ form_widget(form) }}
+
+        </div>
+
+        <div id="map_users" class="gmap"></div>
+      </div>
+    </div>
+  </div>
+  {{ form_end(form) }}
+{% endblock %}
+{% block javascripts %}
+  {{ parent() }}
+  <!-- page specific plugins -->
+  <!-- maplace (google maps) -->
+  <script>
+    // This example adds a search box to a map, using the Google Place Autocomplete feature. People can enter geographical searches. The search box will return a pick list containing a mix of places and predicted search terms. This example requires the
+    // Places library. Include the libraries=places parameter when you first load the API. For example: <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+    function initAutocomplete() {
+      var map = new google.maps.Map(document.getElementById('map_users'), {
+        center: {
+          lat: -33.8688,
+          lng: 151.2195
+        },
+        zoom: 13,
+        mapTypeId: 'roadmap'
+      });
+
+      // Create the search box and link it to the UI element.
+      var input = document.getElementById('servicebundle_businessdirectory_companyAddress');
+      var searchBox = new google.maps.places.SearchBox(input);
+
+      //altair_md.update_input($('#servicebundle_businessdirectory_companyAddress'));
+      //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input); // Bias the SearchBox results towards current map's viewport.
+      map.addListener('bounds_changed', function() {
+        searchBox.setBounds(map.getBounds());
+      });
+
+      var markers = [];
+      // Listen for the event fired when the user selects a prediction and retrieve more details for that place.
+      searchBox.addListener('places_changed', function() {
+        var places = searchBox.getPlaces();
+
+        if (places.length == 0) {
+          return;
+        }
+
+        // Clear out the old markers.
+        markers.forEach(function(marker) {
+          marker.setMap(null);
+        });
+        markers = [];
+
+        // For each place, get the icon, name and location.
+        var bounds = new google.maps.LatLngBounds();
+        places.forEach(function(place) {
+          if (!place.geometry) {
+            console.log("Returned place contains no geometry");
+            return;
+          }
+          var icon = {
+            url: place.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(25, 25)
+          };
+
+          // Create a marker for each place.
+          markers.push(new google.maps.Marker({map: map, icon: icon, title: place.name, position: place.geometry.location}));
+
+          console.log(place.geometry.location);
+          var latitude = place.geometry.location.lat();
+          var longitude = place.geometry.location.lng();
+
+          $('#servicebundle_businessdirectory_latitude').val(latitude);
+          $('#servicebundle_businessdirectory_longitude').val(longitude);
+          altair_md.update_input($('#servicebundle_businessdirectory_latitude'));
+          altair_md.update_input($('#servicebundle_businessdirectory_longitude'));
+
+          if (place.geometry.viewport) {
+            // Only geocodes have viewport.
+            bounds.union(place.geometry.viewport);
+          } else {
+            bounds.extend(place.geometry.location);
+          }
+        });
+        map.fitBounds(bounds);
+      });
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA4Gz615xE8ep4TXWQJAeuQcRawnyCgjI&libraries=places&callback=initAutocomplete" async="async" defer="defer"></script>
+{% endblock %}

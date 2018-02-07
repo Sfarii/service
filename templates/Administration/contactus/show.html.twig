@@ -1,0 +1,85 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title_page %}
+  <div id="page_heading" class="non-printable" data-uk-sticky="{ top: 48, media: 960 }">
+    <h1>{{ 'contact.show.title'|trans }}</h1>
+    <span class="uk-text-muted uk-text-upper uk-text-small">
+      {% block sub_title_page %}
+        <a href="{{ path('contactus_index') }}">{{ 'contact.list.title'|trans }}</a>
+      {% endblock %}
+    </span>
+  </div>
+{% endblock %}
+
+{% block body %}
+  <div class="md-card">
+    <div class="md-card-toolbar">
+      <h3 class="md-card-toolbar-heading-text">
+        {{ 'contactus.show.detail'|trans }}
+      </h3>
+    </div>
+    <div class="md-card-content">
+
+      <div class="uk-grid  uk-grid-divider" data-uk-grid-margin="data-uk-grid-margin">
+
+        <div class="uk-width-xLarge-8-10  uk-width-large-7-10">
+          <ul class="md-list">
+            <li>
+              <div class="md-list-content">
+                <span class="md-list-heading uk-text-large">{{ contactUS.name }}</span>
+              </div>
+              <span class="uk-text-small uk-text-muted uk-display-block">
+                {{'contactus.field.name'|trans }}</span>
+            </li>
+            <li>
+              <div class="md-list-content">
+                <span class="md-list-heading uk-text-large">{{ contactUS.email }}</span>
+              </div>
+              <span class="uk-text-small uk-text-muted uk-display-block">
+                {{'contactus.field.email'|trans }}</span>
+            </li>
+            <li>
+              <div class="md-list-content">
+                <span class="md-list-heading uk-text-large">{{ contactUS.message }}</span>
+              </div>
+              <span class="uk-text-small uk-text-muted uk-display-block">
+                {{'contactus.field.message'|trans }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="uk-width-xLarge-2-10 uk-width-large-3-10">
+          <h3 class="heading_c uk-margin-small-bottom uk-margin-small-top">
+            {{ 'author.info'|trans }}
+          </h3>
+          <ul class="md-list md-list-addon">
+            <li>
+              <div class="md-list-addon-element">
+                <i class="md-list-addon-icon material-icons">&#xE8DF;</i>
+              </div>
+              <div class="md-list-content">
+                <span class="md-list-heading">
+                  {% if contactUS.updated %}{{ contactUS.updated|date('d M Y') }}
+                  {% endif %}
+                </span>
+                <span class="uk-text-small uk-text-muted">{{ 'author.updated'|trans }}</span>
+              </div>
+            </li>
+            <li>
+              <div class="md-list-addon-element">
+                <i class="md-list-addon-icon material-icons">&#xE8B5;</i>
+              </div>
+              <div class="md-list-content">
+                <span class="md-list-heading">
+                  {% if contactUS.created %}{{ contactUS.created|date('d M Y') }}
+                  {% endif %}
+                </span>
+                <span class="uk-text-small uk-text-muted">{{ 'author.created'|trans }}</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

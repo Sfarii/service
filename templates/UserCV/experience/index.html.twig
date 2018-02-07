@@ -1,0 +1,62 @@
+{% for experience in experiences %}
+  <!-- cv bloc employment col -->
+  <div class="uk-width-large-1-2 uk-width-medium-1-1 uk-width-small-1-1 section-col uk-animation-fade">
+    <div class="cv-section-box">
+
+      <!-- cv bloc employment name -->
+      <div class="cv-bloc-large-name">
+        <h3 class="font-nova no-margin bloc-name">{{ experience.title|humanize }}</h3>
+        <div class="cv-bloc-icon">
+          <div class="md-card-toolbar-actions">
+            <a class="modal" data-method="GET" data-url="{{ url('experience_edit',{'id': experience.id }) }}">
+              <i class="material-icons md-24 md-color-blue-grey-500">&#xE923;</i>
+            </a>
+            <a class="delete-modal" data-msg="{{ 'cv.experience.delete'|trans }}" data-method="DELETE" data-url="{{ url('experience_delete',{'id': experience.id }) }}">
+              <i class="material-icons md-24 md-color-red-500">&#xE872;</i>
+            </a>
+          </div>
+
+        </div>
+      </div>
+      <!-- cv bloc employment title & description -->
+      <div class="cv-bloc-description">
+        <ul class="md-list">
+          <li>
+            <div class="md-list-content">
+              <span class="md-list-heading">{{ 'experience.field.company'|trans }}</span>
+              <span class="uk-text-small uk-text-muted">{{ experience.company|humanize }}</span>
+            </div>
+          </li>
+          <li>
+            <div class="md-list-content">
+              <span class="md-list-heading">{{ 'experience.field.period'|trans }}</span>
+              <span class="uk-text-small uk-text-muted">
+                {{ experience.fromMonth|humanize }}/{{ experience.fromYear|humanize }}
+                -
+                {% if experience.currentlyWorkHere %}
+                  {{ 'experience.field.currently_work_here'|trans }}
+                {% else %}
+                  {{ experience.toMonth|humanize }}/{{ experience.toYear|humanize }}
+                {% endif %}
+
+              </span>
+            </div>
+          </li>
+          <li>
+            <div class="md-list-content">
+              <span class="md-list-heading">{{ 'experience.field.location'|trans }}</span>
+              <span class="uk-text-small uk-text-muted">{{ experience.location|humanize }}</span>
+            </div>
+          </li>
+          <li>
+            <div class="md-list-content">
+              <span class="md-list-heading">{{ 'experience.field.description'|trans }}</span>
+              <span class="uk-text-small uk-text-muted">{{ experience.description|humanize }}</span>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+{% endfor %}

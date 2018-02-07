@@ -1,0 +1,17 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+<div class="login_page_wrapper">
+  <div class="md-card">
+    <div class="md-card-content large-padding" id="login_password_reset">
+      <a href="{{ path('fos_user_resetting_request')}}" role="button" class="uk-position-top-right uk-close uk-margin-right uk-margin-top back_to_login"></a>
+      <h2 class="heading_a uk-text-success uk-margin-medium-bottom">{% trans from "FOSUserBundle" %}resetting.email.subject{% endtrans %}</h2>
+      {{'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime} , "FOSUserBundle")|nl2br }}
+    </div>
+  </div>
+  <div class="uk-margin-top uk-text-center">
+    <a href="{{ url('fos_user_security_login') }}">{% trans from "FOSUserBundle" %}registration.back{% endtrans %}</a>
+  </div>
+</div>
+
+{% endblock %}

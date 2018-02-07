@@ -22,17 +22,18 @@
 {%- endblock button_row %}
 
 {%- block button_widget -%}
-  {% if attr.button_type is not defined %}
+  {% if attr.button_type is defined and attr.button_type == 'round' %}
     <div class="uk-form-row">
-      <div class="md-fab-wrapper {{ label|default('md-fab-in-card') }}">
-        <button type="{{ type|default('button') }}" title="{{'action.save'|trans}}" class="md-fab md-fab-accent md-fab-wave waves-effect waves-button" data-uk-tooltip="{pos:'top'}" {{ block('button_attributes') }}>
+      <div class="md-fab-wrapper {{ attr.round_type|default('md-fab-in-card') }}">
+        <button type="{{ type|default('button') }}" title="{{ 'action.save'|trans }}" class="md-fab md-fab-accent md-fab-wave waves-effect waves-button" data-uk-tooltip="{pos:'top'}" {{ block('button_attributes') }}>
           <i class="material-icons">&#xE161;</i>
         </button>
       </div>
     </div>
   {% else %}
-    <button type="{{ type|default('button') }}" class="md-btn save md-btn-primary md-btn-wave-light md-btn-icon" {{ block('button_attributes') }}>
-      <i class="uk-icon-{{attr.icon}} no_margin"></i>
+    {% set attr = attr|merge({'class': attr.class|default('md-btn save md-btn-primary md-btn-wave-light md-btn-icon')|trim }) %}
+    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>
+       {{ label|trans }}
     </button>
   {% endif %}
 {%- endblock button_widget -%}
@@ -41,7 +42,7 @@
   {%- if required and placeholder is none and not placeholder_in_choices and not multiple and (attr.size is not defined or attr.size <= 1) -%}
     {% set required = false %}
   {%- endif -%}
-  <select {% if attr.selectize is not defined %} data-md-selectize {% endif %} data-md-selectize-bottom {{ block('widget_attributes') }} {% if multiple %} multiple="multiple" {% endif %}>
+  <select {% if attr.selectize is not defined %} data-md-selectize {% endif %} data-md-selectize  {{ block('widget_attributes') }} {% if multiple %} multiple="multiple" {% endif %}>
     {%- if placeholder is not none -%}
       <option value="" {% if required and value is empty %} selected="selected" {% endif %}>{{ placeholder != '' ? (translation_domain is same as(false) ? placeholder : placeholder|trans({}, translation_domain)) }}</option>
     {%- endif -%}

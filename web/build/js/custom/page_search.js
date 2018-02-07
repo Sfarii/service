@@ -17,7 +17,7 @@ altair_search_page = {
 
         var $map_search = $('#map_search'),
             $map_search_list = $('#map_search_list').children('li'),
-            marker_url = isHighDensity() ? 'assets/img/md-images/ic_place_red_48dp.png' : 'assets/img/md-images/ic_place_red_24dp.png',
+            marker_url = isHighDensity() ? '/build/img/md-images/ic_place_red_48dp.png' : '/build/img/md-images/ic_place_red_24dp.png',
             marker_size = isHighDensity() ? new google.maps.Size(48, 48) : new google.maps.Size(24, 24),
             marker_scaled_size = new google.maps.Size(24, 24),
             marker_zoom = 12,

@@ -1,0 +1,175 @@
+{##
+ # This file is part of the SgDatatablesBundle package.
+ #
+ # (c) stwe <https://github.com/stwe/DatatablesBundle>
+ #
+ # For the full copyright and license information, please view the LICENSE
+ # file that was distributed with this source code.
+ #}
+{% import _self as macros %}
+
+{% macro link_title(action) %}
+    {% if action.label is same as(null) and action.icon is same as(null) %}
+        {% if action.route is not same as(null) %}
+            {{ action.route }}
+        {% else %}
+            null
+        {% endif %}
+    {% else %}
+        <i class="{{ action.icon }}"></i> {{ action.label }}
+    {% endif %}
+{% endmacro %}
+
+{% macro attributes(action) %}
+    {% for key, value in action.attributes %}
+        {{ key }}="{{ value }}"
+    {% endfor %}
+{% endmacro %}
+
+{% macro confirm_dialog(action) %}
+    {% if action.confirm is same as(true) %}
+        {% if action.confirmMessage is not same as(null) %}
+            data-message="{{ action.confirmMessage }}"
+        {% else %}
+            data-message="{{ 'sg.datatables.confirmMessage'|trans({}, 'messages') }}"
+        {% endif %}
+    {% endif %}
+{% endmacro %}
+
+{% macro href(action, route_parameters) %}
+    {% if action.routeParameters is not same as(null) %}
+        {% if app.request.locale is defined and app.request.locale is not null %}
+            {% if '_locale' in route_parameters|keys %}
+                {% set route_parameters = route_parameters|merge({ '_locale': app.request.locale }) %}
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+    {% if action.route is not same as(null) %}
+        href="{{ path(action.route, route_parameters) }}"
+    {% else %}
+        href="javascript:void(0);"
+    {% endif %}
+{% endmacro %}
+
+{% macro value(value) %}
+    {% if value is not null %}
+        value="{{ value }}"
+    {% endif %}
+{% endmacro %}
+
+{% set multiselect_actions %}
+    {% for actionKey, action in actions %}
+        {% if action.callRenderIfClosure is same as(true) %}
+            {% if action.button is same as(false) %}
+                {{ action.startHtml|raw }}
+                <a {{ macros.href(action, route_parameters[actionKey]) }} {{ macros.attributes(action) }} {{ macros.confirm_dialog(action) }}>
+                    {{ macros.link_title(action) }}
+                </a>
+                {{ action.endHtml|raw }}
+            {% else %}
+                {{ action.startHtml|raw }}
+                <button type="button" {{ macros.value(values[actionKey]) }} {{ macros.attributes(action) }} {{ macros.confirm_dialog(action) }}>
+                    {{ macros.link_title(action) }}
+                </button>
+                {{ action.endHtml|raw }}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endset %}
+
+{# add multiselect actions #}
+{% if dom_id is null %}
+    $("#sg-datatables-{{ datatable_name }}-multiselect-actions").append("{{ multiselect_actions|e('js') }}");
+{% else %}
+    $("#{{ dom_id }}").append("{{ multiselect_actions|e('js') }}");
+{% endif %}
+
+{# function to update the check-all-checkbox #}
+function updateCheckAll() {
+    var cbox_all = $("#sg-datatables-{{ datatable_name }} tbody input.sg-datatables-{{ datatable_name }}-multiselect-checkbox:checkbox");
+    var cbox_checked = $("#sg-datatables-{{ datatable_name }} tbody input.sg-datatables-{{ datatable_name }}-multiselect-checkbox:checkbox:checked");
+    var cbox_checkall = $("#sg-datatables-{{ datatable_name }} input.sg-datatables-{{ datatable_name }}-multiselect-checkall:checkbox");
+
+    if(cbox_checked.length === 0){
+        $('#checkall').iCheck('determinate');
+        $('#checkall').iCheck('uncheck');
+    } else if (cbox_checked.length === cbox_all.length){
+        $('#checkall').iCheck('determinate');
+        $('#checkall').iCheck('check');
+    } else {
+      $('#checkall').iCheck('indeterminate');
+    }
+}
+
+{# handle checkbox <input> click #}
+$("#sg-datatables-{{ datatable_name }} tbody").on("ifClicked", "input.sg-datatables-{{ datatable_name }}-multiselect-checkbox:checkbox", function () {
+    this.checked = !this.checked;
+    updateCheckAll();
+});
+
+{# select/unselect all checkboxes #}
+$( document ).on( "ifChecked", "#checkall", function() {
+  $("input.sg-datatables-{{ datatable_name }}-multiselect-checkbox:checkbox").iCheck('check');
+});
+$( document ).on( "ifUnchecked", "#checkall", function() {
+  $("input.sg-datatables-{{ datatable_name }}-multiselect-checkbox:checkbox").iCheck('uncheck');
+});
+
+{# handle multiselect action click #}
+$(".sg-datatables-{{ datatable_name }}-multiselect-action").on("click", function(event) {
+    event.preventDefault();
+    var length = $("input.sg-datatables-{{ datatable_name }}-multiselect-checkbox:checkbox:checked").length;
+    if (length > 0) {
+      var $route = $(this).attr('href');
+      UIkit.modal.confirm("{{ 'sg.datatables.confirmMessage'|trans({}, 'messages') }} ",
+      function(){
+
+        var items = $.map($("input.sg-datatables-{{ datatable_name }}-multiselect-checkbox:checkbox:checked", oTable.rows().nodes()), function (i) {
+            return i.value
+        });
+        var pipeline = {{ pipeline }};
+
+        {% set token = csrf_token('multiselect') %}
+
+        if ($route != null) {
+            $.ajax({
+                url: $route,
+                type: "DELETE",
+                cache: false,
+                data: {
+                    'data': items,
+                    'token': "{{ token }}"
+                },
+                success: function(msg) {
+                    $('#checkall').iCheck('determinate');
+                    $('#checkall').iCheck('uncheck');
+                    new UIkit.notify({
+                        message: "<a href='#' class='notify-action'><span class='uk-icon-times'></span></a>"+ msg,
+                        status: "error",
+                        timeout: 5000,
+                        group: null,
+                        pos: 'top-right',
+                    });
+                    if (pipeline > 0) {
+                        oTable.clearPipeline().draw();
+                    } else {
+                        oTable.draw();
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                  new UIkit.notify({
+                      message: "<a href='#' class='notify-action'><span class='uk-icon-times'></span></a>"+textStatus,
+                      status: "error",
+                      timeout: 5000,
+                      group: null,
+                      pos: 'top-right',
+                  });
+                }
+            })
+        }
+        });
+      } else {
+          UIkit.modal.alert("{{ 'sg.datatables.selectError'|trans({}, 'messages') }}");
+      }
+});

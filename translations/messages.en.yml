@@ -1,33 +1,507 @@
-# translation for menu
-menu:
-  profile: Profile
-  logout: Logout
-  settings: Settings
-# translation for login page /templates/FOSUserBundle/Security/login.html.twig
-login:
-  help: Need help?
-  new_account: Create an account
-# translation for user account
-user:
-  show:
-    change_password: Change your Service Account password.
-# translation for cv
-cv:
-  title: curriculum vitae
-  about_me: About me ?
-  employment: Employment
-  skills: Skills
-  languages: Languages
-  softwares: Softwares
-  education: Education
-  portfolio: Portfolio
-  hobbies: Hobbies & interests
+action:
+    activate: Activate   # FIXME
+    deactivate: Deactivate   # FIXME
+    delete: Delete   # FIXME
+    save: Save   # FIXME
+    update: Update   # FIXME
+
+alert:
+    danger: Danger   # FIXME
+    success: Success   # FIXME
+    warning: Warning   # FIXME
+
+    delete:
+        fail: Could not delete from the specified alerts   # FIXME
+        success: The specified alerts successfully deleted  # FIXME
+
+    edit:
+        success: alert successfully added   # FIXME
+        title: Edit alert   # FIXME
+
+    field:
+        description: Description   # FIXME
+        submit: Save   # FIXME
+        title: Title   # FIXME
+        type: Type   # FIXME
+        user: Users   # FIXME
+
+    info: Alert information   # FIXME
+
+    list:
+        title: List of alerts   # FIXME
+
+    new:
+        success: alert successfully edited   # FIXME
+        title: Add alert   # FIXME
+
+    show:
+        detail: Alert detail   # FIXME
+        title: Alert information   # FIXME
+
+author:
+    created: Created   # FIXME
+    info: Author info   # FIXME
+    updated: Updated   # FIXME
+
 business_directory:
-  new:
-    title: Company Information
-  field:
-    company_name: Company Name
-    company_address: Company Address
-    longitude: Longitude
-    latitude: Latitude
-    sector: Choose the company Sector
+    activate:
+        success: The specified business directorys successfully activated.  # FIXME
+
+    deactivate:
+        success: The specified business directorys successfully deactivated.   # FIXME
+
+    delete:
+        fail: Could not delete from the specified business directorys   # FIXME
+        success: The specified business directorys successfully deleted  # FIXME
+
+    edit:
+        success: Business directory successfully edited  # FIXME
+        title: Edit Business directory   # FIXME
+
+    enabled:
+        active: Active   # FIXME
+        not_active: Not active   # FIXME
+
+    field:
+        companyName: Company Name   # FIXME
+        company_address: Company address   # FIXME
+        company_name: Company name   # FIXME
+        email: E-mail   # FIXME
+        enabled: Enabled   # FIXME
+        latitude: Latitude   # FIXME
+        longitude: Longitude   # FIXME
+        sector: Sector   # FIXME
+        submit: Save   # FIXME
+
+    list:
+        title: list of Business directory   # FIXME
+
+    new:
+        success: Business directory successfully created   # FIXME
+        title: Add business directory   # FIXME
+        tooltip: create new business directory   # FIXME
+
+    show:
+        detail: Business directory Detail   # FIXME
+        map: Business directory map   # FIXME
+        title: Business directory information   # FIXME
+
+contact:
+    list:
+        title: list of Feedback   # FIXME
+
+    show:
+        title: Feedback information   # FIXME
+
+contactus:
+    delete:
+        fail: Could not delete from the specified Feedback   # FIXME
+        success: The specified Feedback has been successfully deleted  # FIXME
+
+    field:
+        message: Message   # FIXME
+        name: Name   # FIXME
+        email: E-mail   # FIXME
+        submit: Send   # FIXME
+
+    new:
+        success: Your message has been successfully sent   # FIXME
+        title: Contact US   # FIXME
+        tooltip: Feedback message   # FIXME
+
+    show:
+        detail: Feedback Detail   # FIXME
+
+cv:
+    about_me: About me ?   # FIXME
+    education: Education   # FIXME
+    education.delete: Are you sure you want to delete this education?    # FIXME
+    experience: Experience   # FIXME
+    experience.delete: Are you sure you want to delete this experience?   # FIXME
+
+    hobbie:
+        delete: Are you sure you want to delete this hobbie?   # FIXME
+
+    hobbies: Hobbies   # FIXME
+
+    language:
+        delete: Are you sure you want to delete this language?  # FIXME
+
+    languages: Languages   # FIXME
+    options: Options   # FIXME
+    portfolio: Portfolio   # FIXME
+    portfolio.delete: Are you sure you want to delete this project?   # FIXME
+
+    skill:
+        delete: Are you sure you want to delete this skill?  # FIXME
+
+    skills: Skills   # FIXME
+    socialmedia: Social media   # FIXME
+    socialmedia.delete: Are you sure you want to delete this account?   # FIXME
+
+    software:
+        delete: Are you sure you want to delete this software?  # FIXME
+
+    softwares: Softwares   # FIXME
+    title: Curriculum vitae   # FIXME
+
+dashbord:
+    statistics:
+        business_directory: Business directory statistics   # FIXME
+        not_found: No enough data available   # FIXME
+        users: Users statistics  # FIXME
+
+    total:
+        business_directory: Total Business Directory   # FIXME
+        contacts: Total Feedback   # FIXME
+        users: Users   # FIXME
+
+education:
+    delete:
+        fail: Could not delete the specified education   # FIXME
+        success: The specified education has been successfully deleted  # FIXME
+
+    edit:
+        success: Edit education  # FIXME
+
+    field:
+        degree: Degree   # FIXME
+        description: Description   # FIXME
+        fieldOfStudy: Field Of Study   # FIXME
+        fromYear: From Year   # FIXME
+        grade: Grade   # FIXME
+        period: Period   # FIXME
+        school: School   # FIXME
+        submit: Save  # FIXME
+        toYear: To Year   # FIXME
+
+    new:
+        success: Add education   # FIXME
+
+email:
+    activation:
+        button: Email activation   # FIXME
+
+    confirmation:
+        button: Email confirmation   # FIXME
+
+experience:
+    delete:
+        fail: Could not delete the specified experience   # FIXME
+        success: The specified experience has been successfully deleted  # FIXME
+
+    edit:
+        success: The experience has been successfully edited   # FIXME
+
+    field:
+        company: Company   # FIXME
+        currently_work_here: Currently work here   # FIXME
+        description: Description   # FIXME
+        fromMonth: From Month   # FIXME
+        fromYear: From Year   # FIXME
+        location: Location   # FIXME
+        period: Period   # FIXME
+        submit: Save   # FIXME
+        title: Job title   # FIXME
+        toMonth: To Month   # FIXME
+        toYear: To Year   # FIXME
+
+    new:
+        success: The experience has been successfully created    # FIXME
+
+file:
+    upload_file: File upload   # FIXME
+    delete: Delete
+
+hobbie:
+    delete:
+        fail: Could not delete the specified hobbie   # FIXME
+        success: The specified hobbie has been successfully deleted  # FIXME
+
+    field:
+        image: Hobbie Icon   # FIXME
+        title: Hobbie Title   # FIXME
+
+    update:
+        already_existe:  The specified hobbie is already existe   # FIXME
+        success: The specified hobbie has been successfully added   # FIXME
+
+hobbies:
+    field:
+        submit: save   # FIXME
+
+home_page:
+    link:
+        tooltip: Home page   # FIXME
+
+interests:
+    delete:
+        fail: Could not delete the specified interests   # FIXME
+        success: The specified interests has been successfully deleted  # FIXME
+
+    edit:
+        success:  The specified interests has been successfully edited   # FIXME
+        title: Edit interests   # FIXME
+
+    field:
+        image: Image   # FIXME
+        title: Title   # FIXME
+        submit: save
+    list:
+        title: list of interests  # FIXME
+
+    new:
+        success: The specified interests has been successfully created   # FIXME
+        title: Add interests   # FIXME
+
+lang:
+    english: English   # FIXME
+    spanish: Spanish   # FIXME
+    french: French   # FIXME
+    arabic: Arabic   # FIXME
+
+language:
+    delete:
+        fail: Could not delete the specified language   # FIXME
+        success: The specified language has been successfully deleted  # FIXME
+
+    edit:
+        success: The specified language has been successfully edited   # FIXME
+
+    field:
+        language: Language   # FIXME
+        proficiency: Progress   # FIXME
+        submit: Save   # FIXME
+
+    new:
+        success: The specified language has been successfully added   # FIXME
+
+login:
+    help: Need help?   # FIXME
+
+menu:
+    Business_directory: Business Directory   # FIXME
+    alert: Alert   # FIXME
+    condidate: Condidate   # FIXME
+    contact: Contact   # FIXME
+    dashboard: Dashboard   # FIXME
+    intrests: Intrests   # FIXME
+    logout: Logout   # FIXME
+    profile: Profile   # FIXME
+    settings: Settings   # FIXME
+
+month:
+    april: April   # FIXME
+    august: August   # FIXME
+    december: December   # FIXME
+    february: February   # FIXME
+    january: January   # FIXME
+    july: July   # FIXME
+    june: June   # FIXME
+    march: March   # FIXME
+    may: May   # FIXME
+    november: November   # FIXME
+    october: October   # FIXME
+    september: September   # FIXME
+
+portfolio:
+    delete:
+        fail: Could not delete the specified project   # FIXME
+        success: The specified project has been successfully deleted  # FIXME
+
+    edit:
+        success: The specified project has been successfully edited  # FIXME
+
+    field:
+        description: Description   # FIXME
+        fromMonth: From Month   # FIXME
+        fromYear: From Year   # FIXME
+        period: Period   # FIXME
+        projectName: Project Name   # FIXME
+        projectOnGoing: Project On Going   # FIXME
+        projectURL: Project URL   # FIXME
+        submit: Save   # FIXME
+        toMonth: To Month   # FIXME
+        toYear: To Year   # FIXME
+
+    new:
+        success: The specified project has been successfully added  # FIXME
+
+registration:
+    check_email: Check Your Email   # FIXME
+    congrat: Congrat   # FIXME
+
+search: Search   # FIXME
+search.by_every_thing: Search By every Thing   # FIXME
+search.result_not_found.map: OOps! No Company has been Found   # FIXME
+search.result_not_found.profile: OOps! No Profile has been Found   # FIXME
+search.result_not_found.sub-title: Sorry, but we can’t seem to find what you are looking for.   # FIXME
+search.result_not_found.title: OOps! No Results Found   # FIXME
+search.tab.map: Company   # FIXME
+search.tab.profile: Profile   # FIXME
+
+sector:
+    consumer_industrial_products: Consumer industrial products   # FIXME
+    energy_resources: Energy esources   # FIXME
+    financial_services: Financial services   # FIXME
+    life_sciences_health_care: Life sciences & health care   # FIXME
+    manufacturing: Manufacturing   # FIXME
+    private_public_sector: Private & public sector   # FIXME
+    real_estate: Real estate   # FIXME
+    technology_media_telecommunications: Technology media telecommunications   # FIXME
+
+signup:
+    title: Sign Up   # FIXME
+
+skill:
+    edit:
+        success: The specified skill has been successfully edited   # FIXME
+
+    field:
+        progress: Progress   # FIXME
+        skill: Skill   # FIXME
+        submit: Save   # FIXME
+    delete:
+        fail: Could not delete the specified skill   # FIXME
+        success: The specified skill has been successfully deleted  # FIXME
+social_network:
+    type:
+        facebook: Facebook   # FIXME
+        google_plus: Google plus   # FIXME
+        instagram: Instagram   # FIXME
+        linkedin: Linkedin   # FIXME
+        pinterest: Pinterest   # FIXME
+        site: Site Web  # FIXME
+        soundcloud: Sound cloud   # FIXME
+        twitter: Twitter   # FIXME
+        youtube: Youtube   # FIXME
+
+socialmedia:
+    delete:
+        fail: Could not delete the specified account   # FIXME
+        success: The specified account has been successfully deleted  # FIXME
+
+    edit:
+        success: The specified account has been successfully edited   # FIXME
+
+    field:
+        account: Account   # FIXME
+        submit: Save   # FIXME
+        type: Type   # FIXME
+
+    new:
+        success: The specified account has been successfully created  # FIXME
+
+software:
+    delete:
+        fail: Could not delete the specified skill   # FIXME
+        success: The specified skill has been successfully deleted  # FIXME
+
+    edit:
+        success: The specified skill has been successfully edited  # FIXME
+
+    field:
+        progress: Progress   # FIXME
+        skill: Skill   # FIXME
+        submit: Save   # FIXME
+
+    new:
+        success: The specified skill has been successfully created  # FIXME
+
+user:
+    activate:
+        success:  The specified user has been successfully activated  # FIXME
+
+    alert:
+        all: Show all  # FIXME
+        title: Notification   # FIXME
+
+    change_password:
+        sub-title: If you need to change the password   # FIXME
+        title: Change your password   # FIXME
+
+    deactivate:
+        success: The specified user has been successfully deactivated  # FIXME
+
+    default:
+        address: Address not available   # FIXME
+        current_position: Current position not available   # FIXME
+        firstName: First name not available  # FIXME
+        full_name: Full name not available   # FIXME
+        lastName: Last name not available  # FIXME
+        phone: Phone not available  # FIXME
+        summary: Summary not available  # FIXME
+        data: Data not available   # FIXME
+
+    edit_cv:
+        sub-title: Update your curriculum vitae   # FIXME
+        title: Update CV   # FIXME
+
+    edit_profile:
+        sub-title: Edit Your Profile Info.   # FIXME
+        title: Update the profile   # FIXME
+
+    enabled:
+        active: Active   # FIXME
+        not_active: Not active   # FIXME
+
+    field:
+        address: Address   # FIXME
+        birthday: Birthday   # FIXME
+        code_zip: CodeZIP   # FIXME
+        country: Country   # FIXME
+        current_position: Current position   # FIXME
+        email: E-mail   # FIXME
+        enabled: Enabled   # FIXME
+        first_name: First name   # FIXME
+        last_name: Last name   # FIXME
+        phone: Phone   # FIXME
+        summary: Summary   # FIXME
+        username: Username   # FIXME
+
+    list:
+        title: List of users   # FIXME
+
+    profile:
+        account_info: Account information   # FIXME
+        contact_info: Contact information   # FIXME
+        position_info: Position information   # FIXME
+        print: Print   # FIXME
+        sub-title: Show my profile   # FIXME
+        title: Profile   # FIXME
+        user_info: User information   # FIXME
+
+    update_color:
+        success: The profile color has been successfully updated   # FIXME
+
+user_cv:
+    education:
+        edit: Edit education   # FIXME
+        new: Add education   # FIXME
+
+    experience:
+        edit: Edit experience   # FIXME
+        new: Add experience   # FIXME
+
+    hobbies:
+        new: Add hobbies   # FIXME
+
+    language:
+        new: Add language   # FIXME
+        edit: Edit language   # FIXME
+
+    portfolio:
+        edit: Edit portfolio   # FIXME
+        new: Add portfolio   # FIXME
+
+    skill:
+        edit: Edit skill   # FIXME
+        new: Add skill   # FIXME
+
+    socialmedia:
+        edit: Edit socialmedia   # FIXME
+        new: Add socialmedia   # FIXME
+
+    software:
+        edit: Edit software   # FIXME
+        new: Add software   # FIXME

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Remove Tap Highlight on Windows Phone IE -->
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <meta name="description" content="">
+    <meta name="keywords" content="cv, Create cv , material design, Service">
+    <meta name="author" content="Rami Sfari">
+    <title>
+      {% block title %}change me{% endblock %}
+    </title>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{{ asset('favicon.ico')}}">
+    <!-- apple-touch-icon -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('icon_144')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('icon_114')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('icon_72')}}">
+    <link rel="apple-touch-icon-precomposed" href="{{ asset('icon_57')}}">
+
+    {% block stylesheets %}
+      <!-- google web fonts -->
+      <link href="{{ asset('google_fonts.roboto')}}" rel="stylesheet">
+      <link href="{{ asset('google_fonts.source_code_pro') }}" rel="stylesheet">
+      <!-- uikit -->
+      <link rel="stylesheet" href="{{ asset('uikit.almost.flat.min.css') }}" media="all">
+
+      <!-- flag icons -->
+      <link rel="stylesheet" href="{{ asset('flags.min.css') }}" media="all">
+
+      <!-- altair admin -->
+      <link rel="stylesheet" href="{{ asset('main.fix.min.css') }}" media="all">
+
+      <!-- themes -->
+      <link rel="stylesheet" href="{{ asset('themes_combined.min.css') }}" media="all">
+
+      <!-- matchMedia polyfill for testing media queries in JS -->
+      <!--[if lte IE 9]> <script type="text/javascript" src="bower_components/matchMedia/matchMedia.js"></script> <script type="text/javascript" src="bower_components/matchMedia/matchMedia.addListener.js"></script> <link rel="stylesheet" href="{{
+      asset('ie.css') }}" media="all"> <![endif]-->
+    {% endblock %}
+
+    <!-- main javascripts -->
+    {% block head_javascripts %}
+      <!-- common functions -->
+      <script src="{{ asset('common.min.js')}}"></script>
+    {% endblock %}
+    <!-- main javascripts end -->
+  </head>
+  <body class="{% block body_class %}{% endblock %}">
+
+    <!-- main header -->
+    {% include 'layout/header.html.twig' %}
+    <!-- main header end -->
+
+    <!-- main sidebar -->
+    {# include 'layout/sidebar_main.html.twig' #}
+    <!-- main sidebar end -->
+
+    <!-- main page content -->
+    <div id="page_content">
+      <div id="page_heading" class="non-printable" data-uk-sticky="{ top: 48, media: 960 }">
+        <div class="heading_actions">
+          {% block heading_actions %}{% endblock %}
+        </div>
+        <h1 id="product_edit_name">
+          {% block title_page %}{% endblock %}
+        </h1>
+        <span class="uk-text-muted uk-text-upper uk-text-small" id="product_edit_sn">
+          {% block sub_title_page %}
+            <a>{{ 'menu.dashbord'|trans }}</a>
+          {% endblock %}
+        </span>
+      </div>
+      <div id="page_content_inner">
+        {% block body %}{% endblock %}
+      </div>
+    </div>
+    <!-- main page content end -->
+
+    <!-- main sticky button -->
+    <div class="md-fab-wrapper">
+      {% block sticky_button %}{% endblock %}
+    </div>
+    <!-- main sticky button end -->
+
+    <!-- main javascripts -->
+    {% block javascripts %}
+      <!-- uikit functions -->
+      <script src="{{ asset('uikit_custom.min.js')}}"></script>
+      <!-- altair common functions/helpers -->
+      <script src="{{ asset('altair_admin_common.min.js')}}"></script>
+
+      <script>
+        $(function() {
+          if (Modernizr.touch) {
+            // fastClick (touch devices)
+            FastClick.attach(document.body);
+          }
+          {% if is_granted('ROLE_USER') %}
+            $.ajax({
+              url: "{{ url('alert_user_header_show') }}",
+              type: 'GET',
+              cache: false,
+              timeout: 3000,
+              success: function(data) {
+                // Replace current modal ... ... with the returned one from the AJAX response.
+                $('#alert_content').empty().append(data);
+              },
+              error: function(XMLHttpRequest, textStatus, errorThrown) {
+                new UIkit.notify({
+                  message: "<a href='#' class='notify-action'><span class='uk-icon-times'></span></a>" + textStatus,
+                  status: "error",
+                  timeout: 5000,
+                  group: null,
+                  pos: 'top-right'
+                });
+              }
+            });
+          {% endif %}
+        });
+        $window.load(function() {
+          // ie fixes
+          altair_helpers.ie_fix();
+        });
+      </script>
+    {% endblock %}
+    <!-- main javascripts end -->
+
+    <!-- main flash success message -->
+    {% for flash_message in app.session.flashbag.get('msg_success') %}
+      <script type="text/javascript">
+        UIkit.notify({message: "<a href='#' class='notify-action'><span class='uk-icon-times'></span></a>{{ flash_message }}", status: "success", timeout: 100, group: null, pos: 'top-right'});
+      </script>
+    {% endfor %}
+    <!-- main flash success message end -->
+
+    <!-- main flash success message -->
+    {% for flash_message in app.session.flashbag.get('msg_danger') %}
+      <script type="text/javascript">
+        UIkit.notify({message: "<a href='#' class='notify-action'><span class='uk-icon-times'></span></a>{{ flash_message }}", status: "error", timeout: 100, group: null, pos: 'top-right'});
+      </script>
+    {% endfor %}
+    <!-- main flash success message end -->
+  </body>
+</html>

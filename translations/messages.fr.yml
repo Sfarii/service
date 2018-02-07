@@ -1,0 +1,558 @@
+action:
+    activate: action.activate   # FIXME
+    deactivate: action.deactivate   # FIXME
+    delete: action.delete   # FIXME
+    save: action.save   # FIXME
+    update: action.update   # FIXME
+
+alert:
+    danger: alert.danger   # FIXME
+
+    delete:
+        fail: alert.delete.fail   # FIXME
+        success: alert.delete.success   # FIXME
+
+    edit:
+        success: alert.edit.success   # FIXME
+        title: alert.edit.title   # FIXME
+
+    field:
+        description: alert.field.description   # FIXME
+        submit: alert.field.submit   # FIXME
+        title: alert.field.title   # FIXME
+        type: alert.field.type   # FIXME
+        user: alert.field.user   # FIXME
+
+    info: alert.info   # FIXME
+
+    list:
+        title: alert.list.title   # FIXME
+
+    new:
+        success: alert.new.success   # FIXME
+        title: alert.new.title   # FIXME
+
+    show:
+        detail: alert.show.detail   # FIXME
+        title: alert.show.title   # FIXME
+
+    success: alert.success   # FIXME
+    warning: alert.warning   # FIXME
+
+author:
+    created: author.created   # FIXME
+    info: author.info   # FIXME
+    updated: author.updated   # FIXME
+
+business_directory:
+    activate:
+        success: business_directory.activate.success   # FIXME
+
+    deactivate:
+        success: business_directory.deactivate.success   # FIXME
+
+    delete:
+        fail: business_directory.delete.fail   # FIXME
+        success: business_directory.delete.success   # FIXME
+
+    edit:
+        success: business_directory.edit.success   # FIXME
+        title: business_directory.edit.title   # FIXME
+
+    enabled:
+        active: business_directory.enabled.active   # FIXME
+        not_active: business_directory.enabled.not_active   # FIXME
+
+    field:
+        companyName: business_directory.field.companyName   # FIXME
+        company_address: business_directory.field.company_address   # FIXME
+        company_name: business_directory.field.company_name   # FIXME
+        email: business_directory.field.email   # FIXME
+        enabled: business_directory.field.enabled   # FIXME
+        latitude: business_directory.field.latitude   # FIXME
+        longitude: business_directory.field.longitude   # FIXME
+        sector: business_directory.field.sector   # FIXME
+        submit: business_directory.field.submit   # FIXME
+
+    list:
+        title: business_directory.list.title   # FIXME
+
+    new:
+        success: business_directory.new.success   # FIXME
+        title: business_directory.new.title   # FIXME
+        tooltip: business_directory.new.tooltip   # FIXME
+
+    show:
+        detail: business_directory.show.detail   # FIXME
+        map: business_directory.show.map   # FIXME
+        title: business_directory.show.title   # FIXME
+
+businessdirectory:
+    field:
+        CompanyAddress: businessdirectory.field.CompanyAddress   # FIXME
+        CompanyName: businessdirectory.field.CompanyName   # FIXME
+        enabled: businessdirectory.field.enabled   # FIXME
+
+contact:
+    list:
+        title: contact.list.title   # FIXME
+
+    show:
+        title: contact.show.title   # FIXME
+
+contactus:
+    delete:
+        fail: contactus.delete.fail   # FIXME
+        success: contactus.delete.success   # FIXME
+
+    field:
+        Email: contactus.field.Email   # FIXME
+        Message: contactus.field.Message   # FIXME
+        Name: contactus.field.Name   # FIXME
+        email: contactus.field.email   # FIXME
+        message: contactus.field.message   # FIXME
+        name: contactus.field.name   # FIXME
+        submit: contactus.field.submit   # FIXME
+
+    new:
+        success: contactus.new.success   # FIXME
+        title: contactus.new.title   # FIXME
+        tooltip: contactus.new.tooltip   # FIXME
+
+    show:
+        detail: contactus.show.detail   # FIXME
+
+cv:
+    about_me: cv.about_me   # FIXME
+    education: cv.education   # FIXME
+    education.delete: cv.education.delete   # FIXME
+    experience: cv.experience   # FIXME
+    experience.delete: cv.experience.delete   # FIXME
+
+    hobbie:
+        delete: cv.hobbie.delete   # FIXME
+
+    hobbies: cv.hobbies   # FIXME
+
+    language:
+        delete: cv.language.delete   # FIXME
+
+    languages: cv.languages   # FIXME
+    options: cv.options   # FIXME
+    portfolio: cv.portfolio   # FIXME
+    portfolio.delete: cv.portfolio.delete   # FIXME
+
+    skill:
+        delete: cv.skill.delete   # FIXME
+
+    skills: cv.skills   # FIXME
+    socialmedia: cv.socialmedia   # FIXME
+    socialmedia.delete: cv.socialmedia.delete   # FIXME
+
+    software:
+        delete: cv.software.delete   # FIXME
+
+    softwares: cv.softwares   # FIXME
+    title: cv.title   # FIXME
+
+dashbord:
+    statistics:
+        business_directory: dashbord.statistics.business_directory   # FIXME
+        not_found: dashbord.statistics.not_found   # FIXME
+        users: dashbord.statistics.users   # FIXME
+
+    total:
+        business_directory: dashbord.total.business_directory   # FIXME
+        contacts: dashbord.total.contacts   # FIXME
+        users: dashbord.total.users   # FIXME
+
+delete: delete   # FIXME
+
+education:
+    delete:
+        fail: education.delete.fail   # FIXME
+        success: education.delete.success   # FIXME
+
+    edit:
+        success: education.edit.success   # FIXME
+
+    field:
+        degree: education.field.degree   # FIXME
+        description: education.field.description   # FIXME
+        fieldOfStudy: education.field.fieldOfStudy   # FIXME
+        fromYear: education.field.fromYear   # FIXME
+        grade: education.field.grade   # FIXME
+        period: education.field.period   # FIXME
+        school: education.field.school   # FIXME
+        submit: education.field.submit   # FIXME
+        toYear: education.field.toYear   # FIXME
+
+    new:
+        success: education.new.success   # FIXME
+
+email:
+    activation:
+        button: email.activation.button   # FIXME
+
+    confirmation:
+        button: email.confirmation.button   # FIXME
+
+experience:
+    delete:
+        fail: experience.delete.fail   # FIXME
+        success: experience.delete.success   # FIXME
+
+    edit:
+        success: experience.edit.success   # FIXME
+
+    field:
+        company: experience.field.company   # FIXME
+        currently_work_here: experience.field.currently_work_here   # FIXME
+        description: experience.field.description   # FIXME
+        fromMonth: experience.field.fromMonth   # FIXME
+        fromYear: experience.field.fromYear   # FIXME
+        location: experience.field.location   # FIXME
+        period: experience.field.period   # FIXME
+        submit: experience.field.submit   # FIXME
+        title: experience.field.title   # FIXME
+        toMonth: experience.field.toMonth   # FIXME
+        toYear: experience.field.toYear   # FIXME
+
+    new:
+        success: experience.new.success   # FIXME
+
+file:
+    upload_file: file.upload_file   # FIXME
+
+hobbie:
+    delete:
+        fail: hobbie.delete.fail   # FIXME
+        success: hobbie.delete.success   # FIXME
+
+    field:
+        image: hobbie.field.image   # FIXME
+        title: hobbie.field.title   # FIXME
+
+    update:
+        already_existe: hobbie.update.already_existe   # FIXME
+        success: hobbie.update.success   # FIXME
+
+hobbies:
+    field:
+        submit: hobbies.field.submit   # FIXME
+
+home_page:
+    link:
+        tooltip: home_page.link.tooltip   # FIXME
+
+interests:
+    delete:
+        fail: interests.delete.fail   # FIXME
+        success: interests.delete.success   # FIXME
+
+    edit:
+        success: interests.edit.success   # FIXME
+        title: interests.edit.title   # FIXME
+
+    field:
+        Image: interests.field.Image   # FIXME
+        Title: interests.field.Title   # FIXME
+
+    list:
+        title: interests.list.title   # FIXME
+
+    new:
+        success: interests.new.success   # FIXME
+        title: interests.new.title   # FIXME
+
+intrests:
+    field:
+        submit: intrests.field.submit   # FIXME
+        title: intrests.field.title   # FIXME
+
+lang:
+    english: lang.english   # FIXME
+    espangnole: lang.espangnole   # FIXME
+    french: lang.french   # FIXME
+
+language:
+    delete:
+        fail: language.delete.fail   # FIXME
+        success: language.delete.success   # FIXME
+
+    edit:
+        success: language.edit.success   # FIXME
+
+    field:
+        language: language.field.language   # FIXME
+        proficiency: language.field.proficiency   # FIXME
+        submit: language.field.submit   # FIXME
+
+    new:
+        success: language.new.success   # FIXME
+
+login:
+    help: login.help   # FIXME
+
+menu:
+    Business_directory: menu.Business_directory   # FIXME
+    alert: menu.alert   # FIXME
+    arabic: menu.arabic   # FIXME
+    condidate: menu.condidate   # FIXME
+    contact: menu.contact   # FIXME
+    dashboard: menu.dashboard   # FIXME
+    dashbord: menu.dashbord   # FIXME
+    intrests: menu.intrests   # FIXME
+    logout: menu.logout   # FIXME
+    profile: menu.profile   # FIXME
+    settings: menu.settings   # FIXME
+
+month:
+    april: month.april   # FIXME
+    august: month.august   # FIXME
+    december: month.december   # FIXME
+    february: month.february   # FIXME
+    january: month.january   # FIXME
+    july: month.july   # FIXME
+    june: month.june   # FIXME
+    march: month.march   # FIXME
+    may: month.may   # FIXME
+    november: month.november   # FIXME
+    october: month.october   # FIXME
+    september: month.september   # FIXME
+
+portfolio:
+    delete:
+        fail: portfolio.delete.fail   # FIXME
+        success: portfolio.delete.success   # FIXME
+
+    edit:
+        success: portfolio.edit.success   # FIXME
+
+    field:
+        description: portfolio.field.description   # FIXME
+        fromMonth: portfolio.field.fromMonth   # FIXME
+        fromYear: portfolio.field.fromYear   # FIXME
+        period: portfolio.field.period   # FIXME
+        projectName: portfolio.field.projectName   # FIXME
+        projectOnGoing: portfolio.field.projectOnGoing   # FIXME
+        projectURL: portfolio.field.projectURL   # FIXME
+        submit: portfolio.field.submit   # FIXME
+        toMonth: portfolio.field.toMonth   # FIXME
+        toYear: portfolio.field.toYear   # FIXME
+
+    new:
+        success: portfolio.new.success   # FIXME
+
+registration:
+    check_email: registration.check_email   # FIXME
+    congrat: registration.congrat   # FIXME
+
+search: search   # FIXME
+search.by_every_thing: search.by_every_thing   # FIXME
+search.result_not_found.map: search.result_not_found.map   # FIXME
+search.result_not_found.profile: search.result_not_found.profile   # FIXME
+search.result_not_found.sub-title: search.result_not_found.sub-title   # FIXME
+search.result_not_found.title: search.result_not_found.title   # FIXME
+search.tab.map: search.tab.map   # FIXME
+search.tab.profile: search.tab.profile   # FIXME
+
+sector:
+    consumer_industrial_products: sector.consumer_industrial_products   # FIXME
+
+    edit:
+        title: sector.edit.title   # FIXME
+
+    energy_resources: sector.energy_resources   # FIXME
+
+    field:
+        SectorName: sector.field.SectorName   # FIXME
+
+    financial_services: sector.financial_services   # FIXME
+    life_sciences_health_care: sector.life_sciences_health_care   # FIXME
+
+    list:
+        title: sector.list.title   # FIXME
+
+    manufacturing: sector.manufacturing   # FIXME
+
+    new:
+        title: sector.new.title   # FIXME
+
+    private_public_sector: sector.private_public_sector   # FIXME
+    real_estate: sector.real_estate   # FIXME
+    technology_media_telecommunications: sector.technology_media_telecommunications   # FIXME
+
+sg:
+    datatables:
+        actions:
+            edit: sg.datatables.actions.edit   # FIXME
+            show: sg.datatables.actions.show   # FIXME
+            title: sg.datatables.actions.title   # FIXME
+
+        confirmMessage: sg.datatables.confirmMessage   # FIXME
+
+        daterange:
+            apply: sg.datatables.daterange.apply   # FIXME
+            cancel: sg.datatables.daterange.cancel   # FIXME
+            format: sg.datatables.daterange.format   # FIXME
+
+        selectError: sg.datatables.selectError   # FIXME
+
+signup:
+    title: signup.title   # FIXME
+
+skill:
+    edit:
+        success: skill.edit.success   # FIXME
+
+    field:
+        progress: skill.field.progress   # FIXME
+        skill: skill.field.skill   # FIXME
+        submit: skill.field.submit   # FIXME
+
+social_network:
+    type:
+        facebook: social_network.type.facebook   # FIXME
+        google_plus: social_network.type.google_plus   # FIXME
+        instagram: social_network.type.instagram   # FIXME
+        linkedin: social_network.type.linkedin   # FIXME
+        pinterest: social_network.type.pinterest   # FIXME
+        site: social_network.type.site   # FIXME
+        soundcloud: social_network.type.soundcloud   # FIXME
+        twitter: social_network.type.twitter   # FIXME
+        youtube: social_network.type.youtube   # FIXME
+
+socialmedia:
+    delete:
+        fail: socialmedia.delete.fail   # FIXME
+        success: socialmedia.delete.success   # FIXME
+
+    edit:
+        success: socialmedia.edit.success   # FIXME
+
+    field:
+        account: socialmedia.field.account   # FIXME
+        submit: socialmedia.field.submit   # FIXME
+        type: socialmedia.field.type   # FIXME
+
+    new:
+        success: socialmedia.new.success   # FIXME
+
+software:
+    delete:
+        fail: software.delete.fail   # FIXME
+        success: software.delete.success   # FIXME
+
+    edit:
+        success: software.edit.success   # FIXME
+
+    field:
+        progress: software.field.progress   # FIXME
+        skill: software.field.skill   # FIXME
+        submit: software.field.submit   # FIXME
+
+    new:
+        success: software.new.success   # FIXME
+
+user:
+    activate:
+        success: user.activate.success   # FIXME
+
+    alert:
+        all: user.alert.all   # FIXME
+        title: user.alert.title   # FIXME
+
+    change_password:
+        sub-title: user.change_password.sub-title   # FIXME
+        title: user.change_password.title   # FIXME
+
+    deactivate:
+        success: user.deactivate.success   # FIXME
+
+    default:
+        address: user.default.address   # FIXME
+        contact_info: user.default.contact_info   # FIXME
+        current_position: user.default.current_position   # FIXME
+        firstName: user.default.firstName   # FIXME
+        full_name: user.default.full_name   # FIXME
+        lastName: user.default.lastName   # FIXME
+        phone: user.default.phone   # FIXME
+        summary: user.default.summary   # FIXME
+        user_info: user.default.user_info   # FIXME
+
+    edit_cv:
+        sub-title: user.edit_cv.sub-title   # FIXME
+        title: user.edit_cv.title   # FIXME
+
+    edit_profile:
+        sub-title: user.edit_profile.sub-title   # FIXME
+        title: user.edit_profile.title   # FIXME
+
+    enabled:
+        active: user.enabled.active   # FIXME
+        not_active: user.enabled.not_active   # FIXME
+
+    field:
+        address: user.field.address   # FIXME
+        birthday: user.field.birthday   # FIXME
+        codeZIP: user.field.codeZIP   # FIXME
+        code_zip: user.field.code_zip   # FIXME
+        country: user.field.country   # FIXME
+        currentPosition: user.field.currentPosition   # FIXME
+        current_position: user.field.current_position   # FIXME
+        email: user.field.email   # FIXME
+        enabled: user.field.enabled   # FIXME
+        firstName: user.field.firstName   # FIXME
+        first_name: user.field.first_name   # FIXME
+        lastName: user.field.lastName   # FIXME
+        last_name: user.field.last_name   # FIXME
+        phone: user.field.phone   # FIXME
+        summary: user.field.summary   # FIXME
+        username: user.field.username   # FIXME
+
+    list:
+        title: user.list.title   # FIXME
+
+    profile:
+        account_info: user.profile.account_info   # FIXME
+        contact_info: user.profile.contact_info   # FIXME
+        position_info: user.profile.position_info   # FIXME
+        print: user.profile.print   # FIXME
+        sub-title: user.profile.sub-title   # FIXME
+        title: user.profile.title   # FIXME
+        user_info: user.profile.user_info   # FIXME
+
+    update_color:
+        success: user.update_color.success   # FIXME
+
+user_cv:
+    education:
+        edit: user_cv.education.edit   # FIXME
+        new: user_cv.education.new   # FIXME
+
+    experience:
+        edit: user_cv.experience.edit   # FIXME
+        new: user_cv.experience.new   # FIXME
+
+    hobbies:
+        new: user_cv.hobbies.new   # FIXME
+
+    language:
+        new: user_cv.language.new   # FIXME
+
+    portfolio:
+        edit: user_cv.portfolio.edit   # FIXME
+        new: user_cv.portfolio.new   # FIXME
+
+    skill:
+        edit: user_cv.skill.edit   # FIXME
+        new: user_cv.skill.new   # FIXME
+
+    socialmedia:
+        edit: user_cv.socialmedia.edit   # FIXME
+        new: user_cv.socialmedia.new   # FIXME
+
+    software:
+        edit: user_cv.software.edit   # FIXME
+        new: user_cv.software.new   # FIXME

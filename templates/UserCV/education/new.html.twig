@@ -1,0 +1,74 @@
+<button type="button" class="uk-modal-close uk-close"></button>
+<div class="uk-modal-header">
+  <h3 class="uk-modal-title">{{ 'user_cv.education.new'|trans }}</h3>
+</div>
+<div class="uk-animation-fade">
+  {{ form_start(form ,{ 'action': path('education_new') }) }}
+  <div class="uk-grid uk-margin-medium-bottom" data-uk-grid-margin="data-uk-grid-margin">
+    <div class="uk-width-large-1-2">
+      <div class="uk-form-row">
+        <label class="uk-form-label">{{ form_label(form.school) }}</label>
+        {{ form_widget(form.school)}}
+        <div class="parsley-errors-list filled uk-text-danger">
+          {{ form_errors(form.school) }}
+        </div>
+      </div>
+
+      <div class="uk-form-row">
+        <label class="uk-form-label">{{ form_label(form.degree) }}</label>
+        {{ form_widget(form.degree)}}
+        <div class="parsley-errors-list filled uk-text-danger">
+          {{ form_errors(form.degree) }}
+        </div>
+      </div>
+    </div>
+    <div class="uk-width-large-1-2">
+      <div class="uk-form-row">
+        <label class="uk-form-label">{{ form_label(form.fieldOfStudy) }}</label>
+        {{ form_widget(form.fieldOfStudy)}}
+        <div class="parsley-errors-list filled uk-text-danger">
+          {{ form_errors(form.fieldOfStudy) }}
+        </div>
+      </div>
+      <div class="uk-form-row">
+        <label class="uk-form-label">{{ form_label(form.grade) }}</label>
+        {{ form_widget(form.grade)}}
+        <div class="parsley-errors-list filled uk-text-danger">
+          {{ form_errors(form.grade) }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="uk-form-row">
+    <label class="uk-form-label">{{ form_label(form.description) }}</label>
+    {{ form_widget(form.description)}}
+    <div class="parsley-errors-list filled uk-text-danger">
+      {{ form_errors(form.description) }}
+    </div>
+  </div>
+  <h3 class="heading_a  uk-margin-medium-top">{{ 'education.field.period'|trans }}</h3>
+  <div class="uk-grid uk-margin-medium-bottom" data-uk-grid-margin="data-uk-grid-margin">
+    <div class="uk-width-large-1-2">
+      <div class="uk-form-row">
+        {{ form_widget(form.fromYear)}}
+        <div class="parsley-errors-list filled uk-text-danger">
+          {{ form_errors(form.fromYear) }}
+        </div>
+      </div>
+    </div>
+    <div class="uk-width-large-1-2">
+      <div class="uk-form-row">
+        {{ form_widget(form.toYear)}}
+        <div class="parsley-errors-list filled uk-text-danger">
+          {{ form_errors(form.toYear) }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="uk-modal-footer uk-text-right">
+    <button type="button" class="md-btn md-btn-flat uk-modal-close">Close</button>
+    {{ form_widget(form.submit) }}
+  </div>
+  {{ form_widget(form) }}
+  {{ form_end(form) }}
+</div>

@@ -2,61 +2,67 @@
 <header id="header_main">
   <div class="header_main_content">
     <nav class="uk-navbar">
-      <!-- main sidebar switch -->
-      <a href="#" id="sidebar_main_toggle" class="sSwitch sSwitch_left">
-        <span class="sSwitchIcon"></span>
-      </a>
+      {% if is_granted('ROLE_ADMIN') %}
+        <!-- main sidebar switch -->
+        <a href="#" id="sidebar_main_toggle" class="sSwitch sSwitch_left">
+          <span class="sSwitchIcon"></span>
+        </a>
+      {% else %}
+        <div class="main_logo_top">
+          <a href="{{ url('homepage') }}">
+            <img src="{{ asset('logo_main_white@2x.png')}}" alt="" height="15" width="71"/></a>
+        </div>
+      {% endif %}
       <div class="uk-navbar-flip">
         <ul class="uk-navbar-nav user_actions">
-          <li><a href="#" id="main_search_btn" class="user_action_icon"><i class="material-icons md-24 md-light">&#xE8B6;</i></a></li>
+          <li>
+            <a href="#" id="main_search_btn" class="user_action_icon">
+              <i class="material-icons md-24 md-light">&#xE8B6;</i>
+            </a>
+          </li>
+          <li data-uk-dropdown="{mode:'click',pos:'bottom-right'}">
+            <a href="#" class="user_action_icon">
+              <i class="material-icons md-24 md-light">&#xE8E2;</i>
+            </a>
+            <div class="uk-dropdown uk-dropdown-small">
+              <ul class="uk-nav uk-nav-dropdown">
+                <li>
+                  <a href="{{ path('translate_index', {'lang' : 'en', 'token' : csrf_token('lang') }) }}"><span class="flag-GB"></span> {{ 'lang.english'|trans }}</a>
+                </li>
+                <li>
+                  <a href="{{ path('translate_index', {'lang' : 'fr', 'token' : csrf_token('lang') }) }}"><span class="flag-FR"></span> {{ 'lang.french'|trans }}</a>
+                </li>
+                <li>
+                  <a href="{{ path('translate_index', {'lang' : 'es', 'token' : csrf_token('lang') }) }}"><span class="flag-ES"></span> {{ 'lang.spanish'|trans }}</a>
+                </li>
+                <li>
+                  <a href="{{ path('translate_index', {'lang' : 'ar', 'token' : csrf_token('lang') }) }}"><span class="flag-TN"></span> {{ 'lang.arabic'|trans }}</a>
+                </li>
+
+              </ul>
+            </div>
+          </li>
           <!-- # user is logged in -->
-          {% if app.user %}
-            <li data-uk-dropdown="{mode:'click',pos:'bottom-right'}">
+          {% if is_granted('ROLE_USER') %}
+            <li data-uk-dropdown="{mode:'click',pos:'bottom-center'}">
               <a href="#" class="user_action_icon">
                 <i class="material-icons md-24 md-light">&#xE7F4;</i>
-                <span class="uk-badge">16</span></a>
+              </a>
               <div class="uk-dropdown uk-dropdown-xlarge">
                 <div class="md-card-content">
                   <ul class="uk-tab uk-tab-grid" data-uk-tab="{connect:'#header_alerts',animation:'slide-horizontal'}">
-                    <li class="uk-width-1-2 uk-active">
-                      <a href="#" class="js-uk-prevent uk-text-small">Messages (12)</a>
-                    </li>
-                    <li class="uk-width-1-2">
-                      <a href="#" class="js-uk-prevent uk-text-small">Alerts (4)</a>
+                    <li class="uk-width-1-1 uk-active">
+                      <a href="#" class="js-uk-prevent uk-text-small">{{ 'user.alert.title'|trans}}</a>
                     </li>
                   </ul>
                   <ul id="header_alerts" class="uk-switcher uk-margin">
                     <li>
-                      <ul class="md-list md-list-addon">
-                        <li>
-                          <div class="md-list-addon-element">
-                            <span class="md-user-letters md-bg-cyan">wz</span>
-                          </div>
-                          <div class="md-list-content">
-                            <span class="md-list-heading">
-                              <a href="pages_mailbox.html">Voluptates consequatur distinctio.</a>
-                            </span>
-                            <span class="uk-text-small uk-text-muted">Esse rerum sed quae at amet aut.</span>
-                          </div>
-                        </li>
+                      <ul class="md-list md-list-addon" id="alert_content">
 
                       </ul>
                       <div class="uk-text-center uk-margin-top uk-margin-small-bottom">
-                        <a href="page_mailbox.html" class="md-btn md-btn-flat md-btn-flat-primary js-uk-prevent">Show All</a>
+                        <a href="{{ url('alert_user_show') }}" class="md-btn md-btn-flat md-btn-flat-primary js-uk-prevent">{{ 'user.alert.all'|trans}}</a>
                       </div>
-                    </li>
-                    <li>
-                      <ul class="md-list md-list-addon">
-                        <li>
-                          <div class="md-list-addon-element">
-                            <i class="md-list-addon-icon material-icons uk-text-warning">&#xE8B2;</i>
-                          </div>
-                          <div class="md-list-content">
-                            <span class="md-list-heading">Laborum voluptas.</span>
-                            <span class="uk-text-small uk-text-muted uk-text-truncate">Vel maiores voluptatem dolore sint aperiam error unde nobis.</span>
-                          </div>
-                        </li>
-                      </ul>
                     </li>
                   </ul>
                 </div>
@@ -72,23 +78,29 @@
                     <a href="{{ path('fos_user_profile_show') }}">{{ 'menu.profile'|trans }}</a>
                   </li>
                   <li>
-                    <a href="{{ path('fos_user_change_password') }}">{{ 'menu.settings'|trans }}</a>
+                    <a href="{{ path('fos_user_profile_edit') }}">{{ 'menu.settings'|trans }}</a>
                   </li>
+                  {% if not is_granted('ROLE_SUPER_ADMIN') %}
+                  <li>
+                    <a href="{{ path('condidate_cv_edit' , {'id' : app.user.id }) }}">{{ 'user.edit_cv.title'|trans }}</a>
+                  </li>
+                  {% endif %}
                   <li>
                     <a href="{{ path('fos_user_security_logout') }}">{{ 'menu.logout'|trans }}</a>
                   </li>
+
                 </ul>
               </div>
             </li>
             <!-- # user is not logged in -->
-          {% else %}
+          {% endif %}
+          {% if not app.user %}
             <li>
               <a href="{{ path('fos_user_security_login') }}" class="user_action_icon">
                 <i class="material-icons md-24 md-light">&#xE898;</i>
               </a>
             </li>
           {% endif %}
-
         </ul>
       </div>
     </nav>
@@ -96,11 +108,12 @@
   <div class="header_main_search_form">
     <i class="md-icon header_main_search_close material-icons">&#xE5CD;</i>
     <form class="uk-form uk-autocomplete" action="{{ path('search_result') }}" data-uk-autocomplete="">
-      <input type="text" name="search" class="header_main_search_input"/>
-      <button class="header_main_search_btn uk-button-link">
+      <input type="text" name="search" class="header_main_search_input" value="{% if keyword is defined %}{{keyword}}{% endif %}"/>
+      <input type="hidden" name="token" value="{{ csrf_token('search') }}"/>
+      <button type="submit" class="header_main_search_btn uk-button-link">
         <i class="md-icon material-icons">&#xE8B6;</i>
       </button>
-  </form>
-</div>
+    </form>
+  </div>
 </header>
 <!-- main header end -->

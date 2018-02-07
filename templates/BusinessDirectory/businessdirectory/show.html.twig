@@ -1,0 +1,145 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title_page %}
+  <div id="page_heading" class="non-printable" data-uk-sticky="{ top: 48, media: 960 }">
+    <h1>{{ 'business_directory.show.title'|trans }}</h1>
+    <span class="uk-text-muted uk-text-upper uk-text-small">
+      {% block sub_title_page %}
+        <a href="{{ path('businessdirectory_index') }}">{{ 'business_directory.list.title'|trans }}</a>
+      {% endblock %}
+    </span>
+  </div>
+{% endblock %}
+
+{% block sticky_button %}
+  <a class="md-fab md-fab-accent md-fab-wave waves-effect waves-button" href=" {{ path('businessdirectory_edit' , {'id' : businessDirectory.id }) }} ">
+    <i class="material-icons">&#xE254;</i>
+  </a>
+{% endblock %}
+
+{% block body %}
+  <div class="md-card">
+    <div class="md-card-toolbar">
+      <h3 class="md-card-toolbar-heading-text">
+        {{ 'business_directory.show.detail'|trans }}
+      </h3>
+    </div>
+    <div class="md-card-content">
+
+      <div class="uk-grid  uk-grid-divider" data-uk-grid-margin="data-uk-grid-margin">
+
+        <div class="uk-width-xLarge-8-10  uk-width-large-7-10">
+          <ul class="md-list">
+            <li>
+              <div class="md-list-content">
+                <span class="md-list-heading uk-text-large">{{ businessDirectory.companyName }}</span>
+              </div>
+              <span class="uk-text-small uk-text-muted uk-display-block">
+                {{'business_directory.field.companyName'|trans }}</span>
+            </li>
+            <li>
+              <div class="md-list-content">
+                <span class="md-list-heading uk-text-large">{{ businessDirectory.companyAddress }}</span>
+              </div>
+              <span class="uk-text-small uk-text-muted uk-display-block">
+                {{'business_directory.field.email'|trans }}</span>
+            </li>
+            <li>
+              <div class="md-list-content">
+                <span class="md-list-heading uk-text-large">{{ businessDirectory.sector|trans }}</span>
+              </div>
+              <span class="uk-text-small uk-text-muted uk-display-block">
+                {{'business_directory.field.sector'|trans }}</span>
+            </li>
+            <li>
+              <div class="md-list-content">
+                <span class="md-list-heading uk-text-large">
+                  {% if businessDirectory.enabled %}
+                    {{'business_directory.enabled.active'|trans }}
+                  {% else %}
+                    {{'business_directory.enabled.not_active'|trans }}
+                  {% endif %}
+                </span>
+              </div>
+              <span class="uk-text-small uk-text-muted uk-display-block">
+                {{'business_directory.field.enabled'|trans }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="uk-width-xLarge-2-10 uk-width-large-3-10">
+          <h3 class="heading_c uk-margin-small-bottom uk-margin-small-top">
+            {{ 'author.info'|trans }}
+          </h3>
+          <ul class="md-list md-list-addon">
+            <li>
+              <div class="md-list-addon-element">
+                <i class="md-list-addon-icon material-icons">&#xE8DF;</i>
+              </div>
+              <div class="md-list-content">
+                <span class="md-list-heading">
+                  {% if businessDirectory.updated %}{{ businessDirectory.updated|date('d M Y') }}
+                  {% endif %}
+                </span>
+                <span class="uk-text-small uk-text-muted">{{ 'author.updated'|trans }}</span>
+              </div>
+            </li>
+            <li>
+              <div class="md-list-addon-element">
+                <i class="md-list-addon-icon material-icons">&#xE8B5;</i>
+              </div>
+              <div class="md-list-content">
+                <span class="md-list-heading">
+                  {% if businessDirectory.created %}{{ businessDirectory.created|date('d M Y') }}
+                  {% endif %}
+                </span>
+                <span class="uk-text-small uk-text-muted">{{ 'author.created'|trans }}</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="md-card">
+    <div class="md-card-toolbar">
+      <h3 class="md-card-toolbar-heading-text">
+        {{ 'business_directory.show.map'|trans }}
+      </h3>
+    </div>
+    <div class="md-card-content">
+      <div id="map_users" class="gmap"></div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <!-- page specific plugins -->
+  <!-- maplace (google maps) -->
+  <script>
+    // This example adds a search box to a map, using the Google Place Autocomplete feature. People can enter geographical searches. The search box will return a pick list containing a mix of places and predicted search terms. This example requires the
+    // Places library. Include the libraries=places parameter when you first load the API. For example: <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+    function initAutocomplete() {
+      var map = new google.maps.Map(document.getElementById('map_users'), {
+        center: {
+          lat: {{ businessDirectory.latitude }},
+          lng: {{ businessDirectory.longitude }}
+        },
+        zoom: 13,
+        mapTypeId: 'roadmap'
+      });
+
+      var marker = new google.maps.Marker({
+        position: {
+          lat: {{ businessDirectory.latitude }},
+          lng: {{ businessDirectory.longitude }}
+        },
+        icon: '/build/img/md-images/ic_place_black_24dp.png',
+        map: map
+      });
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA4Gz615xE8ep4TXWQJAeuQcRawnyCgjI&libraries=places&callback=initAutocomplete" async="async" defer="defer"></script>
+{% endblock %}

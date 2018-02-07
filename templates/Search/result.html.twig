@@ -1,0 +1,151 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <!-- google web fonts -->
+  <link href="{{ asset('google_fonts.comfortaa')}}" rel="stylesheet">
+{% endblock %}
+
+{% block body_class %}header_double_height main_search_persistent main_search_active{% endblock %}
+
+{% block body %}
+  <ul class="uk-tab uk-tab-double-header uk-margin-bottom" data-uk-tab="{connect:'#tabs_search_content', animation:'slide-left', swiping:false}" id="tabs_search">
+    <li class="uk-active">
+      <a href="#">{{ 'search.tab.profile'|trans }}</a>
+    </li>
+    <li class="tab_maps">
+      <a href="#">{{ 'search.tab.map'|trans }}</a>
+    </li>
+  </ul>
+  <ul id="tabs_search_content" class="uk-switcher">
+    <li>
+      {% if users is empty %}
+        <div class="uk-alert uk-alert-large" data-uk-alert="">
+          <h4 class="heading_b">{{ "search.result_not_found.title"|trans}}</h4>
+          <p>
+            <h4 class="heading_a">{{ "search.result_not_found.sub-title"|trans}}
+              :
+            </h4>
+            {{ "search.result_not_found.profile"|trans}}
+          </p>
+        </div>
+      {% else %}
+        <div class="uk-grid uk-grid-medium uk-grid-width-small-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-4 uk-grid-width-xlarge-1-5" data-uk-grid-margin="data-uk-grid-margin" data-uk-grid-match="{target:'.md-card'}">
+          {% for user in users %}
+            <div>
+              <div class="md-card md-card-hover">
+                <div class="md-card-head">
+                  <div class="md-card-head-menu">
+                    <a href="{{ path('user_show', {'id' : user.id }) }}">
+                      <i class="md-icon material-icons">&#xE88F;</i>
+                    </a>
+                  </div>
+                  <div class="uk-text-center">
+                    {% if user.imageName %}
+                      <img class="md-card-head-avatar md-bg-grey-200" src="{{ vich_uploader_asset(user, 'imageFile') }}" alt="{{ user.imageName }}"/>
+                    {% else %}
+                      <img class="md-card-head-avatar md-bg-grey-200" src="{{ asset('user.png') }}" alt="user avatar"/>
+                    {% endif %}
+                  </div>
+                  <h3 class="md-card-head-text uk-text-center">
+                    {% if user.firstName and user.lastName %}
+                      {{ user.firstName ~ " " ~ user.lastName }}
+                    {% else %}
+                      {{ 'user.default.full_name'|trans }}
+                    {% endif %}
+                    <span class="uk-text-truncate">
+                      {{ user.currentPosition|default('user.default.current_position'|trans) }}
+                    </span>
+                  </h3>
+                </div>
+                <div class="md-card-content">
+                  <ul class="md-list">
+                    <li>
+                      <div class="md-list-content">
+                        <span class="md-list-heading">{{ 'user.field.summary'|trans }}</span>
+                        <span class="uk-text-small uk-text-muted">{{ user.summary[:50] }}...</span>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="md-list-content">
+                        <span class="md-list-heading">{{ 'user.field.email'|trans }}</span>
+                        <span class="uk-text-small uk-text-muted uk-text-truncate">{{ user.email }}</span>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="md-list-content">
+                        <span class="md-list-heading">{{ 'user.field.phone'|trans }}</span>
+                        <span class="uk-text-small uk-text-muted">{{ user.phone|default('user.default.phone'|trans) }}</span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="uk-margin-large-top">
+          {{ knp_pagination_render(users) }}
+        </div>
+      {% endif %}
+    </li>
+  </li>
+  <li class="full_height">
+
+    <div class="map_search_wrapper" data-uk-check-display="data-uk-check-display">
+      <span id="map_search_list_toggle"><img src="{{ asset('ic_place_black.png') }}" alt="ic place black"></span>
+      <div id="map_search" class="gmap"></div>
+      <div class="map_search_list_wrapper">
+        <ul class="md-list gmap_list" id="map_search_list">
+          {% if businessDirectorys is empty %}
+            <li class="active md-list-item-active" data-gmap-lat="36.84456" data-gmap-lon="10.220841">
+              <div class="md-list-content">
+                <span class="md-list-heading">{{ "search.result_not_found.title"|trans}}</span>
+                <spa class="uk-text-small uk-text-muted">{{ "search.result_not_found.sub-title"|trans}}</span>
+                <span class="uk-text-small uk-text-muted uk-margin-small-top">{{ "search.result_not_found.map"|trans}}</span>
+              </div>
+            </li>
+          {% else %}
+            {% for businessDirectory in businessDirectorys %}
+              <li data-gmap-lat="{{ businessDirectory.latitude }}" data-gmap-lon="{{ businessDirectory.longitude }}" data-gmap-company="{{ businessDirectory.companyName }}" data-gmap-company-address="{{ businessDirectory.companyAddress }}">
+                <div class="md-list-content">
+                  <span class="md-list-heading">{{ businessDirectory.companyName|humanize }}</span>
+                  <span class="uk-text-small uk-text-muted">{{ businessDirectory.companyAddress|humanize }}</span>
+                  <span class="uk-text-small uk-text-muted uk-margin-small-top">{{ businessDirectory.sectorName|trans }}</span>
+                </div>
+              </li>
+            {% endfor %}
+            <div class="uk-margin-large-top">
+              {{ knp_pagination_render(businessDirectorys) }}
+            </div>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </li>
+</ul>
+<div class="md-fab-wrapper md-fab-speed-dial-horizontal">
+  <a class="md-fab md-fab-primary" href="javascript:void(0)">
+    <i class="material-icons">&#xE8F2;</i>
+  </a>
+  <div class="md-fab-wrapper-small">
+    <a class="md-fab md-fab-small md-fab-warning"  data-uk-tooltip="{pos:'bottom'}" title="{{'contactus.new.tooltip'|trans}}" href="{{ path('contactus_new')}}">
+      <i class="material-icons">&#xE0D0;</i>
+    </a>
+    <a class="md-fab md-fab-small md-fab-success"  data-uk-tooltip="{pos:'bottom'}" title="{{'business_directory.new.tooltip'|trans}}" href="{{ path('businessdirectory_new')}}">
+      <i class="material-icons">&#xE567;</i>
+    </a>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<!-- page specific plugins -->
+<!-- maplace (google maps) -->
+<script src="http://maps.google.com/maps/api/js"></script>
+<script src="{{ asset('maplace.min.js') }}"></script>
+
+<!-- search results functions -->
+<script src="{{ asset('page_search.min.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,18 @@
+<ul class="md-list md-list-addon">
+  {% for hobbie in hobbies %}
+    <li>
+      <div class="md-list-addon-element">
+        <img class="md-user-image-medium md-list-addon-avatar" src="{{ vich_uploader_asset(hobbie, 'imageFile') | imagine_filter('thumbnail_50_x_50') }}" alt=""/>
+      </div>
+      <div class="md-list-content">
+        <span class="md-list-heading">{{ hobbie.title|humanize }}</span>
+        <span class="uk-margin-right">
+          <a class="delete-modal" data-msg="{{ 'cv.hobbie.delete'|trans }}" data-method="DELETE" data-url="{{ url('hobbie_delete',{'id': hobbie.id }) }}">
+            <i class="material-icons uk-text-danger">&#xE872;</i>
+            <span class="uk-text-muted uk-text-small">{{ 'action.delete'|trans }}</span>
+          </a>
+        </span>
+      </div>
+    </li>
+  {% endfor %}
+</ul>

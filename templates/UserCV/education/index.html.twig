@@ -1,0 +1,61 @@
+{% for education in educations %}
+  <!-- cv bloc employment col -->
+  <div class="uk-width-large-1-2 uk-width-medium-1-1 uk-width-small-1-1 section-col uk-animation-fade">
+    <div class="cv-section-box">
+
+      <!-- cv bloc employment name -->
+      <div class="cv-bloc-large-name">
+        <h3 class="font-nova no-margin bloc-name">{{ education.school|humanize }}</h3>
+        <div class="cv-bloc-icon">
+          <div class="md-card-toolbar-actions">
+            <a class="modal" data-method="GET" data-url="{{ url('education_edit',{'id': education.id }) }}">
+              <i class="material-icons md-24 md-color-blue-grey-500">&#xE923;</i>
+            </a>
+            <a class="delete-modal" data-msg="{{ 'cv.education.delete'|trans }}" data-method="DELETE" data-url="{{ url('education_delete',{'id': education.id }) }}">
+              <i class="material-icons md-24 md-color-red-500">&#xE872;</i>
+            </a>
+          </div>
+
+        </div>
+      </div>
+      <!-- cv bloc employment title & description -->
+      <div class="cv-bloc-description">
+        <ul class="md-list">
+          <li>
+            <div class="md-list-content">
+              <span class="md-list-heading">{{ 'education.field.degree'|trans }}</span>
+              <span class="uk-text-small uk-text-muted">{{ education.degree|humanize }}</span>
+            </div>
+          </li>
+          <li>
+            <div class="md-list-content">
+              <span class="md-list-heading">{{ 'education.field.grade'|trans }}</span>
+              <span class="uk-text-small uk-text-muted">{{ education.grade|humanize }}</span>
+            </div>
+          </li>
+          <li>
+            <div class="md-list-content">
+              <span class="md-list-heading">{{ 'education.field.fieldOfStudy'|trans }}</span>
+              <span class="uk-text-small uk-text-muted">{{ education.fieldOfStudy|humanize }}</span>
+            </div>
+          </li>
+          <li>
+            <div class="md-list-content">
+              <span class="md-list-heading">{{ 'education.field.period'|trans }}</span>
+              <span class="uk-text-small uk-text-muted">
+                {{ education.fromYear|humanize }} - {{ education.toYear|humanize }}
+              </span>
+            </div>
+          </li>
+          <li>
+            <div class="md-list-content">
+              <span class="md-list-heading">{{ 'education.field.description'|trans }}</span>
+              <span class="uk-text-small uk-text-muted">{{ education.description|humanize }}</span>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+{% endfor %}

@@ -1,14 +1,33 @@
 # Add your route here
 # import ServiceBundle routing
 service:
-    resource: '@ServiceBundle/Controller/'
+    resource: "@ServiceBundle/Controller/"
     type: annotation
     prefix:   /
+
 # import FOSUserBundle routing
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
 # import SgDatatablesBundle routing
 sg_datatables_bundle:
     resource: "@SgDatatablesBundle/Controller/"
     type:     annotation
-    prefix:   /sg
+    prefix:   /datatable
+
+# import LiipImagineBundle routing
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.yaml"
+
+# import HWIOAuthBundle routing
+# hwi_oauth_redirect:
+#     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+#     prefix:   /connect
+#
+# hwi_oauth_connect:
+#     resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+#     prefix:   /connect
+#
+# hwi_oauth_login:
+#     resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+#     prefix:   /login

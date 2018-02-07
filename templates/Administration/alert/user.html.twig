@@ -1,0 +1,127 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <!-- google web fonts -->
+  <link href="{{ asset('google_fonts.comfortaa')}}" rel="stylesheet">
+  <!-- uikit -->
+  <link rel="stylesheet" href="{{ asset('cv_content.css') }}" media="all">
+{% endblock %}
+
+{% block body %}
+  <div class="uk-grid uk-grid-collapse" data-uk-grid-margin="data-uk-grid-margin" data-uk-grid-match="{target:'.md-cv-content'}">
+    <div class="uk-width-large-2-10 uk-width-medium-3-10 uk-width-small-4-10">
+      <!-- cv Menu -->
+      <div id="right-bar" class="md-cv-content md-card md-bg-blue-700" style="background-color: {{app.user.rightColor }} !important;">
+        <div class="md-card-content">
+          <div class="user_heading uk-text-center">
+            <div class="user_heading_avatar fileinput fileinput-new" data-provides="fileinput">
+              <div class="fileinput-new thumbnail">
+                {% if app.user.imageName %}
+                  <img src="{{ vich_uploader_asset(app.user, 'imageFile') }}" alt="{{ app.user.imageName }}"/>
+                {% else %}
+                  <img src="{{ asset('user.png') }}" alt="user avatar"/>
+                {% endif %}
+              </div>
+            </div>
+            <h3 class="md-card-head-text uk-text-center uk-text-break md-color-white">
+              {% if app.user.firstName and app.user.lastName %}
+                {{ app.user.firstName|humanize ~ " " ~ app.user.lastName|humanize }}
+              {% else %}
+                {{ 'user.default.full_name'|trans }}
+              {% endif %}
+              <span class="uk-text-break">{{ app.user.currentPosition|default('user.field.current_position'|trans) }}</span>
+            </h3>
+          </div>
+          <div class="md-card-content">
+            <ul class="md-list uk-text-center white-list-border">
+              <li>
+                <div class="md-list-content">
+                  <span class="md-list-heading">
+                    <a class="md-color-white uk-text-break" href="{{ path('fos_user_change_password') }}">{{ 'user.change_password.title'|trans }}</a>
+                  </span>
+                  <span class="uk-text-small uk-text-break md-color-white">{{ 'user.change_password.sub-title'|trans }}</span>
+                </div>
+              </li>
+              {% if not is_granted('ROLE_SUPER_ADMIN') %}
+              <li>
+                <div class="md-list-content">
+                  <span class="md-list-heading">
+                    <a class="md-color-white uk-text-break" href="{{ path('condidate_cv_edit' , {'id' : app.user.id }) }}">{{ 'user.edit_cv.title'|trans }}</a>
+                  </span>
+                  <span class="uk-text-small uk-text-break md-color-white">{{ 'user.edit_cv.sub-title'|trans }}</span>
+                </div>
+              </li>
+              {% endif %}
+              <li>
+                <div class="md-list-content">
+                  <span class="md-list-heading">
+                    <a class="md-color-white uk-text-break" href="{{ path('fos_user_profile_show') }}">{{ 'user.profile.title'|trans }}</a>
+                  </span>
+                  <span class="uk-text-small uk-text-break md-color-white">{{ 'user.profile.sub-title'|trans }}</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- cv Menu -->
+      </div>
+    </div>
+    <div class="uk-width-large-8-10 uk-width-medium-7-10 uk-width-small-6-10">
+      <!-- cv content box -->
+      <div class="md-cv-content cv-box">
+        <!-- cv head -->
+        <div id="left-bar" class="md-card md-bg-red-700" style="background-color: {{app.user.leftColor }} !important;">
+          <h3 class="uk-text-center title-shadow uk-text-break font-nova">
+            {{ 'user.alert.title'|trans }}
+          </h3>
+        </div>
+        <!-- cv bloc education -->
+        <div id="bloc_education">
+          <div class="uk-grid cv-bloc-section">
+            <div class="uk-width-1-1 section-col">
+              <div class="timeline timeline_small uk-margin-bottom">
+                {% if alerts is empty %}
+                  <div class="timeline_item">
+                    <div class="timeline_icon timeline_icon_primary">
+                      <i class="material-icons">&#xE616;</i>
+                    </div>
+                    <div class="timeline_date">
+                      <span>{{ date('now')|date('d M Y') }}</span>
+                    </div>
+                    <div class="timeline_content">
+                      <strong>{{ 'alert.empty.title' }}</strong>
+                    </div>
+                  </div>
+                {% else %}
+                  {% for alert in alerts %}
+                    <div class="timeline_item">
+                      <div class="timeline_icon timeline_icon_{{ alert.type|lower }}">
+                        <i class="material-icons">&#xE616;</i>
+                      </div>
+                      <div class="timeline_date">
+                        <span>{{ alert.updated|date('d M Y') }}</span>
+                      </div>
+                      <div class="timeline_content">
+                        <strong>{{ alert.title }}</strong>
+                        <p>{{ alert.description }}</p>
+                      </div>
+                    </div>
+                  {% endfor %}
+                {% endif %}
+
+              </div>
+              <div class="uk-margin-large-top">
+                {{ knp_pagination_render(alerts) }}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- cv content -->
+
+{% endblock %}

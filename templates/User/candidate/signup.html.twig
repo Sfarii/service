@@ -1,0 +1,53 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+  <div class="login_page_wrapper">
+    <div class="md-card" id="login_card">
+      <div class="md-card-content large-padding" id="register_form">
+        <a href="{{ url('fos_user_security_login') }}" class="uk-position-top-right uk-close uk-margin-right uk-margin-top back_to_login"></a>
+        <h2 class="heading_a uk-margin-medium-bottom">Create an account</h2>
+        {{ form_start(form) }}
+
+        <div class="uk-form-row">
+          {{ form_label(form.username) }}
+          {{ form_widget(form.username , { 'attr' : {'class' : 'md-input'}}) }}
+          <div class="parsley-errors-list filled uk-text-danger text-danger">
+            {{ form_errors(form.username) }}
+          </div>
+        </div>
+        <div class="uk-form-row">
+          {{ form_label(form.plainPassword.first) }}
+          {{ form_widget(form.plainPassword.first , { 'attr' : {'class' : 'md-input'}}) }}
+          <div class="parsley-errors-list filled uk-text-danger text-danger">
+            {{ form_errors(form.plainPassword.first) }}
+          </div>
+        </div>
+        <div class="uk-form-row">
+          {{ form_label(form.plainPassword.second) }}
+          {{ form_widget(form.plainPassword.second , { 'attr' : {'class' : 'md-input'}}) }}
+          <div class="parsley-errors-list filled uk-text-danger text-danger">
+            {{ form_errors(form.plainPassword.second) }}
+          </div>
+        </div>
+        <div class="uk-form-row">
+          {{ form_label(form.email) }}
+          {{ form_widget(form.email , { 'attr' : {'class' : 'md-input'}}) }}
+          <div class="parsley-errors-list filled uk-text-danger text-danger">
+            {{ form_errors(form.email) }}
+          </div>
+        </div>
+        <div class="uk-margin-medium-top">
+          <button type="submit" class="md-btn md-btn-primary md-btn-block md-btn-large">{{ 'registration.submit'|trans }}</button>
+        </div>
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+      </div>
+    </div>
+    <div class="uk-margin-top uk-text-center">
+      <a href="{{ url('fos_user_security_login') }}">Sign in</a>
+    </div>
+  </div>
+
+{% endblock fos_user_content %}

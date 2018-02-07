@@ -1,0 +1,130 @@
+<?php
+
+namespace ServiceBundle\Controller\BusinessDirectory;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Response;
+use ServiceBundle\Services\ServiceManagerInterface;
+
+use ServiceBundle\Entity\BusinessDirectory\Sector;
+use ServiceBundle\Form\BusinessDirectory\SectorType;
+use ServiceBundle\Datatables\BusinessDirectory\SectorDatatable;
+
+/**
+ * Sector controller.
+ *
+ * @Route("sector")
+ */
+class SectorController extends Controller
+{
+    /**
+     * Lists all sector entities.
+     *
+     * @Route("/", name="sector_index")
+     * @Method("GET")
+     * @Template("BusinessDirectory/sector/index.html.twig")
+     */
+    public function indexAction(Request $request)
+    {
+        $isAjax = $request->isXmlHttpRequest();
+        /** @var DatatableInterface $datatable */
+        $sectorDatatable = $this->get('sg_datatables.factory')->create(SectorDatatable::class);
+        $sectorDatatable->buildDatatable();
+        if ($isAjax) {
+            $responseService = $this->get('sg_datatables.response');
+            $responseService->setDatatable($sectorDatatable);
+            $datatableQueryBuilder = $responseService->getDatatableQueryBuilder();
+            $datatableQueryBuilder->buildQuery();
+
+            return $responseService->getResponse();
+        }
+
+        return array('sectors' => $sectorDatatable);
+    }
+
+    /**
+     * Creates a new sector entity.
+     *
+     * @Route("/new", name="sector_new")
+     * @Method({"GET", "POST"})
+     * @Template("BusinessDirectory/sector/new.html.twig")
+     */
+    public function newAction(Request $request, ServiceManagerInterface $sem)
+    {
+        $sector = new Sector();
+        $form = $this->createForm(SectorType::class, $sector);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $sem->insert($sector);
+            $this->addFlash('msg_success', $this->get('translator')->trans('sector.new.success'));
+            return $this->redirectToRoute('sector_index');
+        }
+
+        return array(
+            'sector' => $sector,
+            'form' => $form->createView(),
+        );
+    }
+
+    /**
+     * Displays a form to edit an existing sector entity.
+     *
+     * @Route("/{id}/edit", name="sector_edit")
+     * @Method({"GET", "POST"})
+     * @Template("BusinessDirectory/sector/edit.html.twig")
+     */
+    public function editAction(Request $request, Sector $sector, ServiceManagerInterface $sem)
+    {
+        $editForm = $this->createForm(SectorType::class, $sector);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $sem->update($sector);
+            $this->addFlash('msg_success', $this->get('translator')->trans('sector.edit.success'));
+            return $this->redirectToRoute('sector_index');
+        }
+
+        return array(
+            'sector' => $sector,
+            'form' => $editForm->createView(),
+        );
+    }
+
+    /**
+     * Deletes a sector entity.
+     *
+     * @Route("/delete", name="sector_bulk_delete")
+     * @Method("DELETE")
+     */
+    public function deleteAction(Request $request, ServiceManagerInterface $sem)
+    {
+        $isAjax = $request->isXmlHttpRequest();
+
+        if ($isAjax) {
+            $choices = $request->request->get('data');
+            $token = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('multiselect', $token)) {
+                throw new AccessDeniedException('The CSRF token is invalid.');
+            }
+
+            try {
+                $sem->deleteAllByID(Sector::class, $choices);
+            } catch (\Exception $e) {
+                return new Response($this->get('translator')->trans('sector.delete.fail'), 200);
+            }
+
+
+            return new Response($this->get('translator')->trans('sector.delete.success'), 200);
+        }
+
+        return new Response('Bad Request', 400);
+    }
+}
