@@ -31,43 +31,22 @@ class CandidateController extends Controller
     /**
      * @Route("/pdf", name="cv_pdf")
      * @Method("GET")
-     * Template("User/candidate/print.html.twig")
      */
     public function pdfAction(Request $request)
     {
-      $html = $this->renderView('User/candidate/print.html.twig', array(
-        'user'  => $this->getUser()
-      ));
-      //  $pdfGenerator = $this->get('spraed.pdf.generator');
-       //
-      //  return new Response($pdfGenerator->generatePDF($html),
-      //                  200,
-      //                  array(
-      //                      'Content-Type' => 'application/pdf',
-      //                      'Content-Disposition' => 'inline; filename="out.pdf"'
-      //                  )
-      //  );
-      //   // // return array(
-      //   // //   'user'  => $this->getUser()
-      //   // // );
-      //   // $html = $this->renderView('User/candidate/print.html.twig', array(
-      //   //   'user'  => $this->getUser()
-      //   // ));
-
-        return new Response(
-          $this->get('knp_snappy.pdf')->getOutputFromHtml($html, array(
-                'enable-javascript' => false,
-                'page-size' => "A2",
-                'encoding' => 'utf-8',
-                'enable-external-links' => true,
-                'enable-internal-links' => true
-            )
-          ),
-          200,
-          array(
-          'Content-Type' => 'application/pdf',
-          'Content-Disposition' => 'attachment; filename='.$this->getUser()
-          )
+        $html = $this->renderView('User/candidate/print.html.twig', array(
+          'user'  => $this->getUser(),
+          'height' => $request->query->get('height', '2000px')
+        ));
+        return new PdfResponse(
+            $this->get('knp_snappy.pdf')->getOutputFromHtml($html, array(
+                  'page-size' => "A2",
+                  'encoding' => 'utf-8',
+                  'enable-external-links' => true,
+                  'enable-internal-links' => true
+              )
+            ),
+            sprintf('%s.pdf', $this->getUser())
         );
     }
 
@@ -79,7 +58,8 @@ class CandidateController extends Controller
     public function imageAction(Request $request)
     {
         return array(
-          'user'  => $this->getUser()
+          'user'  => $this->getUser(),
+          'height' => $request->query->get('height', '2000px')
         );
       //   $html = $this->renderView('User/candidate/print.html.twig', array(
       //     'user'  => $this->getUser()

@@ -147,21 +147,21 @@ vich_uploader:
             uri_prefix:         /images/user
             upload_destination: '%kernel.root_dir%/web/images/user'
             namer: vich_uploader.namer_uniqid
-            inject_on_load:     false
+            inject_on_load:     true
             delete_on_update:   true
             delete_on_remove:   true
         portfolio_image:
             uri_prefix:         /images/portfolio
             upload_destination: '%kernel.root_dir%/web/images/portfolio'
             namer: vich_uploader.namer_uniqid
-            inject_on_load:     false
+            inject_on_load:     true
             delete_on_update:   true
             delete_on_remove:   true
         intrest_image:
             uri_prefix:         /images/intrest
             upload_destination: '%kernel.root_dir%/web/images/intrest'
             namer: vich_uploader.namer_uniqid
-            inject_on_load:     false
+            inject_on_load:     true
             delete_on_update:   true
             delete_on_remove:   true
 
@@ -205,15 +205,16 @@ liip_imagine:
                     mode: outbound
 
 # KnpSnappyBundle Configuration
+# apt install libssl1.0-dev:i386
 knp_snappy:
     temporary_folder: "%kernel.cache_dir%/snappy"
     pdf:
         enabled:    true
-        binary:     %kernel.project_dir%/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64 #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" for Windows users
+        binary:     %kernel.project_dir%/vendor/h4cc/wkhtmltopdf-i386/bin/wkhtmltopdf-i386 #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" for Windows users
         options:    []
     image:
         enabled:    true
-        binary:     %kernel.project_dir%/vendor/h4cc/wkhtmltoimage-amd64/bin/wkhtmltoimage-amd64 #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\"" for Windows users
+        binary:     %kernel.project_dir%/vendor/h4cc/wkhtmltoimage-i386/bin/wkhtmltoimage-i386 #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\"" for Windows users
         options:    []
 
 # HWIOAuthBundle Configuration
