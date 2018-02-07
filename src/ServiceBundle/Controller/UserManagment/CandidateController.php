@@ -38,37 +38,37 @@ class CandidateController extends Controller
       $html = $this->renderView('User/candidate/print.html.twig', array(
         'user'  => $this->getUser()
       ));
-       $pdfGenerator = $this->get('spraed.pdf.generator');
+      //  $pdfGenerator = $this->get('spraed.pdf.generator');
+       //
+      //  return new Response($pdfGenerator->generatePDF($html),
+      //                  200,
+      //                  array(
+      //                      'Content-Type' => 'application/pdf',
+      //                      'Content-Disposition' => 'inline; filename="out.pdf"'
+      //                  )
+      //  );
+      //   // // return array(
+      //   // //   'user'  => $this->getUser()
+      //   // // );
+      //   // $html = $this->renderView('User/candidate/print.html.twig', array(
+      //   //   'user'  => $this->getUser()
+      //   // ));
 
-       return new Response($pdfGenerator->generatePDF($html),
-                       200,
-                       array(
-                           'Content-Type' => 'application/pdf',
-                           'Content-Disposition' => 'inline; filename="out.pdf"'
-                       )
-       );
-        // // return array(
-        // //   'user'  => $this->getUser()
-        // // );
-        // $html = $this->renderView('User/candidate/print.html.twig', array(
-        //   'user'  => $this->getUser()
-        // ));
-        //
-        // return new Response(
-        //   $this->get('knp_snappy.pdf')->getOutputFromHtml($html, array(
-        //         'enable-javascript' => false,
-        //         'page-size' => "A2",
-        //         'encoding' => 'utf-8',
-        //         'enable-external-links' => true,
-        //         'enable-internal-links' => true
-        //     )
-        //   ),
-        //   200,
-        //   array(
-        //   'Content-Type' => 'application/pdf',
-        //   'Content-Disposition' => 'attachment; filename='.$this->getUser()
-        //   )
-        // );
+        return new Response(
+          $this->get('knp_snappy.pdf')->getOutputFromHtml($html, array(
+                'enable-javascript' => false,
+                'page-size' => "A2",
+                'encoding' => 'utf-8',
+                'enable-external-links' => true,
+                'enable-internal-links' => true
+            )
+          ),
+          200,
+          array(
+          'Content-Type' => 'application/pdf',
+          'Content-Disposition' => 'attachment; filename='.$this->getUser()
+          )
+        );
     }
 
     /**
