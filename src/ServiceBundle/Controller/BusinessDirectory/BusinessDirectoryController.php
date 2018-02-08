@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 use ServiceBundle\Services\ServiceManagerInterface;
 use ServiceBundle\Form\BusinessDirectory\BusinessDirectoryType;
@@ -29,6 +30,7 @@ class BusinessDirectoryController extends Controller
      * @Route("/", name="businessdirectory_index")
      * @Method("GET")
      * @Template("BusinessDirectory/businessdirectory/index.html.twig")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function indexAction(Request $request)
     {
@@ -79,6 +81,7 @@ class BusinessDirectoryController extends Controller
      * @Route("/{id}", name="businessdirectory_show")
      * @Method("GET")
      * @Template("BusinessDirectory/businessdirectory/show.html.twig")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function showAction(BusinessDirectory $businessDirectory)
     {
@@ -93,6 +96,7 @@ class BusinessDirectoryController extends Controller
      * @Route("/{id}/edit", name="businessdirectory_edit")
      * @Method({"GET", "POST"})
      * @Template("BusinessDirectory/businessdirectory/edit.html.twig")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function editAction(Request $request, BusinessDirectory $businessDirectory)
     {
@@ -119,6 +123,7 @@ class BusinessDirectoryController extends Controller
      *
      * @Route("/bulk/delete", name="businessdirectory_bulk_delete")
      * @Method("DELETE")
+     * @Security("has_role('ROLE_ADMIN')")
      *
      * @return Response
      */
@@ -154,6 +159,7 @@ class BusinessDirectoryController extends Controller
      *
      * @Route("/bulk/{isActive}", name="businessdirectory_bulk_activate_deactivate", requirements={"isActive": "1|0"})
      * @Method("DELETE")
+     * @Security("has_role('ROLE_ADMIN')")
      *
      * @return Response
      */

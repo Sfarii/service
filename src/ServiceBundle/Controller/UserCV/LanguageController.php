@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use ServiceBundle\Services\ServiceManagerInterface;
 use ServiceBundle\Form\UserCV\LanguageType;
 use ServiceBundle\Entity\UserCV\Language;
@@ -18,6 +19,7 @@ use ServiceBundle\Entity\UserCV\Language;
  * Language controller.
  *
  * @Route("language")
+ * @Security("has_role('ROLE_USER')")
  */
 class LanguageController extends Controller
 {

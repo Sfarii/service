@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 use ServiceBundle\Entity\UserManagment\User as User;
 use ServiceBundle\Entity\Administration\ContactUS;
@@ -21,6 +22,7 @@ class DashbordController extends Controller
      * @Route("/dashbord", name="dashboard_index")
      * @Template("Dashbord/index.html.twig")
      * @Method("GET")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function indexAction(EntityManagerInterface $em)
     {

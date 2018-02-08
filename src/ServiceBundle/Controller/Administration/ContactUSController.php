@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
 use ServiceBundle\Services\ServiceManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 use ServiceBundle\Entity\Administration\ContactUS;
 use ServiceBundle\Form\Administration\ContactUSType;
@@ -29,6 +30,7 @@ class ContactUSController extends Controller
      * @Route("/", name="contactus_index")
      * @Method("GET")
      * @Template("Administration/contactus/index.html.twig")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function indexAction(Request $request)
     {
@@ -79,6 +81,7 @@ class ContactUSController extends Controller
      * @Route("/{id}", name="contactus_show")
      * @Method("GET")
      * @Template("Administration/contactus/show.html.twig")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function showAction(ContactUS $contactUS)
     {
@@ -92,6 +95,7 @@ class ContactUSController extends Controller
      *
      * @Route("/delete", name="contactus_bulk_delete")
      * @Method("DELETE")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function deleteAction(Request $request, ServiceManagerInterface $sem)
     {

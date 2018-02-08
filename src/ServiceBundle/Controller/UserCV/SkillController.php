@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use ServiceBundle\Form\UserCV\SkillType;
 use ServiceBundle\Entity\UserCV\Skill;
 
@@ -18,6 +18,7 @@ use ServiceBundle\Entity\UserCV\Skill;
  * Skill controller.
  *
  * @Route("skill")
+ * @Security("has_role('ROLE_USER')")
  */
 class SkillController extends Controller
 {

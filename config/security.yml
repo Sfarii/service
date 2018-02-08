@@ -18,8 +18,8 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
-            logout_on_user_change: true
-            logout: true
+            logout:
+                target: homepage
             anonymous: true
         # secured_area:
         #     anonymous: true

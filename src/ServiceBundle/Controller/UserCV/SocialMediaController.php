@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
 use ServiceBundle\Services\ServiceManagerInterface;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use ServiceBundle\Entity\UserCV\SocialMedia;
 use ServiceBundle\Form\UserCV\SocialMediaType;
 
@@ -19,6 +19,7 @@ use ServiceBundle\Form\UserCV\SocialMediaType;
  * Socialmedia controller.
  *
  * @Route("usercv_socialmedia")
+ * @Security("has_role('ROLE_USER')")
  */
 class SocialMediaController extends Controller
 {

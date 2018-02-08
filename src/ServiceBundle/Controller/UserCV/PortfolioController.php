@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use ServiceBundle\Entity\UserCV\Portfolio;
 use ServiceBundle\Form\UserCV\PortfolioType;
 
@@ -17,6 +17,7 @@ use ServiceBundle\Form\UserCV\PortfolioType;
  * Portfolio controller.
  *
  * @Route("usercv_portfolio")
+ * @Security("has_role('ROLE_USER')")
  */
 class PortfolioController extends Controller
 {

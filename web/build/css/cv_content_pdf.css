@@ -6,6 +6,23 @@
   margin: 0 !important;
 }
 
+.md-card {
+    position: inherit !important;
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+    border: none;
+}
+
+.md-list, .md-list *, .md-list :after, .md-list :before, .md-list:after, .md-list:before {
+    -webkit-box-sizing: unset;
+    box-sizing: unset;
+}
+
+.md-list .uk-nestable-list>li, .md-list>li{
+  -webkit-box-sizing: unset;
+  box-sizing: unset;
+}
+
 .cv-section-icon {
   display: inline;
   position: absolute;
@@ -94,10 +111,10 @@
 }
 
 .cv-box .title-shadow {
-  font-size: 40px;
+  font-size: 50px;
   padding: 25px;
   color: white;
-  text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.37);
+  text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.37);
 }
 
 .cv-box .cv-bloc-aboutme {

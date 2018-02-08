@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
 use ServiceBundle\Services\ServiceManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 use ServiceBundle\Entity\UserCV\Interests;
 use ServiceBundle\Form\UserCV\InterestsType;
@@ -20,6 +21,7 @@ use ServiceBundle\Datatables\UserCV\InterestsDatatable;
  * Interest controller.
  *
  * @Route("interests")
+ * @Security("has_role('ROLE_USER')")
  */
 class InterestController extends Controller
 {

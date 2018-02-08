@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 use ServiceBundle\Form\UserCV\ExperienceType;
 use ServiceBundle\Entity\UserCV\Experience;
@@ -17,6 +18,7 @@ use ServiceBundle\Entity\UserCV\Experience;
  * Experience controller.
  *
  * @Route("usercv_experience")
+ * @Security("has_role('ROLE_USER')")
  */
 class ExperienceController extends Controller
 {

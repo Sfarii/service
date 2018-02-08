@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 use ServiceBundle\Entity\UserCV\Education;
 use ServiceBundle\Form\UserCV\EducationType;
@@ -17,6 +18,7 @@ use ServiceBundle\Form\UserCV\EducationType;
  * Education controller.
  *
  * @Route("usercv_education")
+ * @Security("has_role('ROLE_USER')")
  */
 class EducationController extends Controller
 {

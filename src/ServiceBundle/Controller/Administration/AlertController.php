@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 use ServiceBundle\Datatables\Administration\AlertDatatable;
 use ServiceBundle\Entity\Administration\Alert;
@@ -29,6 +30,7 @@ class AlertController extends Controller
      *
      * @Route("/", name="alert_index")
      * @Template("Administration/alert/index.html.twig")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function indexAction(Request $request)
     {
@@ -54,6 +56,7 @@ class AlertController extends Controller
      * @Route("/new", name="alert_new")
      * @Method({"GET", "POST"})
      * @Template("Administration/alert/new.html.twig")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function newAction(Request $request, ServiceManagerInterface $sem)
     {
@@ -80,6 +83,7 @@ class AlertController extends Controller
      * @Route("/{id}/edit", name="alert_edit")
      * @Method({"GET", "POST"})
      * @Template("Administration/alert/edit.html.twig")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function editAction(Request $request, Alert $alert, ServiceManagerInterface $sem)
     {
@@ -104,6 +108,7 @@ class AlertController extends Controller
      * @Route("/show/{id}", name="alert_show")
      * @Method("GET")
      * @Template("Administration/alert/show.html.twig")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function showAction(Alert $alert)
     {
@@ -118,6 +123,7 @@ class AlertController extends Controller
      * @Route("/show_alert_header", name="alert_user_header_show")
      * @Method("GET")
      * @Template("Administration/alert/user_header.html.twig")
+     * @Security("has_role('ROLE_USER')")
      */
     public function showuserAlertsAction(EntityManagerInterface $em)
     {
@@ -134,6 +140,7 @@ class AlertController extends Controller
      * @Route("/user", name="alert_user_show")
      * @Method("GET")
      * @Template("Administration/alert/user.html.twig")
+     * @Security("has_role('ROLE_USER')")
      */
     public function showByUserAction(Request $request, PaginatorInterface $pagination, EntityManagerInterface $em)
     {
@@ -155,6 +162,7 @@ class AlertController extends Controller
      *
      * @Route("/bulk/delete", name="alert_bulk_delete")
      * @Method("DELETE")
+     * @Security("has_role('ROLE_ADMIN')")
      *
      * @return Response
      */

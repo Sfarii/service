@@ -125,7 +125,7 @@ class UserDatatable extends AbstractDatatable
                     array(
                         'route' => 'user_show',
                         'route_parameters' => array(
-                            'id' => 'id'
+                            'username' => 'username'
                         ),
                         'icon' => '&#xE417;',
                         'attributes' => array(

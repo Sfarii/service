@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use ServiceBundle\Services\ServiceManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Knp\Bundle\SnappyBundle\Snappy\Response\JpegResponse;
@@ -31,6 +32,7 @@ class CandidateController extends Controller
     /**
      * @Route("/pdf", name="cv_pdf")
      * @Method("GET")
+     * @Security("has_role('ROLE_USER')")
      */
     public function pdfAction(Request $request)
     {
@@ -51,30 +53,9 @@ class CandidateController extends Controller
     }
 
     /**
-     * @Route("/img", name="cv_img")
-     * @Method("GET")
-     * @Template("User/candidate/print.html.twig")
-     */
-    public function imageAction(Request $request)
-    {
-        return array(
-          'user'  => $this->getUser(),
-          'height' => $request->query->get('height', '2000px')
-        );
-      //   $html = $this->renderView('User/candidate/print.html.twig', array(
-      //     'user'  => $this->getUser()
-      //   ));
-      //
-      //   return new JpegResponse(
-      //     $this->get('knp_snappy.image')->getOutputFromHtml($html),
-      //     'cv.jpg'
-      // );
-    }
-
-    /**
      * Finds and displays a user entity.
      *
-     * @Route("/show/{id}", name="user_show")
+     * @Route("/show/{username}", name="user_show")
      * @Method("GET")
      * @Template("User/candidate/show.html.twig")
      */
@@ -91,6 +72,7 @@ class CandidateController extends Controller
      * @Route("/cv/{id}", name="condidate_cv_edit")
      * @Method("GET")
      * @Template("User/candidate/edit.html.twig")
+     * @Security("has_role('ROLE_USER')")
      */
     public function editAction(User $user)
     {
@@ -106,6 +88,7 @@ class CandidateController extends Controller
      *
      * @Route("/bulk/{id}", name="user_bulk_update_profile_color")
      * @Method("POST")
+     * @Security("has_role('ROLE_USER')")
      *
      * @return Response
      */

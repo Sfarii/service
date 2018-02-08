@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Doctrine\ORM\EntityManagerInterface;
 use ServiceBundle\Services\ServiceManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,6 +20,7 @@ use ServiceBundle\Entity\UserCV\Interests;
  * User hobbies controller.
  *
  * @Route("hobbie")
+ * @Security("has_role('ROLE_USER')")
  */
 class UserHobbiesController extends Controller
 {

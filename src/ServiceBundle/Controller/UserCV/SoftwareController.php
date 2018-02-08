@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use ServiceBundle\Form\UserCV\SoftwareType;
 use ServiceBundle\Entity\UserCV\Software;
 
@@ -17,6 +17,7 @@ use ServiceBundle\Entity\UserCV\Software;
  * Software controller.
  *
  * @Route("software")
+ * @Security("has_role('ROLE_USER')")
  */
 class SoftwareController extends Controller
 {

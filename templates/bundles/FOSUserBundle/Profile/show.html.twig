@@ -464,21 +464,31 @@
 
         </div>
       </div>
-
-      <!-- End cv content -->
-      {% if not is_granted('ROLE_SUPER_ADMIN') %}
-        <div class="md-fab-wrapper md-fab-speed-dial-horizontal">
-          <a class="md-fab md-fab-primary" href="javascript:void(0)">
-            <i class="material-icons">&#xE8F2;</i>
-          </a>
-          <div class="md-fab-wrapper-small">
-            <a class="md-fab md-fab-small md-fab-warning" data-uk-tooltip="{pos:'bottom'}" title="{{ 'user.profile.print'|trans }}" href="{{ path('cv_pdf') }}">
-              <i class="material-icons">&#xE8AD;</i>
-            </a>
-            <a class="md-fab md-fab-small md-fab-success" data-uk-tooltip="{pos:'bottom'}" title="{{ 'user.edit_cv.title'|trans }}" href="{{ path('condidate_cv_edit' , {'id' : user.id }) }}">
-              <i class="material-icons">&#xE869;</i>
-            </a>
-          </div>
-        </div>
-      {% endif %}
-    {% endblock %}
+    </div>
+  </div>
+  <!-- End cv content -->
+  {% if not is_granted('ROLE_SUPER_ADMIN') %}
+    <div class="md-fab-wrapper md-fab-speed-dial-horizontal">
+      <a class="md-fab md-fab-primary" href="javascript:void(0)">
+        <i class="material-icons">&#xE8F2;</i>
+      </a>
+      <div class="md-fab-wrapper-small">
+        <button class="md-fab md-fab-small md-fab-warning" id="generate_pdf" data-uk-tooltip="{pos:'bottom'}" title="{{ 'user.profile.print'|trans }}">
+          <i class="material-icons">&#xE8AD;</i>
+        </button>
+        <a class="md-fab md-fab-small md-fab-success" data-uk-tooltip="{pos:'bottom'}" title="{{ 'user.edit_cv.title'|trans }}" href="{{ path('condidate_cv_edit' , {'id' : user.id }) }}">
+          <i class="material-icons">&#xE3C9;</i>
+        </a>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
+{% block javascripts %}
+  {{ parent() }}
+  <!-- page specific plugins -->
+  <script>
+    $(document).on('click', '#generate_pdf', function(event) {
+      window.location.href = "{{ url('cv_pdf')}}?height="+$('#right-bar').css("min-height");
+    });
+  </script>
+{% endblock %}

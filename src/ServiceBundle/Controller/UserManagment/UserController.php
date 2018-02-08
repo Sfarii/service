@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use ServiceBundle\Services\ServiceManagerInterface;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use ServiceBundle\Entity\UserManagment\User;
 use ServiceBundle\Form\UserCV\UserType;
 
@@ -21,6 +21,7 @@ use ServiceBundle\Datatables\UserCV\UserDatatable;
  * User controller.
  *
  * @Route("usercv_user")
+ * @Security("has_role('ROLE_ADMIN')")
  */
 class UserController extends Controller
 {
