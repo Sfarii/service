@@ -1,12 +1,17 @@
-Instagram clone Project
+Service Project
 ========================
 
-- Registration with username, email and password
-- Connection
-- News feed
-- Post creation
-- Search functionality in posts
-- Ergonomic visual interface similar to that of Instagram
+Welcome to the Service Project - this project contains the following features :
+
+- A business directory is list of information on private or public companies. Businesses can be categorized by name, location or activity.
+
+- Search engine of the users profile. profiles can be categorized by name, location, work , experience or activity.
+
+- The User Management System provides functionality to manage users and personal profiles.
+
+- Payment method for gold users.
+
+- Resume Management.
 
 Requirements
 ------------
@@ -40,12 +45,10 @@ Now configure the .env file under project root.
 
 ### Step 4 : Run the project
 
-The Symfony server is part of the symfony binary created when you install Symfony and has support for Linux, macOS and Windows.
-
 Now run this command to run the built-in web server and access the application in your browser at <http://localhost:8000>:
 
 ```bash
-$ symfony server:start
+$ php bin/console server:run
 ```
 
 That's it.
